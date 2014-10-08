@@ -1,0 +1,3 @@
+ema_rgement_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: EMARgementBundle:Default:index }
