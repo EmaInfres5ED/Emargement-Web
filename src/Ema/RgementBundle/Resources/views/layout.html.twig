@@ -9,6 +9,7 @@
     <link href="{{ asset('bundles/emargement/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ asset('bundles/emargement/bootstrap/css/sb-admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/emargement/css/layout.css') }}" rel="stylesheet">
     <!-- Morris Charts CSS -->
     <link href="{{ asset('bundles/emargement/bootstrap/css/plugins/morris.css') }}" rel="stylesheet">
     <!-- Custom Fonts -->
@@ -21,7 +22,9 @@
     {% block css %}{% endblock %}
 </head>
 <body>
+
     <div id="wrapper">
+
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             
@@ -81,22 +84,58 @@
             </ul>
             <!-- /.navbar-collapse -->
         </nav>
+
+
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse" id="panel-left">
+            <ul class="nav navbar-nav side-nav">
+                <li class="active">
+                    <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Tableau de bord </a>
+                </li>
+                <li>
+                    <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Statistiques </a>
+                </li>
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon-screenshot"></i> Absences / Retards <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="demo" class="collapse">
+                        <li>
+                            <a href="#"> Prévenir </a>
+                        </li>
+                        <li>
+                            <a href="#"> Justifier </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Export </a>
+                </li>
+                <li>
+                    <a href="forms.html"><i class="fa fa-fw fa-gear"></i> Paramétrages </a>
+                </li>
+            </ul>
+        </div>
+
+
+
         <div id="page-wrapper">
+
             <div class="container-fluid">
-            {% for flashMessage in app.session.flashbag.get('notice') %}
-                <div class="flash-message">
-                    <em>Notice</em>: {{ flashMessage }}
-                </div>
-            {% endfor %}
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+          <div class="flash-message">
+            <em>Notice</em>: {{ flashMessage }}
+          </div>
+        {% endfor %}
 
-            {% block content %}{% endblock %}
-
-            {% if code is defined %}
-                <h2>Code behind this page</h2>
-                <div class="block">
-                    <div class="symfony-content">{{ code|raw }}</div>
-                </div>
-            {% endif %}
+        {% block content_header %}
+        {% endblock %}
+        {% if code is defined %}
+          <h2>Code behind this page</h2>
+          <div class="block">
+            <div class="symfony-content">{{ code|raw }}</div>
+          </div>
+        {% endif %}
+        {% block body %}{% endblock %}
+        {% block content %}{% endblock %}
             </div> <!-- /.container-fluid -->
         </div> <!-- /#page-wrapper -->
     </div> <!-- /#wrapper -->
