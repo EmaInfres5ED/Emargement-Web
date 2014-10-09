@@ -1,3 +1,12 @@
 ema_rgement_homepage:
     path:     /
     defaults: { _controller: EmaRgementBundle:Default:index }
+example_homepage:
+    path:     /example
+    defaults: { _controller: EmaRgementBundle:Default:example }
+ema_rgement_admin_panel_user_list:
+    path:     /adminPanel/userList
+    defaults: { _controller: EmaRgementBundle:Default:adminPanelUserList }
+ema_rgement_admin_panel_configuration:
+    path:     /adminPanel/configuration
+    defaults: { _controller: EmaRgementBundle:Default:adminPanelConfiguration }
