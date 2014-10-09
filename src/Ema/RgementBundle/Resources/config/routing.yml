@@ -1,3 +1,15 @@
 ema_rgement_homepage:
     path:     /
     defaults: { _controller: EmaRgementBundle:Default:index }
+ema_rgement_stats_accumulation_Absence:
+    path:     /stats/accumulation/Absence
+    defaults: { _controller: EmaRgementBundle:Default:statsaccumulationAbsence }
+ema_rgement_stats_accumulation_Delay:
+    path:     /stats/accumulation/Delay
+    defaults: { _controller: EmaRgementBundle:Default:statsaccumulationDelay }
+ema_rgement_stats_frequency_Absence:
+    path:     /stats/frequency/Absence
+    defaults: { _controller: EmaRgementBundle:Default:statsfrequencyAbsence }
+ema_rgement_stats_frequency_Delay:
+    path:     /stats/frequency/Delay
+    defaults: { _controller: EmaRgementBundle:Default:statsfrequencyDelay }
