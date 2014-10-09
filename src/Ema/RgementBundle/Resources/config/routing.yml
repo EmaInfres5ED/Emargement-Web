@@ -5,8 +5,8 @@ example_homepage:
     path:     /example
     defaults: { _controller: EmaRgementBundle:Default:example }
 ema_rgement_admin_panel_user_list:
-    path:     /adminPanel/userList
-    defaults: { _controller: EmaRgementBundle:Default:adminPanelUserList }
+    path:     /admin/user/list
+    defaults: { _controller: EmaRgementBundle:Default:adminUserList }
 ema_rgement_admin_panel_configuration:
-    path:     /adminPanel/configuration
-    defaults: { _controller: EmaRgementBundle:Default:adminPanelConfiguration }
+    path:     /admin/configuration
+    defaults: { _controller: EmaRgementBundle:Default:adminConfiguration }

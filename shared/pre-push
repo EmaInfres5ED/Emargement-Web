@@ -11,7 +11,7 @@ final_status=0
 
 # -- execution of all phpunit test on Soft
 echo "** RUNNING UNIT TESTS **"
-phpunit --colors --verbose --bootstrap tests/bootstrap.php --configuration tests/phpunit.xml tests/
+phpunit -c app
 if [ $? -gt 0 ]; then
     final_status=1
 fi
