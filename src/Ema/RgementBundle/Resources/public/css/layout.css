@@ -2,18 +2,6 @@
     background-color : #A50034;
 }
 
-.navbar-inverse .navbar-nav > li > a {
-    color: #FFFFFF;
-}
-
-.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
-    background-color: #8b0034;
-}
-
-.side-nav li a:hover, .side-nav li a:focus {
-    background-color: #630025 !important;
-}
-
 .navbar-inverse {
     background-color: #A50034;
     border-color: #000000;
@@ -27,11 +15,35 @@
     background-color: #8b0034;
 }
 
-.side-nav > li > ul > li > a {
-    color: #FFFFFF;
-}
-
 .logoSite {
     height: 50px;
     width: 200px;
+}
+
+#panel-left a {
+    color:#FFFFFF;
+}
+
+.side-nav li a:hover, .side-nav li a:focus {
+    background-color: #630025 !important;
+}
+
+html, body {
+    width:100%;
+    height:100%;
+    margin:0;
+}
+
+#wrapper {
+    width:100%;
+    height:100%;
+}
+
+#panel-left ul{
+    min-height:100%;
+}
+
+#page-wrapper {
+    min-height:100%;
+    padding-top:50px;
 }
