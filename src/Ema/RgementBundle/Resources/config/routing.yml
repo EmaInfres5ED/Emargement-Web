@@ -1,3 +1,6 @@
 ema_rgement_homepage:
     path:     /
     defaults: { _controller: EmaRgementBundle:Default:index }
+example_homepage:
+    path:     /example
+    defaults: { _controller: EmaRgementBundle:Default:example }
