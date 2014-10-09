@@ -1,5 +1,1 @@
 {% extends 'EMARgementBundle::layout.html.twig' %}
-
-{% block content %}
-    coucou
-{% endblock %}
