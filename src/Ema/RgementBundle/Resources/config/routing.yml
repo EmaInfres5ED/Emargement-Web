@@ -13,3 +13,6 @@ ema_rgement_stats_frequency_Absence:
 ema_rgement_stats_frequency_Delay:
     path:     /stats/frequency/Delay
     defaults: { _controller: EmaRgementBundle:Default:statsfrequencyDelay }
+ema_rgement_stats:
+    path:     /stats/
+    defaults: { _controller: EmaRgementBundle:Default:stats }

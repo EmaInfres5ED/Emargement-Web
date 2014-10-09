@@ -10,6 +10,10 @@ class DefaultController extends Controller
     {
         return $this->render('EmaRgementBundle:Default:index.html.twig');
     }
+    public function statsAction()
+    {
+        return $this->render('EmaRgementBundle:Default:stats/stats.html.twig');
+    }
     public function statsfrequencyDelayAction()
     {
         return $this->render('EmaRgementBundle:Default:stats/frequency/Delay.html.twig');
