@@ -1,6 +1,6 @@
 <?php
 
-namespace EMA\Bundle\RgementBundle\DependencyInjection;
+namespace Ema\Bundle\RgementBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

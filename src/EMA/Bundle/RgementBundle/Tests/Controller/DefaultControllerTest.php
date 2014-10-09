@@ -1,6 +1,6 @@
 <?php
 
-namespace EMA\Bundle\RgementBundle\Tests\Controller;
+namespace Ema\Bundle\RgementBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
