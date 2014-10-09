@@ -4,3 +4,6 @@ ema_rgement_homepage:
 example_homepage:
     path:     /example
     defaults: { _controller: EmaRgementBundle:Default:example }
+justify_homepage:
+    path:     /justify/list
+    defaults: { _controller: EmaRgementBundle:Default:justifyList }
