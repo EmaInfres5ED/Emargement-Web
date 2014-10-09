@@ -15,4 +15,9 @@ class DefaultController extends Controller
     {
         return $this->render('EmaRgementBundle:Default:dashboard.html.twig');
     }
+    
+    public function exampleAction()
+    {
+        return $this->render('EmaRgementBundle:Default:example.html.twig');
+    }
 }

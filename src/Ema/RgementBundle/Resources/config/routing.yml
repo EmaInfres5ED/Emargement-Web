@@ -5,3 +5,7 @@ ema_rgement_homepage:
 ema_rgement_dashboard:
     path:       /dashboard
     defaults:   { _controller: EmaRgementBundle:Default:dashboard }
+
+example_homepage:
+    path:     /example
+    defaults: { _controller: EmaRgementBundle:Default:example }
