@@ -10,4 +10,9 @@ class DefaultController extends Controller
     {
         return $this->render('EmaRgementBundle:Default:index.html.twig');
     }
+
+    public function dashboardAction()
+    {
+        return $this->render('EmaRgementBundle:Default:dashboard.html.twig');
+    }
 }
