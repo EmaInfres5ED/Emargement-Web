@@ -1,6 +1,6 @@
 <?php
 
-namespace EMA\Bundle\RgementBundle\Controller;
+namespace Ema\Bundle\RgementBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('EMARgementBundle:Default:index.html.twig');
+        return $this->render('EmaRgementBundle:Default:index.html.twig');
     }
 }

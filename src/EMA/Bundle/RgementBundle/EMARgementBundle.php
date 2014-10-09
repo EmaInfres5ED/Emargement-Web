@@ -1,9 +1,9 @@
 <?php
 
-namespace EMA\Bundle\RgementBundle;
+namespace Ema\Bundle\RgementBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class EMARgementBundle extends Bundle
+class EmaRgementBundle extends Bundle
 {
 }
