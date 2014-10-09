@@ -13,6 +13,6 @@ class DefaultController extends Controller
 
     public function exampleAction()
     {
-    	return $this->render('EmaRgementBundle:Default:example.html.twig');
+        return $this->render('EmaRgementBundle:Default:example.html.twig');
     }
 }
