@@ -5,95 +5,11 @@
 {% endblock %}
 
 {% block content %}
-    <h1> Utilisateurs </h1>
-    <div id="example_wrapper" class="dataTables_wrapper">
-        <div class="dataTables_length" id="example_length">
-            <label>Show 
-                <select name="example_length" aria-controls="example" class="">
-                    <option value="10">10</option>
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                </select> entries
-            </label>
-        </div>
-        <div id="example_filter" class="dataTables_filter">
-            <label>Search:
-                <input type="search" class="" placeholder="" aria-controls="example">
-            </label>
-        </div>
-        <table width="100%" cellspacing="0" class="display nowrap dataTable dtr-inline" id="example" role="grid" aria-describedby="example_info" style="width: 100%;">
-            <thead>
-                <tr role="row">
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Role</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Role</th>
-                </tr>
-            </tfoot>
-            <tbody>
-                <tr role="row" class="odd">
-                    <td class="sorting_1">Airi</td>
-                    <td>Satou</td>
-                    <td>Admin</td>
-                </tr>
-                <tr role="row" class="even">
-                    <td class="sorting_1">Angelica</td>
-                    <td>Ramos</td>
-                    <td>Manager</td>
-                </tr>
-                <tr role="row" class="even">
-                    <td class="sorting_1">Ashton</td>
-                    <td>Cox</td>
-                    <td>Manager</td>
-                </tr>
-                <tr role="row" class="even">
-                    <td class="sorting_1">Bradley</td>
-                    <td>Greer</td>
-                    <td>Manager</td>
-                </tr>
-                <tr role="row" class="even">
-                    <td class="sorting_1">Brenden</td>
-                    <td>Wagner</td>
-                    <td>Manager</td>
-                </tr>
-                <tr role="row" class="even">
-                    <td class="sorting_1">Brielle</td>
-                    <td>Williamson</td>
-                    <td>Manager</td>
-                </tr>
-                <tr role="row" class="even">
-                    <td class="sorting_1">Bruno</td>
-                    <td>Nash</td>
-                    <td>Manager</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="dataTables_info" id="example_info" role="status" aria-live="polite">
-            Showing 1 to 10 of 57 entries
-        </div>
-        <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
-            <a class="paginate_button previous disabled" aria-controls="example" data-dt-idx="0" tabindex="0" id="example_previous">
-                Previous
-            </a>
-            <span>
-                <a class="paginate_button current" aria-controls="example" data-dt-idx="1" tabindex="0">1</a>
-                <a class="paginate_button " aria-controls="example" data-dt-idx="2" tabindex="0">2</a>
-                <a class="paginate_button " aria-controls="example" data-dt-idx="3" tabindex="0">3</a>
-                <a class="paginate_button " aria-controls="example" data-dt-idx="4" tabindex="0">4</a>
-                <a class="paginate_button " aria-controls="example" data-dt-idx="5" tabindex="0">5</a>
-                <a class="paginate_button " aria-controls="example" data-dt-idx="6" tabindex="0">6</a>
-            </span>
-            <a class="paginate_button next" aria-controls="example" data-dt-idx="7" tabindex="0" id="example_next">
-                Next
-            </a>
-        </div>
+    <h1> Configuration </h1>
+    <div class="form-group">
+        <label>Cybema Url</label>
+        <input class="form-control" value="http://cybema.mines-ales.org" placeholder="Entrez une url cybema valide">
     </div>
-    <button class="btn btn-default right" type="button">Add user</button>
+    <button class="btn btn-default" type="submit">Save</button>
+    <button class="btn btn-default" type="button">Cancel</button>
 {% endblock %}
