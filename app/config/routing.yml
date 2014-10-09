@@ -1,0 +1,4 @@
+ema_rgement:
+    resource: "@EMARgementBundle/Resources/config/routing.yml"
+    prefix:   /
+
