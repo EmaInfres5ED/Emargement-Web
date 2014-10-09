@@ -10,7 +10,7 @@ class DefaultControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/adminPanel/userList');
+        $crawler = $client->request('GET', '/admin/user/list');
 
         $this->assertTrue($crawler->filter('html:contains("Liste d\'utilisateur")')->count() > 0);
     }

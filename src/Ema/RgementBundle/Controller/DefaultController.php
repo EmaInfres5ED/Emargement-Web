@@ -16,14 +16,14 @@ class DefaultController extends Controller
         return $this->render('EmaRgementBundle:Default:example.html.twig');
     }
 
-    public function adminPanelUserListAction()
+    public function adminUserListAction()
     {
-        return $this->render('EmaRgementBundle:AdminPanel:userList.html.twig');
+        return $this->render('EmaRgementBundle:Admin:User/list.html.twig');
     }
 
-    public function adminPanelConfigurationAction()
+    public function adminConfigurationAction()
     {
-        return $this->render('EmaRgementBundle:AdminPanel:configuration.html.twig');
+        return $this->render('EmaRgementBundle:Admin:configuration.html.twig');
     }
 
 }
