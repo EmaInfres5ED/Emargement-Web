@@ -1,4 +1,4 @@
 services:
 #    ema_rgement.example:
-#        class: EMA\Bundle\RgementBundle\Example
+#        class: Ema\Bundle\RgementBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
