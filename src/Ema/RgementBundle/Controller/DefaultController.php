@@ -30,4 +30,18 @@ class DefaultController extends Controller
     {
         return $this->render('EmaRgementBundle:Stats:Accumulation/absence.html.twig');
     }
+    public function exampleAction()
+    {
+        return $this->render('EmaRgementBundle:Default:example.html.twig');
+    }
+
+    public function adminUserListAction()
+    {
+        return $this->render('EmaRgementBundle:Admin:User/list.html.twig');
+    }
+
+    public function adminConfigurationAction()
+    {
+        return $this->render('EmaRgementBundle:Admin:configuration.html.twig');
+    }
 }

@@ -1,0 +1,17 @@
+{% extends 'EmaRgementBundle::layout.html.twig' %}
+
+{% block title %}Configuration{% endblock %}
+
+{% block css %}
+    <link href="{{ asset('bundles/emargement/css/views/Default/adminPanel.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <h1> Configuration </h1>
+    <div class="form-group">
+        <label>Cybema Url</label>
+        <input class="form-control" value="http://cybema.mines-ales.org" placeholder="Entrez une url cybema valide">
+    </div>
+    <button class="btn btn-default" type="submit">Save</button>
+    <button class="btn btn-default" type="button">Cancel</button>
+{% endblock %}

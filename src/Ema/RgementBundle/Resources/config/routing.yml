@@ -16,3 +16,12 @@ ema_rgement_stats_frequency_delay:
 ema_rgement_stats:
     path:     /stats/
     defaults: { _controller: EmaRgementBundle:Default:stats }
+example_homepage:
+    path:     /example
+    defaults: { _controller: EmaRgementBundle:Default:example }
+ema_rgement_admin_panel_user_list:
+    path:     /admin/user/list
+    defaults: { _controller: EmaRgementBundle:Default:adminUserList }
+ema_rgement_admin_panel_configuration:
+    path:     /admin/configuration
+    defaults: { _controller: EmaRgementBundle:Default:adminConfiguration }
