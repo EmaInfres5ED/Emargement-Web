@@ -12,22 +12,22 @@ class DefaultController extends Controller
     }
     public function statsAction()
     {
-        return $this->render('EmaRgementBundle:Default:stats/stats.html.twig');
+        return $this->render('EmaRgementBundle:Stats:stats.html.twig');
     }
     public function statsFrequencyDelayAction()
     {
-        return $this->render('EmaRgementBundle:Default:stats/frequency/delay.html.twig');
+        return $this->render('EmaRgementBundle:Stats:Frequency/delay.html.twig');
     }
     public function statsFrequencyAbsenceAction()
     {
-        return $this->render('EmaRgementBundle:Default:stats/frequency/absence.html.twig');
+        return $this->render('EmaRgementBundle:Stats:Frequency/absence.html.twig');
     }
     public function statsAccumulationDelayAction()
     {
-        return $this->render('EmaRgementBundle:Default:stats/accumulation/delay.html.twig');
+        return $this->render('EmaRgementBundle:Stats:Accumulation/delay.html.twig');
     }
     public function statsAccumulationAbsenceAction()
     {
-        return $this->render('EmaRgementBundle:Default:stats/accumulation/absence.html.twig');
+        return $this->render('EmaRgementBundle:Stats:Accumulation/absence.html.twig');
     }
 }
