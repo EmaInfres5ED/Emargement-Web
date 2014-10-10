@@ -14,19 +14,19 @@ class DefaultController extends Controller
     {
         return $this->render('EmaRgementBundle:Default:stats/stats.html.twig');
     }
-    public function statsfrequencyDelayAction()
+    public function statsFrequencyDelayAction()
     {
         return $this->render('EmaRgementBundle:Default:stats/frequency/delay.html.twig');
     }
-    public function statsfrequencyAbsenceAction()
+    public function statsFrequencyAbsenceAction()
     {
         return $this->render('EmaRgementBundle:Default:stats/frequency/absence.html.twig');
     }
-    public function statsaccumulationDelayAction()
+    public function statsAccumulationDelayAction()
     {
         return $this->render('EmaRgementBundle:Default:stats/accumulation/delay.html.twig');
     }
-    public function statsaccumulationAbsenceAction()
+    public function statsAccumulationAbsenceAction()
     {
         return $this->render('EmaRgementBundle:Default:stats/accumulation/absence.html.twig');
     }
