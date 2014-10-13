@@ -45,17 +45,17 @@ class DefaultController extends Controller
     {
         return $this->render('EmaRgementBundle:Default:example.html.twig');
     }
-    public function warnMissingAction()
+    public function warnAbsenceAction()
     {
-        return $this->render('EmaRgementBundle:Default:warnMissing.html.twig');
+        return $this->render('EmaRgementBundle:Default:warnAbsence.html.twig');
     }
     public function justifyListAction()
     {
         return $this->render('EmaRgementBundle:Default:justifyList.html.twig');
     }
-    public function justifyMissingAction()
+    public function justifyAbsenceAction()
     {
-        return $this->render('EmaRgementBundle:Default:justifyMissing.html.twig');
+        return $this->render('EmaRgementBundle:Default:justifyAbsence.html.twig');
     }
     public function adminUserListAction()
     {
