@@ -9,3 +9,31 @@ ema_rgement_dashboard:
 example_homepage:
     path:     /example
     defaults: { _controller: EmaRgementBundle:Default:example }
+
+ema_rgement_stats_accumulation_absence:
+    path:     /stats/accumulation/absence
+    defaults: { _controller: EmaRgementBundle:Default:statsAccumulationAbsence }
+
+ema_rgement_stats_accumulation_delay:
+    path:     /stats/accumulation/delay
+    defaults: { _controller: EmaRgementBundle:Default:statsAccumulationDelay }
+
+ema_rgement_stats_frequency_absence:
+    path:     /stats/frequency/absence
+    defaults: { _controller: EmaRgementBundle:Default:statsFrequencyAbsence }
+
+ema_rgement_stats_frequency_delay:
+    path:     /stats/frequency/delay
+    defaults: { _controller: EmaRgementBundle:Default:statsFrequencyDelay }
+
+ema_rgement_stats:
+    path:     /stats/
+    defaults: { _controller: EmaRgementBundle:Default:stats }
+
+ema_rgement_admin_panel_user_list:
+    path:     /admin/user/list
+    defaults: { _controller: EmaRgementBundle:Default:adminUserList }
+
+ema_rgement_admin_panel_configuration:
+    path:     /admin/configuration
+    defaults: { _controller: EmaRgementBundle:Default:adminConfiguration }
