@@ -96,7 +96,7 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon-screenshot"></i> Prévenir <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#"> Absence </a>
+                                <a href="{{ path('ema_rgement_warn_absence') }}"> Absence </a>
                             </li>
                             <li>
                                 <a href="#"> Retard </a>
@@ -107,7 +107,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#justify"><i class="glyphicon glyphicon-ok"></i> Justifier <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="justify" class="collapse">
                             <li>
-                                <a href="#"> Absence </a>
+                                <a href="{{ path('ema_rgement_justify_list') }}"><i class="glyphicon glyphicon-list"></i> Liste </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('ema_rgement_justify_absence') }}"> Absence </a>
                             </li>
                             <li>
                                 <a href="#"> Retard </a>
