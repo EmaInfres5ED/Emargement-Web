@@ -14,4 +14,14 @@ class DefaultControllerTest extends WebTestCase
 
         $this->assertTrue($crawler->filter('html:contains("Liste d\'utilisateur")')->count() > 0);
     }
+
+    public function testAdminPanelConfiuration()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/admin/configuratuion');
+
+        $this->assertTrue($crawler->filter('html:contains("Configuration")')->count() > 0);
+    }
+
 }
