@@ -34,7 +34,7 @@ ema_rgement_warn_absence:
     path:     /warn/absence
     defaults: { _controller: EmaRgementBundle:Default:warnAbsence }
 
-ema_rgement_justify_homepage:
+ema_rgement_justify_list:
     path:     /justify/list
     defaults: { _controller: EmaRgementBundle:Default:justifyList }
 
