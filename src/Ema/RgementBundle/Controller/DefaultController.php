@@ -16,8 +16,15 @@ class DefaultController extends Controller
         return $this->render('EmaRgementBundle:Default:example.html.twig');
     }
     
+    public function warnMissingAction()
+    {
+        return $this->render('EmaRgementBundle:Default:warnMissing.html.twig');
+    }
+    
     public function justifyListAction()
     {
         return $this->render('EmaRgementBundle:Default:justifyList.html.twig');
     }
+    
+    
 }

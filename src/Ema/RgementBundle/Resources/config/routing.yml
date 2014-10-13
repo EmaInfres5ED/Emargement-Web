@@ -4,6 +4,9 @@ ema_rgement_homepage:
 example_homepage:
     path:     /example
     defaults: { _controller: EmaRgementBundle:Default:example }
+warn_missing:
+    path:     /warn/missing
+    defaults: { _controller: EmaRgementBundle:Default:warnMissing }
 justify_homepage:
     path:     /justify/list
     defaults: { _controller: EmaRgementBundle:Default:justifyList }
