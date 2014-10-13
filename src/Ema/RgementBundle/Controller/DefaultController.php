@@ -42,6 +42,10 @@ class DefaultController extends Controller
     {
         return $this->render('EmaRgementBundle:Default:justifyList.html.twig');
     }
+    public function justifyMissingAction()
+    {
+        return $this->render('EmaRgementBundle:Default:justifyMissing.html.twig');
+    }
     public function adminUserListAction()
     {
         return $this->render('EmaRgementBundle:Admin:User/list.html.twig');

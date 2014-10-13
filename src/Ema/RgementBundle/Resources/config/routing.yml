@@ -25,6 +25,9 @@ warn_missing:
 justify_homepage:
     path:     /justify/list
     defaults: { _controller: EmaRgementBundle:Default:justifyList }
+justify_missing:
+    path:     /justify/missing
+    defaults: { _controller: EmaRgementBundle:Default:justifyMissing }
 ema_rgement_admin_panel_user_list:
     path:     /admin/user/list
     defaults: { _controller: EmaRgementBundle:Default:adminUserList }
