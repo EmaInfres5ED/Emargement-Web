@@ -45,12 +45,37 @@ class DefaultController extends Controller
     {
         return $this->render('EmaRgementBundle:Default:example.html.twig');
     }
+    
+    public function warnAbsenceAction()
+    {
+        return $this->render('EmaRgementBundle:Warn:absence.html.twig');
+    }
+    
+    public function warnDelayAction()
+    {
+        return $this->render('EmaRgementBundle:Warn:delay.html.twig');
+    }
+    
+    public function justifyListAction()
+    {
+        return $this->render('EmaRgementBundle:Justify:list.html.twig');
+    }
+    
+    public function justifyAbsenceAction()
+    {
+        return $this->render('EmaRgementBundle:Justify:absence.html.twig');
+    }
+
+    public function justifyDelayAction()
+    {
+        return $this->render('EmaRgementBundle:Justify:delay.html.twig');
+    }
 
     public function adminUserListAction()
     {
         return $this->render('EmaRgementBundle:Admin:User/list.html.twig');
     }
-
+    
     public function adminConfigurationAction()
     {
         return $this->render('EmaRgementBundle:Admin:configuration.html.twig');
@@ -58,5 +83,9 @@ class DefaultController extends Controller
     public function reportAction()
     {
         return $this->render('EmaRgementBundle:Report:report.html.twig');
+    }
+    public function notificationAction()
+    {
+        return $this->render('EmaRgementBundle:Default:notification.html.twig');
     }
 }

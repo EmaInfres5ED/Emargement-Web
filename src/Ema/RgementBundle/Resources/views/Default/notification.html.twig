@@ -1,0 +1,38 @@
+{% extends 'EmaRgementBundle::layout.html.twig' %}
+
+{% block css %}
+    <link href="{{ asset('bundles/emargement/css/views/Default/notificationPage.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header"> Vos notifications </h1>
+        </div>
+    </div>
+    <div class="row">
+        <ul>
+            <li>
+                <div class="paddingH paddingV uiBox bottomBorder" >  
+                    <span class="fwb"> Aujourd'hui </span>
+                </div>
+                <ul>
+                    <li class="paddingV newNotification "> Rapport du cours de DEV. PERSO. du 14/08/2014 disponible </li>
+                    <li class="paddingV lineBorderTop"> Rapport du cours de GESTION DU STRESS du 14/08/2014 disponible </li>
+                </ul>
+            </li>
+            <li>
+                <div class="paddingH paddingV uiBox bottomBorder" >  
+                    <span class="fwb"> Hier </span>
+                </div>
+                <ul>
+                   <li class="paddingV"> Rapport du cours de DEV. PERSO. du 14/08/2014 disponible </li>
+                   <li class="paddingV lineBorderTop"> Rapport du cours de DEV. PERSO. du 14/08/2014 disponible </li>
+                   <li class="paddingV lineBorderTop"> Rapport du cours de DEV. PERSO. du 14/08/2014 disponible </li>
+                   <li class="paddingV lineBorderTop newNotification"> Rapport du cours de DEV. PERSO. du 14/08/2014 disponible </li>
+                    <li class="paddingV lineBorderTop"> Rapport du cours de GESTION DU STRESS du 14/08/2014 disponible </li> 
+                </ul>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
