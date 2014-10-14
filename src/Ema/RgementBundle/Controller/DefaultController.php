@@ -80,7 +80,10 @@ class DefaultController extends Controller
     {
         return $this->render('EmaRgementBundle:Admin:configuration.html.twig');
     }
-
+    public function reportAction()
+    {
+        return $this->render('EmaRgementBundle:Report:report.html.twig');
+    }
     public function notificationAction()
     {
         return $this->render('EmaRgementBundle:Default:notification.html.twig');
