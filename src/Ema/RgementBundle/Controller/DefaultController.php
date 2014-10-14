@@ -65,7 +65,12 @@ class DefaultController extends Controller
     {
         return $this->render('EmaRgementBundle:Justify:absence.html.twig');
     }
-    
+
+    public function justifyDelayAction()
+    {
+        return $this->render('EmaRgementBundle:Justify:delay.html.twig');
+    }
+
     public function adminUserListAction()
     {
         return $this->render('EmaRgementBundle:Admin:User/list.html.twig');
