@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Ema\RgementBundle\Entity\Document" table="document">
+    <id name="id" type="integer" column="id"/>
+    <id name="urlDocument" type="string" column="url_document" length="200"/>
+  </entity>
+</doctrine-mapping>

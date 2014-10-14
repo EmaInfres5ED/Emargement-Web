@@ -1,3 +1,7 @@
+ema_rgement_promotion:
+    resource: "@EmaRgementBundle/Resources/config/routing/promotion.yml"
+    prefix:   /promotion
+
 ema_rgement_homepage:
     path:     /
     defaults: { _controller: EmaRgementBundle:Default:dashboard }
