@@ -1,6 +1,6 @@
 ema_rgement_homepage:
     path:     /
-    defaults: { _controller: EmaRgementBundle:Default:index }
+    defaults: { _controller: EmaRgementBundle:Default:dashboard }
 
 ema_rgement_dashboard:
     path:       /dashboard
