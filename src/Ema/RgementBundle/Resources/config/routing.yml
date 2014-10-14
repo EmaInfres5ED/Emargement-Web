@@ -1,7 +1,3 @@
-ema_rgement_promotion:
-    resource: "@EmaRgementBundle/Resources/config/routing/promotion.yml"
-    prefix:   /promotion
-
 ema_rgement_homepage:
     path:     /
     defaults: { _controller: EmaRgementBundle:Default:dashboard }
@@ -41,3 +37,16 @@ ema_rgement_admin_panel_user_list:
 ema_rgement_admin_panel_configuration:
     path:     /admin/configuration
     defaults: { _controller: EmaRgementBundle:Default:adminConfiguration }
+
+
+ema_rgement_cron_update_all:
+    path:     /cron/update/all
+    defaults: { _controller: EmaRgementBundle:Cron:updateAll }
+
+ema_rgement_cron_update_promotions:
+    path:     /cron/update/promotions
+    defaults: { _controller: EmaRgementBundle:Cron:updatePromotions }
+
+ema_rgement_cron_update_etudiants:
+    path:     /cron/update/etudiants
+    defaults: { _controller: EmaRgementBundle:Cron:updateEtudiants }
