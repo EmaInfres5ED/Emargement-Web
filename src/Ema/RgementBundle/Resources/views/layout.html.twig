@@ -33,7 +33,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="index.html"><img class="logoSite" src="{{ asset('bundles/emargement/images/logo_emargement_rounded.png') }}" alt="Logo Ema'rgement"/></a>
+                <a href="{{ path('ema_rgement_dashboard') }}"><img class="logoSite" src="{{ asset('bundles/emargement/images/logo_emargement_rounded.png') }}" alt="Logo Ema'rgement"/></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -60,7 +60,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#">View All</a>
+                            <a href="{{ path('ema_rgement_notification') }}">View All</a>
                         </li>
                     </ul>
                 </li>
