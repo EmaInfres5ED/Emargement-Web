@@ -8,32 +8,32 @@
     </div>
     <h3>Promotion: </h3>
     <div class="row">
-	    <div class="col-lg-4">
-			<select class="form-control">
-	            <option>INFRES 5</option>
-	            <option>INFRES 6</option>
-	        </select>
-	    </div>
+        <div class="col-lg-4">
+            <select class="form-control">
+                <option>INFRES 5</option>
+                <option>INFRES 6</option>
+            </select>
+        </div>
     </div>
     <br>
     <div class="row">
-	    <div class="col-sm-4">
-			<div class="panel panel-red">
-				<div class="panel-heading">
-					<h3 class="panel-title">Fréquence</h3>
-				</div>
-				<a href="{{ path('ema_rgement_stats_frequency_delay') }}"><div class="panel-body"> Retards </div></a>
-				<a href="{{ path('ema_rgement_stats_frequency_absence') }}"><div class="panel-body"> Absences </div></a>
-			</div>
-		</div>
-		<div class="col-sm-4">
-			<div class="panel panel-red">
-				<div class="panel-heading">
-					<h3 class="panel-title">Cumul</h3>
-				</div>
-				<a href="{{ path('ema_rgement_stats_accumulation_delay') }}"><div class="panel-body"> Retards </div></a>
-				<a href="{{ path('ema_rgement_stats_accumulation_absence') }}"><div class="panel-body"> Absences </div></a>
-			</div>
-		</div>
-	</div>
+        <div class="col-sm-4">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Fréquence</h3>
+                </div>
+                <a href="{{ path('ema_rgement_stats_frequency_delay') }}"><div class="panel-body"> Retards </div></a>
+                <a href="{{ path('ema_rgement_stats_frequency_absence') }}"><div class="panel-body"> Absences </div></a>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Cumul</h3>
+                </div>
+                <a href="{{ path('ema_rgement_stats_accumulation_delay') }}"><div class="panel-body"> Retards </div></a>
+                <a href="{{ path('ema_rgement_stats_accumulation_absence') }}"><div class="panel-body"> Absences </div></a>
+            </div>
+        </div> 
+    </div>
 {% endblock %}

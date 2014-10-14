@@ -1,6 +1,6 @@
 ema_rgement_homepage:
     path:     /
-    defaults: { _controller: EmaRgementBundle:Default:dashboard }
+    defaults: { _controller: EmaRgementBundle:Default:index }
 
 ema_rgement_dashboard:
     path:       /dashboard
@@ -58,6 +58,10 @@ ema_rgement_admin_panel_configuration:
     path:     /admin/configuration
     defaults: { _controller: EmaRgementBundle:Default:adminConfiguration }
 
+ema_rgement_report:
+    path:     /report
+    defaults: { _controller: EmaRgementBundle:Default:report }
+    
 ema_rgement_notification:
     path:     /notification
     defaults: { _controller: EmaRgementBundle:Default:notification }
