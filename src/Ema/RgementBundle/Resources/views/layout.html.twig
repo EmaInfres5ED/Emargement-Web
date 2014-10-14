@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Ema'rgement{% endblock %}</title>
-    <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" />
+    <link rel="icon" sizes="64x64" href="{{ asset('favicon.ico') }}" />
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('bundles/emargement/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Custom CSS -->
@@ -93,32 +93,32 @@
                         <a href="{{ path('ema_rgement_stats') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Statistiques </a>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon-screenshot"></i> Prévenir <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-bullhorn"></i> Prévenir <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="{{ path('ema_rgement_warn_absence') }}"> Absence </a>
+                                <a href="{{ path('ema_rgement_warn_absence') }}"><i class="fa fa-fw fa-calendar-o"></i> Absence </a>
                             </li>
                             <li>
-                                <a href="{{ path('ema_rgement_warn_delay') }}"> Retard </a>
+                                <a href="{{ path('ema_rgement_warn_delay') }}"><i class="fa fa-fw fa-clock-o"></i> Retard </a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#justify"><i class="glyphicon glyphicon-ok"></i> Justifier <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#justify"><i class="fa fa-fw fa-check"></i> Justifier <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="justify" class="collapse">
                             <li>
-                                <a href="{{ path('ema_rgement_justify_list') }}"><i class="glyphicon glyphicon-list"></i> Liste </a>
+                                <a href="{{ path('ema_rgement_justify_list') }}"><i class="fa fa-fw fa-list"></i> Liste </a>
                             </li>
                             <li>
-                                <a href="{{ path('ema_rgement_justify_absence') }}"> Absence </a>
+                                <a href="{{ path('ema_rgement_justify_absence') }}"><i class="fa fa-fw fa-calendar-o"></i> Absence </a>
                             </li>
                             <li>
-                                <a href="{{ path('ema_rgement_justify_delay') }}"> Retard </a>
+                                <a href="{{ path('ema_rgement_justify_delay') }}"><i class="fa fa-fw fa-clock-o"></i> Retard </a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Export </a>
+                        <a href="blank-page.html"><i class="fa fa-fw fa-upload"></i> Export </a>
                     </li>
                     <li>
                         <a href="forms.html"><i class="fa fa-fw fa-gear"></i> Paramétrages </a>
