@@ -8,7 +8,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('EmaRgementBundle:Default:index.html.twig');
+        return $this->dashboardAction();
     }
 
     public function dashboardAction()
