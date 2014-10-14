@@ -66,3 +66,7 @@ html, body {
 .newNotification {
     background: #EFEFEF;
 }
+
+.badge-info {
+    background-color: #3A87AD;
+}
