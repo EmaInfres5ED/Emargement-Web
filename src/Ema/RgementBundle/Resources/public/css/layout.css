@@ -49,7 +49,17 @@ html, body {
 
 #page-wrapper {
     min-height:100%;
-    padding-top:50px;
+    padding-top: 50px;
+}
+
+@media(max-width:768px) {
+    #page-wrapper {
+        padding-top: 120px;
+    }
+
+    .page-header {
+        margin-top : 10px;
+    }
 }
 
 .dropdown-menu .divider {
