@@ -1,35 +1,57 @@
 {% extends 'EmaRgementBundle::layout.html.twig' %}
 
 {% block content %}
-	<h2>Statistiques des retards et abscences</h2>
-    <h3>Promotion: </h3>
-    <div class="row">
-	    <div class="col-lg-4">
-			<select class="form-control">
-	            <option>INFRES 5</option>
-	            <option>INFRES 6</option>
-	        </select>
-	    </div>
+    <h1 class="page-header">Statistiques des retards et abscences</h1>
+    <div class="form-group">
+        <label for="promo">Promotion</label>
+        <input id="promo" class="form-control" list="promos">
+        <datalist id="promos">
+            <option value="INFRES 5" />
+            <option value="INFRES 6" />
+            <option value="INFRES 7" />
+        </datalist>
     </div>
-    <br>
+    
     <div class="row">
-	    <div class="col-sm-4">
-			<div class="panel panel-red">
-				<div class="panel-heading">
-					<h3 class="panel-title">Fréquence</h3>
-				</div>
-				<a href="{{ path('ema_rgement_stats_frequency_delay') }}"><div class="panel-body"> Retards </div></a>
-				<a href="{{ path('ema_rgement_stats_frequency_absence') }}"><div class="panel-body"> Absences </div></a>
-			</div>
-		</div>
-		<div class="col-sm-4">
-			<div class="panel panel-red">
-				<div class="panel-heading">
-					<h3 class="panel-title">Cumul</h3>
-				</div>
-				<a href="{{ path('ema_rgement_stats_accumulation_delay') }}"><div class="panel-body"> Retards </div></a>
-				<a href="{{ path('ema_rgement_stats_accumulation_absence') }}"><div class="panel-body"> Absences </div></a>
-			</div>
-		</div>
-	</div>
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-fw fa-dot-circle-o"></i> Fréquence
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="list-group">
+                        <a href="{{ path('ema_rgement_stats_frequency_delay') }}" class="list-group-item">
+                            <i class="fa fa-fw fa-calendar-o"></i> Absences
+                            <span class="pull-right text-muted small"><em></em></span>
+                        </a>
+                        <a href="{{ path('ema_rgement_stats_frequency_absence') }}" class="list-group-item">
+                            <i class="fa fa-fw fa-clock-o"></i> Retards
+                            <span class="pull-right text-muted small"><em></em></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-fw fa-plus-circle"></i> Cumul
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="list-group">
+                        <a href="{{ path('ema_rgement_stats_accumulation_delay') }}" class="list-group-item">
+                            <i class="fa fa-fw fa-calendar-o"></i> Absences
+                            <span class="pull-right text-muted small"><em></em></span>
+                        </a>
+                        <a href="{{ path('ema_rgement_stats_accumulation_absence') }}" class="list-group-item">
+                            <i class="fa fa-fw fa-clock-o"></i> Retards
+                            <span class="pull-right text-muted small"><em></em></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
