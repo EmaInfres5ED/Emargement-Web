@@ -30,6 +30,26 @@ ema_rgement_stats:
     path:     /stats/
     defaults: { _controller: EmaRgementBundle:Default:stats }
 
+ema_rgement_warn_absence:
+    path:     /warn/absence
+    defaults: { _controller: EmaRgementBundle:Default:warnAbsence }
+
+ema_rgement_warn_delay:
+    path:     /warn/delay
+    defaults: { _controller: EmaRgementBundle:Default:warnDelay }
+
+ema_rgement_justify_list:
+    path:     /justify/list
+    defaults: { _controller: EmaRgementBundle:Default:justifyList }
+
+ema_rgement_justify_absence:
+    path:     /justify/absence
+    defaults: { _controller: EmaRgementBundle:Default:justifyAbsence }
+
+ema_rgement_justify_delay:
+    path:     /justify/delay
+    defaults: { _controller: EmaRgementBundle:Default:justifyDelay }
+
 ema_rgement_admin_panel_user_list:
     path:     /admin/user/list
     defaults: { _controller: EmaRgementBundle:Default:adminUserList }
