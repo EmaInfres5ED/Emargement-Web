@@ -1,3 +1,7 @@
+ema_cybema:
+    resource: "@EmaCybemaBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ema_rgement:
     resource: "@EmaRgementBundle/Resources/config/routing.yml"
     prefix:   /
