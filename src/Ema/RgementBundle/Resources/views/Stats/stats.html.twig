@@ -1,7 +1,7 @@
 {% extends 'EmaRgementBundle::layout.html.twig' %}
 
 {% block content %}
-    <h2>Statistiques des retards et abscences</h2>
+    <h1 class="page-header">Statistiques des retards et abscences</h1>
     <h3>Promotion: </h3>
     <div class="row">
         <div class="col-lg-4">
@@ -30,6 +30,6 @@
                 <a href="{{ path('ema_rgement_stats_accumulation_delay') }}"><div class="panel-body"> Retards </div></a>
                 <a href="{{ path('ema_rgement_stats_accumulation_absence') }}"><div class="panel-body"> Absences </div></a>
             </div>
-        </div> 
+        </div>
     </div>
 {% endblock %}
