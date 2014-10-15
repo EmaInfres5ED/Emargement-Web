@@ -2,39 +2,51 @@
 
 {% block content %}
     <h1 class="page-header" ><i class="fa fa-fw fa-bullhorn"></i><i class="fa fa-fw fa-clock-o"></i>Prévenir d'un retard</h1>
-    <form>
-        <div class="form-group">
-            <label for="student">Etudiant</label>
-            <input id="student" class="form-control" list="students">
-            <datalist id="students">
-                <option value="GODINEZ Pablo" />
-                <option value="HALLER Florian" />
-                <option value="SANCHEZ Yohan" />
-                <option value="SEITZ Valentin" />
-                <option value="SIMON Matthieu" />
-            </datalist> 
-            <p class="help-block">Selectionner l'étudiant qui est en retard</p>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <!--<div class="panel-heading">
+
+                </div>-->
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="student">Etudiant</label>
+                            <input id="student" class="form-control" list="students">
+                            <datalist id="students">
+                                <option value="GODINEZ Pablo" />
+                                <option value="HALLER Florian" />
+                                <option value="SANCHEZ Yohan" />
+                                <option value="SEITZ Valentin" />
+                                <option value="SIMON Matthieu" />
+                            </datalist> 
+                            <p class="help-block">Selectionner l'étudiant qui est en retard</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="start_date">Date</label>
+                            <input id="start_date" class="form-control" type="date">
+                            <p class="help-block">Date du retard</p>
+                            <label for="start_time">Heure</label>
+                            <input id="start_time" class="form-control" type="time">
+                            <p class="help-block">Heure de début theorique du cours pour lequel l'étudiant sera en retard</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="ground" >Motif</label>
+                            <textarea id="ground" type="text"></textarea>
+                            <p class="help-block">Raison pour laquelle l'étudiant est en retard</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="justification_files" >Justificatif</label>
+                            <input id="justification_files" type="file">
+                        </div>
+                        <div class="btn-group pull-right">
+                            <button type="submit" class="btn btn-success">Enregistrer</button>
+                            <button type="reset" class="btn btn-danger">Annuler</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="start_date">Date</label>
-            <input id="start_date" class="form-control" type="date">
-            <p class="help-block">Date du retard</p>
-            <label for="start_time">Heure</label>
-            <input id="start_time" class="form-control" type="time">
-            <p class="help-block">Heure de début theorique du cours pour lequel l'étudiant sera en retard</p>
-        </div>
-        <div class="form-group">
-            <label for="ground" >Motif</label>
-            <textarea id="ground" type="text"></textarea>
-            <p class="help-block">Raison pour laquelle l'étudiant est en retard</p>
-        </div>
-        <div class="form-group">
-            <label for="justification_files" >Justificatif</label>
-            <input id="justification_files" type="file">
-        </div>
-        <div class="btn-group right">
-            <button type="submit" class="btn btn-success">Enregistrer</button>
-            <button type="reset" class="btn btn-danger">Annuler</button>
-        </div>
-    </form>
+    </div>
 {% endblock %}
