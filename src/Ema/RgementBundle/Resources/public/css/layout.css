@@ -81,3 +81,28 @@ html, body {
 .badge-info {
     background-color: #3A87AD;
 }
+
+.notificationHeaderLink {
+    font-size: 12px;
+    display:inline;
+   /* border-color: #000000;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    padding-top: 0px;
+    padding-bottom: 0px;*/
+}
+
+.notificationHeader {
+    border-color: #000000;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    text-align:right;
+    font-size: 14px;
+    font-weight:bold;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+ul.alert-dropdown {
+    width: 350px;
+}
