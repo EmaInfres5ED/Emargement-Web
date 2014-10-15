@@ -2,10 +2,6 @@
 
 {% block title %}Configuration{% endblock %}
 
-{% block css %}
-    <link href="{{ asset('bundles/emargement/css/views/Default/adminPanel.css') }}" rel="stylesheet">
-{% endblock %}
-
 {% block content %}
     <h1 class="page-header"><i class="fa fa-fw fa-gear"></i>Configuration</h1>
     <div class="row">
@@ -21,7 +17,7 @@
                             <label for="cybema_url">Url</label>
                             <input id="cybema_url" class="form-control" value="http://cybema.mines-ales.org" placeholder="Entrez une url cybema valide">
                         </div>
-                        <div class="btn-group right">
+                        <div class="btn-group pull-right">
                             <button class="btn btn-success" type="submit">Enregistrer</button>
                             <button class="btn btn-danger" type="reset">Annuler</button>
                         </div>
