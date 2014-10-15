@@ -37,22 +37,26 @@
                             </div>
                             <p class="help-block">Ces retards n'ont pas encore été justifiés</p>
                         </div>
-                        <div class="form-group">
-                            <label for="start_date">Date</label>
-                            <input id="start_date" class="form-control" type="date">
-                            <p class="help-block">Date du retard</p>
-                            <label for="start_time">Heure du retard</label>
-                            <input id="start_time" class="form-control" type="time">
-                            <p class="help-block">Heure du retard</p>
+                        <div class="row" >
+                            <div class="form-group col-lg-6">
+                                <label for="start_date">Date</label>
+                                <input id="start_date" class="form-control" type="date">
+                                <p class="help-block">Date du retard</p>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="start_time">Heure</label>
+                                <input id="start_time" class="form-control" type="time">
+                                <p class="help-block">Heure du retard</p>
+                            </div>
                         </div>
                         <div class="form-group">
                            <label for="ground" >Motif</label>
-                            <textarea id="ground" type="text"></textarea>
+                            <textarea id="ground" class="form-control" ></textarea>
                             <p class="help-block">Raison pour laquelle l'étudiant est en retard</p>
                         </div>
                         <div class="form-group">
                             <label for="justification_files" >Justificatif</label>
-                            <input id="justification_files" type="file">
+                            <input id="justification_files"type="file">
                         </div>
                         <div class="btn-group pull-right">
                             <button type="submit" class="btn btn-success">Enregistrer</button>
