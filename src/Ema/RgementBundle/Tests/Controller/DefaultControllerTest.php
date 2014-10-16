@@ -123,4 +123,13 @@ class DefaultControllerTest extends WebTestCase
         $this->assertTrue($crawler->filter('html:contains("Justifier d\'une absence")')->count() > 0);
     }
 
+    public function testJustifyDelay()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/justify/delay');
+
+        $this->assertTrue($crawler->filter('html:contains("Justifier d\'un retard")')->count() > 0);
+    }
+
 }
