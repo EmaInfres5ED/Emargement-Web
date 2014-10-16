@@ -16,7 +16,7 @@
     <link href="{{ asset('bundles/emargement/bootstrap/font-awesome-4.1.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <!-- Datatable CSS -->
     <link href="{{ asset('bundles/emargement/css/jquery.dataTables.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('bundles/emargement/css/jquery.dataTables_themeroller.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/eemargement/css/jquery.dataTables_themeroller.css') }}" rel="stylesheet" type="text/css">
     <!-- Bootstrap Datatable CSS -->
     <link href="{{ asset('bundles/emargement/bootstrap/css/plugins/dataTables.bootstrap.css') }}" rel="stylesheet">
     {% block css %}{% endblock %}
@@ -119,7 +119,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="blank-page.html"><i class="fa fa-fw fa-upload"></i> Export </a>
+                        <a href="{{ path('ema_rgement_export') }}"><i class="fa fa-fw fa-upload"></i> Export </a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#params"><i class="fa fa-fw fa-gears"></i> Paramétrages <i class="fa fa-fw fa-caret-down"></i></a>
