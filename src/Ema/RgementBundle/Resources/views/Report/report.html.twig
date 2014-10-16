@@ -1,102 +1,112 @@
 {% extends 'EmaRgementBundle::layout.html.twig' %}
 
+{% block title %}Rapport{% endblock %}
+
 {% block content %}
-    <h1 class="page-header">Rapport</h1>
-    <div class="col-lg-3">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <h3 class="panel-title">Classe</h3>
+    <h1 class="page-header"><i class="fa fa-fw fa-file-text-o"></i>Rapport</h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-fw fa-filter"></i> Filtrer
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group col-lg-3">
+                            <label for="promo">Promotion</label>
+                            <input id="promo" class="form-control" list="promos">
+                            <datalist id="promos">
+                                <option value="INFRES 5" />
+                                <option value="INFRES 6" />
+                                <option value="INFRES 6" />
+                            </datalist>
+                        </div>
+                        <div class="form-group col-lg-3">
+                            <label for="group">Groupe</label>
+                            <input id="group" class="form-control" list="groups">
+                            <datalist id="groups">
+                                <option value="ED" />
+                                <option value="SR" />
+                            </datalist>
+                        </div>
+                        <div class="form-group col-lg-3" >
+                            <label for="date">Date</label>
+                            <input id="date" class="form-control" type="date" min="2011-08-13"></input>
+                        </div>
+                        <div class="form-group col-lg-3">
+                            <label for="cours">Cours</label>
+                            <input id="cours" class="form-control" list="courses">
+                            <datalist id="courses">
+                                <option value="Développement personnel" />
+                                <option value="Projet" />
+                                <option value="Réseau" />
+                                <option value="Qualité logiciel" />
+                            </datalist>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="panel-body">
-                <select class="form-control">
-                    <option>INFRES 5</option>
-                    <option>INFRES 6</option>
-                </select>
-            </div>
-            </div>
-    </div>
-    <div class="col-lg-3">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <h3 class="panel-title">Groupe</h3>
-            </div>
-            <div class="panel-body">
-                <select class="form-control">
-                    <option>ED</option>
-                    <option>SR</option>
-                </select>
-            </div>
-            </div>
-    </div>
-    <div class="col-lg-3">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <h3 class="panel-title">Date</h3>
-            </div>
-            <div class="panel-body">
-                <input type="date" name="date" id="date" min="2011-08-13">
-            </div>
-            </div>
-    </div>
-    <div class="col-lg-3">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <h3 class="panel-title">Cours</h3>
-            </div>
-            <div class="panel-body">
-                <select class="form-control">
-                    <option>Développement personnel</option>
-                    <option>Projet</option>
-                    <option>Réseau</option>
-                    <option>Qualité logiciel</option>
-                </select>
-            </div>
-            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-lg-12">
-        <h3>Retard</h3>
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Prénom</th>
-                            <th>Durée</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Eliasz</td>
-                            <td>Laurent</td>
-                            <td>20 minutes</td>
-                        </tr>
-                        <tr>
-                            <td>Simon</td>
-                            <td>Matthier</td>
-                            <td>10 minutes</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-fw fa-calendar-o"></i> Absences
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Prénom</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Sanchez</td>
+                                    <td>Clément</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <h3>Absence</h3>
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Prénom</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Sanchez</td>
-                            <td>Clément</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-fw fa-clock-o"></i>Retards
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Prénom</th>
+                                    <th>Durée</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Eliasz</td>
+                                    <td>Laurent</td>
+                                    <td>20 minutes</td>
+                                </tr>
+                                <tr>
+                                    <td>Simon</td>
+                                    <td>Matthier</td>
+                                    <td>10 minutes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

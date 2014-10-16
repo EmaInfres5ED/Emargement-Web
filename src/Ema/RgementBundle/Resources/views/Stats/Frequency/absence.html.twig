@@ -1,16 +1,28 @@
 {% extends 'EmaRgementBundle::layout.html.twig' %}
 
+{% block title %}Fréquence des absences{% endblock %}
+
 {% block content %}
     <h1 class="page-header"><i class="fa fa-fw fa-dot-circle-o"></i><i class="fa fa-fw fa-calendar-o"></i>INFRES 5 : Fréquence des absences</h1>
-    <div class="form-group">
-        <label for="group">Groupe</label>
-        <input id="group" class="form-control" list="groups">
-        <datalist id="groups">
-            <option value="ED" />
-            <option value="SR" />
-        </datalist>
-    </div>
     <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-fw fa-filter"></i> Filtrer
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="group">Groupe</label>
+                        <input id="group" class="form-control" list="groups">
+                        <datalist id="groups">
+                            <option value="ED" />
+                            <option value="SR" />
+                        </datalist>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-lg-12">
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
