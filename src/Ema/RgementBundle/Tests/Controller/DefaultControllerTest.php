@@ -51,4 +51,13 @@ class DefaultControllerTest extends WebTestCase
         $this->assertTrue($crawler->filter('html:contains("Cumul des absences")')->count() > 0);
     }
 
+    public function testStatsAccumulationDelay()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/stats/accumulation/delay');
+
+        $this->assertTrue($crawler->filter('html:contains("Cumul des retards")')->count() > 0);
+    }
+
 }
