@@ -96,4 +96,13 @@ class DefaultControllerTest extends WebTestCase
         $this->assertTrue($crawler->filter('html:contains("Prévenir d\'une absence")')->count() > 0);
     }
 
+    public function testWarnDelay()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/warn/delay');
+
+        $this->assertTrue($crawler->filter('html:contains("Prévenir d\'un retard")')->count() > 0);
+    }
+
 }
