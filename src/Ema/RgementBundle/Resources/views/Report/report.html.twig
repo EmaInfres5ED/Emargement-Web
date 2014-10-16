@@ -1,0 +1,103 @@
+{% extends 'EmaRgementBundle::layout.html.twig' %}
+
+{% block content %}
+    <h1 class="page-header">Rapport</h1>
+    <div class="col-lg-3">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <h3 class="panel-title">Classe</h3>
+            </div>
+            <div class="panel-body">
+                <select class="form-control">
+                    <option>INFRES 5</option>
+                    <option>INFRES 6</option>
+                </select>
+            </div>
+            </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <h3 class="panel-title">Groupe</h3>
+            </div>
+            <div class="panel-body">
+                <select class="form-control">
+                    <option>ED</option>
+                    <option>SR</option>
+                </select>
+            </div>
+            </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <h3 class="panel-title">Date</h3>
+            </div>
+            <div class="panel-body">
+                <input type="date" name="date" id="date" min="2011-08-13">
+            </div>
+            </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <h3 class="panel-title">Cours</h3>
+            </div>
+            <div class="panel-body">
+                <select class="form-control">
+                    <option>Développement personnel</option>
+                    <option>Projet</option>
+                    <option>Réseau</option>
+                    <option>Qualité logiciel</option>
+                </select>
+            </div>
+            </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+        <h3>Retard</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Durée</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Eliasz</td>
+                            <td>Laurent</td>
+                            <td>20 minutes</td>
+                        </tr>
+                        <tr>
+                            <td>Simon</td>
+                            <td>Matthier</td>
+                            <td>10 minutes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <h3>Absence</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sanchez</td>
+                            <td>Clément</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

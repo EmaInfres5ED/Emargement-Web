@@ -1,0 +1,41 @@
+{% extends 'EmaRgementBundle::layout.html.twig' %}
+
+{% block content %}
+    <h1 class="page-header" ><i class="fa fa-fw fa-bullhorn"></i><i class="fa fa-fw fa-calendar-o"></i>Prévenir d'une absence</h1>
+    <form>
+        <div class="form-group">
+            <label for="student">Etudiant</label>
+            <input id="student" class="form-control" list="students">
+            <datalist id="students">
+              <option value="GODINEZ Pablo" />
+              <option value="HALLER Florian" />
+              <option value="SANCHEZ Yohan" />
+              <option value="SEITZ Valentin" />
+              <option value="SIMON Matthieu" />
+            </datalist> 
+            <p class="help-block">Selectionner l'étudiant qui est en retard</p>
+        </div>
+        <div class="form-group">
+            <label for="start_date">Date de début</label>
+            <input id="start_date" class="form-control" type="date">
+            <p class="help-block">Date de début de l'absence</p>
+            <label for="start_time">Heure de début</label>
+            <input id="start_time" class="form-control" type="time">
+            <p class="help-block">Heure de début de l'absence</p>
+        </div>
+        <div class="form-group">
+            <label for="end_date">Date de fin</label>
+            <input id="end_date" class="form-control" type="date">
+            <p class="help-block">Date de fin de l'absence</p>
+            <label for="end_time">Heure de fin</label>
+            <input id="end_time" class="form-control" type="time">
+            <p class="help-block">Heure de fin de l'absence</p>
+        </div>
+        <div class="form-group">
+            <label for="justification_files" >Justificatif</label>
+            <input id="justification_files" type="file">
+        </div>
+        <button type="submit" class="btn btn-default">Enregistrer</button>
+        <button type="reset" class="btn btn-default">Réinitialiser</button>
+    </form>
+{% endblock %}

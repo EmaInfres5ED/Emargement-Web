@@ -1,20 +1,14 @@
 {% extends 'EmaRgementBundle::layout.html.twig' %}
 
 {% block content %}
-    <h2>Statistiques des fréquences de retards</h2>
-    <h3>Promotion: INFRES 5</h3>
-    <div class="col-lg-4">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <h3 class="panel-title">Groupe</h3>
-            </div>
-            <div class="panel-body">
-                <select class="form-control">
-                    <option>ED</option>
-                    <option>SR</option>
-                </select>
-            </div>
-            </div>
+    <h1 class="page-header"><i class="fa fa-fw fa-dot-circle-o"></i><i class="fa fa-fw fa-clock-o"></i>INFRES 5 : Fréquence des retards</h1>
+    <div class="form-group">
+        <label for="group">Groupe</label>
+        <input id="group" class="form-control" list="groups">
+        <datalist id="groups">
+            <option value="ED" />
+            <option value="SR" />
+        </datalist>
     </div>
     <div class="row">
         <div class="col-lg-12">

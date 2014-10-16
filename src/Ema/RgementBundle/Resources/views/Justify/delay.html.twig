@@ -1,0 +1,52 @@
+{% extends 'EmaRgementBundle::layout.html.twig' %}
+
+{% block content %}
+    <h1 class="page-header" ><i class="fa fa-fw fa-check"></i><i class="fa fa-fw fa-clock-o"></i>Justifier d'un retard</h1>
+    <form>
+        <div class="form-group">
+            <label for="student">Etudiant</label>
+            <input id="student" class="form-control" list="students">
+            <datalist id="students">
+                <option value="GODINEZ Pablo" />
+                <option value="HALLER Florian" />
+                <option value="SANCHEZ Yohan" />
+                <option value="SEITZ Valentin" />
+                <option value="SIMON Matthieu" />
+            </datalist> 
+            <p class="help-block">Séléctionner l'étudiant qui est en retard</p>
+        </div>
+        <div class="form-group">
+            <label for="" >Retards non justifiés</label>
+            <div class="checkbox">
+                <label>
+                    <input value="" type="checkbox">Cours de {matière} le 12/10/2014 à 09h00
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input value="" type="checkbox">Cours de {matière} le 12/10/2014 à 13h30
+                </label>
+            </div>
+            <p class="help-block">Ces retards n'ont pas encore été justifiés</p>
+        </div>
+        <div class="form-group">
+            <label for="start_date">Date</label>
+            <input id="start_date" class="form-control" type="date">
+            <p class="help-block">Date du retard</p>
+            <label for="start_time">Heure du retard</label>
+            <input id="start_time" class="form-control" type="time">
+            <p class="help-block">Heure du retard</p>
+        </div>
+         <div class="form-group">
+            <label for="ground" >Motif</label>
+            <textarea id="ground" type="text"></textarea>
+            <p class="help-block">Raison pour laquelle l'étudiant est en retard</p>
+        </div>
+        <div class="form-group">
+            <label for="justification_files" >Justificatif</label>
+            <input id="justification_files" type="file">
+        </div>
+        <button type="submit" class="btn btn-default">Enregistrer</button>
+        <button type="reset" class="btn btn-default">Réinitialiser</button>
+    </form>
+{% endblock %}
