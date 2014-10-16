@@ -141,4 +141,13 @@ class DefaultControllerTest extends WebTestCase
         $this->assertTrue($crawler->filter('html:contains("Export de statistiques")')->count() > 0);
     }
 
+    public function testReport()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/report');
+
+        $this->assertTrue($crawler->filter('html:contains("Rapport")')->count() > 0);
+    }
+
 }
