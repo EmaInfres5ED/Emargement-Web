@@ -58,6 +58,10 @@ ema_rgement_admin_panel_configuration:
     path:     /admin/configuration
     defaults: { _controller: EmaRgementBundle:Default:adminConfiguration }
 
+ema_rgement_tablette_eleves:
+    path:     /tablette/eleves
+    defaults: { _controller: EmaRgementBundle:Tablette:getEleves }
+
 ema_rgement_tablette_first_force:
     path:     /tablette/first/force
     defaults: { _controller: EmaRgementBundle:Tablette:firstForce }

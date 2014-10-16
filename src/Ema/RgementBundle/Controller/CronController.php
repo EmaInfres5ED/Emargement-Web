@@ -88,6 +88,10 @@ class CronController extends Controller
             $cours = $this->getCoursByPromo($promo->getIdCybema());
             foreach ($cours as $cour) {
                 
+                if(isset($cour[7]) && !empty($cour[7]))
+                    $c['id_cours'] = $cour[7];
+                if(isset($cour[9]) && !empty($cour[9]))
+                    $c['id_groupe'] = $cour[9];
                 if(isset($cour[13]) && !empty($cour[13]))
                     $c['date'] = $cour[13];
                 if(isset($cour[17]) && !empty($cour[17]))
