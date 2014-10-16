@@ -2,16 +2,19 @@
 
 namespace Ema\RgementBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 use Ema\RgementBundle\Entity\Promotion;
 use Ema\RgementBundle\Entity\Etudiant;
 
 class CronController extends Controller
 {
-
-	//URL: http://localhost/Emargement-Web/web/app_dev.php/cron/update/all
+	/**
+	* Web Service Action
+	* Update promo and  etudiant in BDD
+	* URL: http://localhost/Emargement-Web/web/app_dev.php/cron/update/all
+	*/
 	public function updateAllAction()
 	{
 		$this->updatePromotions();
@@ -20,7 +23,11 @@ class CronController extends Controller
 		return new Response('Update OK');
 	}
 
-	//URL: http://localhost/Emargement-Web/web/app_dev.php/cron/update/promotions
+	/**
+	* Web Service Action
+	* Update promo in BDD
+	* URL: http://localhost/Emargement-Web/web/app_dev.php/cron/update/promotions
+	*/
 	public function updatePromotionsAction()
 	{
 		$this->updatePromotions();
@@ -28,7 +35,11 @@ class CronController extends Controller
 	
 	}
 
-	//URL: http://localhost/Emargement-Web/web/app_dev.php/cron/update/etudiants
+	/**
+	* Web Service Action
+	* Update etudiant in BDD
+	* URL: http://localhost/Emargement-Web/web/app_dev.php/cron/update/etudiants
+	*/
 	public function updateEtudiantsAction()
 	{
 		$this->updateEtudiants();
@@ -36,20 +47,34 @@ class CronController extends Controller
 	}
 	
 	//URL: http://localhost/Emargement-Web/web/app_dev.php/cron/update/first
+
+	/**
+	* Web Service Action
+	* Update first json file
+	* URL: http://localhost/Emargement-Web/web/app_dev.php/cron/update/first
+	*/
 	public function updateFirstJsonAction()
 	{
 		$this->updateFirstJson();
 		return new Response('Update OK');
 	}
 	
+	
+	/**
+	* Update first json file
+	*/
 	public function updateFirstJson()
 	{
 		$filename = "first.json";
 		$file = fopen($filename, 'w+');
 		fputs($file, $this->getJsonCoursAndPromos());
 		fclose($file);
-	}
+	}		
 	
+	/**
+	* Get cours in Cybema
+	* Return new JSON cours by promos 
+	*/
 	private function getJsonCoursAndPromos()
 	{
 		$response = array();
@@ -91,6 +116,9 @@ class CronController extends Controller
 		return json_encode($response);
 	}
 	
+	/**
+	* Get promos in BDD
+	*/
 	private function getPromotions()
 	{
 		$em = $this->getDoctrine()->getManager();
@@ -98,7 +126,9 @@ class CronController extends Controller
 		return $repoPromo->findAll();	
 	}
 	
-	
+	/**
+	* Get cours by promo in Cybema
+	*/
 	private function getCoursByPromo($idPromoCybema)
 	{	
 		$today = $this->getToday();
@@ -107,7 +137,9 @@ class CronController extends Controller
 		return $this->csvToJson($csv);
 	}
 	
-	
+	/**
+	* Get today date with format YYYYMMDD
+	*/
 	private function getToday()
 	{	
 		$date = getdate();
@@ -125,6 +157,10 @@ class CronController extends Controller
 		return $year . $month . $day;		
 	}
 	
+	/**
+	* Get promos in Cybema
+	* Update (idCybema only) or create promo in BDD 
+	*/
 	private function updatePromotions()
 	{
 		//Promotion Repository
@@ -157,7 +193,11 @@ class CronController extends Controller
 		
 		$em->flush();
 	}
-
+	
+	/**
+	* Get etudiants in Cybema
+	* Update (idPromo only) or create etudiant in BDD 
+	*/
 	private function updateEtudiants()
 	{
 		//Promotion Repository
@@ -199,7 +239,10 @@ class CronController extends Controller
 		
 		$em->flush();
 	}
-
+	
+	/**
+	* Convert CSV string in JSON array
+	*/
 	private function csvToJson($csv)
 	{
 		$array = array_map("str_getcsv", explode("\n", $csv));

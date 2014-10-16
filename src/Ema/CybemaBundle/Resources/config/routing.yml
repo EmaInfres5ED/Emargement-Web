@@ -1,3 +1,0 @@
-ema_cybema_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: EmaCybemaBundle:Default:index }
