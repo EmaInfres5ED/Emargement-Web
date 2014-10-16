@@ -60,4 +60,13 @@ class DefaultControllerTest extends WebTestCase
         $this->assertTrue($crawler->filter('html:contains("Cumul des retards")')->count() > 0);
     }
 
+    public function testStatsFrequencyAbsence()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/stats/frequency/absence');
+
+        $this->assertTrue($crawler->filter('html:contains("Fréquence des absences")')->count() > 0);
+    }
+
 }
