@@ -33,3 +33,14 @@ ul {
     border-style: solid;
     border-width: 1px 0 0 0;
 }
+
+.uiSeenButton {
+    background-image: url('../../../images/eye-open.png');
+    background-repeat: no-repeat;
+    height: 16px;
+    width: 16px;
+    display:block;
+    float:left;
+    margin-top:7.5px;
+    margin-right:5px;
+}
