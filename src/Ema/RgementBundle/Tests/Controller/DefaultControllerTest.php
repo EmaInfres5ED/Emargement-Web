@@ -33,4 +33,13 @@ class DefaultControllerTest extends WebTestCase
         $this->assertTrue($crawler->filter('html:contains("Tableau de bord")')->count() > 0);
     }
 
+    public function testDashboard()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/dashboard');
+
+        $this->assertTrue($crawler->filter('html:contains("Tableau de bord")')->count() > 0);
+    }
+
 }
