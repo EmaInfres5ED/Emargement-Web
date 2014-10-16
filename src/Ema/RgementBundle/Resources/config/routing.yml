@@ -58,10 +58,14 @@ ema_rgement_admin_panel_configuration:
     path:     /admin/configuration
     defaults: { _controller: EmaRgementBundle:Default:adminConfiguration }
 
+ema_rgement_export:
+    path:     /export
+    defaults: { _controller: EmaRgementBundle:Default:export }
+
 ema_rgement_report:
     path:     /report
     defaults: { _controller: EmaRgementBundle:Default:report }
-    
+
 ema_rgement_notification:
     path:     /notification
     defaults: { _controller: EmaRgementBundle:Default:notification }
