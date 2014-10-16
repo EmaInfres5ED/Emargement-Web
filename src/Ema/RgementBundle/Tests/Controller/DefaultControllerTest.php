@@ -132,4 +132,13 @@ class DefaultControllerTest extends WebTestCase
         $this->assertTrue($crawler->filter('html:contains("Justifier d\'un retard")')->count() > 0);
     }
 
+    public function testExport()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/export');
+
+        $this->assertTrue($crawler->filter('html:contains("Export de statistiques")')->count() > 0);
+    }
+
 }
