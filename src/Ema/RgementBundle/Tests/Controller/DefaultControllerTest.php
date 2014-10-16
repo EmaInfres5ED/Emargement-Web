@@ -150,4 +150,13 @@ class DefaultControllerTest extends WebTestCase
         $this->assertTrue($crawler->filter('html:contains("Rapport")')->count() > 0);
     }
 
+    public function testNotification()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/notification');
+
+        $this->assertTrue($crawler->filter('html:contains("Vos notifications ")')->count() > 0);
+    }
+
 }
