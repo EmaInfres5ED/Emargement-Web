@@ -1,0 +1,46 @@
+ul {
+    list-style-type: none;
+}
+
+.paddingH {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.paddingV {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.uiBox {
+    background-color: #FFFFFF;
+    border: 1px solid #e5e5e5;
+}
+
+.bottomBorder {
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    /*border-color: #e5e5e5;*/
+}
+
+.fwb {
+    font-weight: bold;
+}
+
+.lineBorderTop {
+    border-color: #e9e9e9;
+    border-style: solid;
+    border-width: 1px 0 0 0;
+}
+
+.uiSeenButton {
+    background-image: url('../../../images/eye-open.png');
+    background-repeat: no-repeat;
+    height: 16px;
+    width: 16px;
+    display:block;
+    float:left;
+    margin-top:7.5px;
+    margin-right:5px;
+}

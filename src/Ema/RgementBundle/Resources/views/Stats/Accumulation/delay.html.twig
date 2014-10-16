@@ -1,22 +1,29 @@
 {% extends 'EmaRgementBundle::layout.html.twig' %}
 
+{% block title %}Cumul des retards{% endblock %}
+
 {% block content %}
-    <h2>Statistiques des cumuls de retards</h2>
-    <h3>Promotion: INFRES 5</h3>
-    <div class="col-lg-4">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <h3 class="panel-title">Groupe</h3>
-            </div>
-            <div class="panel-body">
-                <select class="form-control">
-                    <option>ED</option>
-                    <option>SR</option>
-                </select>
-            </div>
-            </div>
-    </div>
+    
+    <h1 class="page-header"><i class="fa fa-fw fa-plus-circle"></i><i class="fa fa-fw fa-clock-o"></i>INFRES 5 : Cumul des retards</h1>
     <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-fw fa-filter"></i> Filtrer
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="group">Groupe</label>
+                        <input id="group" class="form-control" list="groups">
+                        <datalist id="groups">
+                            <option value="ED" />
+                            <option value="SR" />
+                        </datalist>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-lg-12">
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">

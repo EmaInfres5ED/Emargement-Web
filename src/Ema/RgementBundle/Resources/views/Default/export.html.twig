@@ -1,9 +1,41 @@
 {% extends 'EmaRgementBundle::layout.html.twig' %}
 
-{% block title %}Utilisateurs{% endblock %}
+{% block title %}Export de statistiques{% endblock %}
 
 {% block content %}
-    <h1 class="page-header"><i class="fa fa-fw fa-users"></i>Utilisateurs</h1>
+    <h1 class="page-header"><i class="fa fa-fw fa-upload"></i>Export de statistiques</h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-fw fa-filter"></i> Filtrer
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group col-lg-4">
+                            <label for="start_date">Date de début</label>
+                            <input id="start_date" type="date" class="form-control" value="01/01/2014">
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label for="end_date">Date de fin</label>
+                            <input id="end_date" type="date" class="form-control" value="25/03/2014">
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label for="promo">Promotion</label>
+                            <input id="promo" class="form-control" list="promos" value="INFRES 5">
+                            <datalist id="promos">
+                                <option value="Aucune" />
+                                <option value="INFRES 5" />
+                                <option value="INFRES 6" />
+                                <option value="INFRES 7" />
+                            </datalist>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -33,51 +65,69 @@
                                 <tr role="row">
                                     <th>Nom</th>
                                     <th>Prénom</th>
-                                    <th>Role</th>
+                                    <th>Absences</th>
+                                    <th>Retard</th>
+                                    <th style="width: 150px;">Action</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>Nom</th>
                                     <th>Prénom</th>
-                                    <th>Role</th>
+                                    <th>Absences</th>
+                                    <th>Retard</th>
+                                    <th>Action</th>
                                 </tr>
                             </tfoot>
                             <tbody>
                                 <tr role="row" class="odd">
                                     <td class="sorting_1">Airi</td>
                                     <td>Satou</td>
-                                    <td>Admin</td>
+                                    <td>5</td>
+                                    <td>20</td>
+                                    <td class="dt-body-right"><input type="button" class ='form-control' value='Générer un Export'/></td>
                                 </tr>
                                 <tr role="row" class="even">
                                     <td class="sorting_1">Angelica</td>
                                     <td>Ramos</td>
-                                    <td>Manager</td>
+                                    <td>3</td>
+                                    <td>7</td>
+                                    <td class="dt-body-right"><input type="button" class ='form-control' value='Générer un Export'/></td>
                                 </tr>
                                 <tr role="row" class="even">
                                     <td class="sorting_1">Ashton</td>
                                     <td>Cox</td>
-                                    <td>Manager</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td class="dt-body-right"><input type="button" class ='form-control' value='Générer un Export'/></td>
                                 </tr>
                                 <tr role="row" class="even">
                                     <td class="sorting_1">Bradley</td>
                                     <td>Greer</td>
-                                    <td>Manager</td>
+                                    <td>40</td>
+                                    <td>85</td>
+                                    <td class="dt-body-right"><input type="button" class ='form-control' value='Générer un Export'/></td>
                                 </tr>
                                 <tr role="row" class="even">
                                     <td class="sorting_1">Brenden</td>
                                     <td>Wagner</td>
-                                    <td>Manager</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td class="dt-body-right"><input type="button" class ='form-control' value='Générer un Export'/></td>
                                 </tr>
                                 <tr role="row" class="even">
                                     <td class="sorting_1">Brielle</td>
                                     <td>Williamson</td>
-                                    <td>Manager</td>
+                                    <td>0</td>
+                                    <td>10</td>
+                                    <td class="dt-body-right"><input type="button" class ='form-control' value='Générer un Export'/></td>
                                 </tr>
                                 <tr role="row" class="even">
                                     <td class="sorting_1">Bruno</td>
                                     <td>Nash</td>
-                                    <td>Manager</td>
+                                    <td>50</td>
+                                    <td>0</td>
+                                    <td class="dt-body-right"><input type="button" class ='form-control' value='Générer un Export'/></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -103,7 +153,7 @@
                     </div>
                     <div class="btn-group pull-right">
                         <form>
-                            <button class="btn btn-primary" type="button"><i class="fa fa-fw fa-plus"></i>Nouveau</button>
+                            <button class="btn btn-primary" type="button"><i class="fa fa-fw fa-upload"></i>Exporter</button>
                         </form>
                     </div>
                 </div>
