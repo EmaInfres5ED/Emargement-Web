@@ -12,7 +12,7 @@ class DefaultControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/admin/user/list');
 
-        $this->assertTrue($crawler->filter('html:contains("Liste d\'utilisateur")')->count() > 0);
+        $this->assertTrue($crawler->filter('html:contains("Utilisateurs")')->count() > 0);
     }
 
     public function testAdminPanelConfiuration()
