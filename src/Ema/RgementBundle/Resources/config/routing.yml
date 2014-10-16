@@ -37,3 +37,7 @@ ema_rgement_admin_panel_user_list:
 ema_rgement_admin_panel_configuration:
     path:     /admin/configuration
     defaults: { _controller: EmaRgementBundle:Default:adminConfiguration }
+
+ema_rgement_export:
+    path:     /export
+    defaults: { _controller: EmaRgementBundle:Default:export }
