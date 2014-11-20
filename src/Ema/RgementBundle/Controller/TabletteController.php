@@ -47,34 +47,45 @@ class TabletteController extends Controller
         return new Response($json);
     }
     
-
     /**
     * Web Service Action
     * Get eleves by cour
     * Return JSON file with eleves by cour
-    * URL: http://localhost/Emargement-Web/web/app_dev.php/tablette/eleves/
+    * URL: http://localhost/Emargement-Web/web/app_dev.php/tablette/eleves
     */
     public function getElevesAction()
     {       
-        $cours = ""; //Provient de GET ou POST
+        $idGroupe = "402"; //Provient de GET ou POST
         
-        return new Response($this->getElevesByCours($cours));
+        return new Response($this->getElevesByCours($idGroupe));
     }
         
     /**
     * Get eleves by cours in Cybema
     */
-    private function getElevesByCours($cours)
+    private function getElevesByCours($idGroupe)
     {   
-        //Lien à utliser
-        //cybema.ema.fr/cybema/cgi-bin/cgihtml.exe?TYPE=listegroupe_html&GRCLEUNIK=402&MODE=10
-        
-        
-        //$today = $this->getToday();
-        //$http = "http://webdfd.mines-ales.fr/cybema/cgi-bin/cgiempt.exe?TYPE=planning_txt&DATEDEBUT=".$today."&DATEFIN=".$today."&TYPECLE=p0cleunik&VALCLE=".$idPromoCybema;
-       echo $http;
+        $http = "http://cybema.ema.fr/cybema/cgi-bin/cgihtml.exe?TYPE=listegroupe_html&GRCLEUNIK=".$idGroupe."&MODE=10";
         $csv = file_get_contents($http);
-        //return $this->csvToJson($csv);
-        return $csv;
+        $elevesArray = explode("\n", $csv);
+        
+        $eleves = array();
+        
+        for($i=2; $i<sizeof($elevesArray)-1; $i++)
+        {
+            if(isset($e))
+                unset($e);
+                
+            $eleArray = explode("\t", $elevesArray[$i]);
+            
+            $e['id'] = utf8_encode($eleArray[0]);
+            $e['lastname'] = utf8_encode($eleArray[1]);
+            $e['firstname'] = utf8_encode(rtrim($eleArray[2]));
+             
+            if(isset($e))
+                array_push($eleves, $e);                
+        }
+        
+        return json_encode($eleves);    
     }
 }

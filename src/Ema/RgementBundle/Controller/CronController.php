@@ -13,14 +13,19 @@ class CronController extends Controller
     /**
     * Web Service Action
     * Update promo and  etudiant in BDD
+    * [LAUNCH] every week
     * URL: http://localhost/Emargement-Web/web/app_dev.php/cron/update/all
     */
     public function updateAllAction()
     {
-        $this->updatePromotions();
-        $this->updateEtudiants();
+        try {
+            $this->updatePromotions();
+            $this->updateEtudiants();            
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
         
-        return new Response('Update OK');
     }
     
     /**
@@ -30,8 +35,12 @@ class CronController extends Controller
     */
     public function updatePromotionsAction()
     {
-        $this->updatePromotions();
-        return new Response('Update Promotions OK');
+        try {
+            $this->updatePromotions();            
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     /**
@@ -41,8 +50,12 @@ class CronController extends Controller
     */
     public function updateEtudiantsAction()
     {
-        $this->updateEtudiants();
-        return new Response('Update Etudiants OK');
+        try {
+            $this->updateEtudiants();        
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
     }
     
     //URL: http://localhost/Emargement-Web/web/app_dev.php/cron/update/first
@@ -50,12 +63,17 @@ class CronController extends Controller
     /**
     * Web Service Action
     * Update first json file
+    * [LAUNCH] every day
     * URL: http://localhost/Emargement-Web/web/app_dev.php/cron/update/first
     */
     public function updateFirstJsonAction()
     {
-        $this->updateFirstJson();
-        return new Response('Update OK');
+        try {
+            $this->updateFirstJson();        
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
     }
     
     /**
@@ -88,6 +106,9 @@ class CronController extends Controller
             $cours = $this->getCoursByPromo($promo->getIdCybema());
             foreach ($cours as $cour) {
                 
+                if(isset($c))
+                    unset($c);
+                
                 if(isset($cour[7]) && !empty($cour[7]))
                     $c['id_cours'] = $cour[7];
                 if(isset($cour[9]) && !empty($cour[9]))
@@ -107,7 +128,8 @@ class CronController extends Controller
                 if(isset($cour[35]) && !empty($cour[35]))
                     $c['groupe'] = $cour[35];
                 
-                array_push($listCours, $c);
+                if(isset($c))
+                    array_push($listCours, $c);
             }
         
             $one["cours"] = $listCours;
@@ -134,7 +156,7 @@ class CronController extends Controller
     private function getCoursByPromo($idPromoCybema)
     {   
         $today = $this->getToday();
-        $http = "http://webdfd.mines-ales.fr/cybema/cgi-bin/cgiempt.exe?TYPE=planning_txt&DATEDEBUT=".$today."&DATEFIN=".$today."&TYPECLE=p0cleunik&VALCLE=".$idPromoCybema;
+        $http = "http://cybema.ema.fr/cybema/cgi-bin/cgiempt.exe?TYPE=planning_txt&DATEDEBUT=".$today."&DATEFIN=".$today."&TYPECLE=p0cleunik&VALCLE=".$idPromoCybema;
         $csv = file_get_contents($http);
         return $this->csvToJson($csv);
     }
@@ -142,7 +164,7 @@ class CronController extends Controller
     /**
     * Get today date with format YYYYMMDD
     */
-    private function getToday()
+    public function getToday()
     {   
         $date = getdate();
         
