@@ -88,4 +88,72 @@ class TabletteController extends Controller
         
         return json_encode($eleves);    
     }
+    
+    /**
+    * Web Service Action
+    * Get hash
+    * Return hash
+    * URL: http://localhost/Emargement-Web/web/app_dev.php/tablette/login
+    */
+    public function loginAction()
+    {     
+        $arr['hash'] = $this->getPwd();
+        
+        return new Response(json_encode($arr));
+    }
+    
+    /**
+    * Get hash of pwd
+    */
+    public function getPwd()
+    {       
+        $em = $this->getDoctrine()->getManager();
+        $repoParam = $em->getRepository('EmaRgementBundle:Param');
+        $entry = $repoParam->findOneById(1);
+        return $entry->getValue();
+    }
+    
+    /**
+    * Set new pwd
+    */
+    public function setPwd($old, $new)
+    {   
+        $oldSalt = $this->hashPwd($old);
+        
+        if($oldSalt == $this->getPwd())
+        {
+            $newSalt = $this->hashPwd($new);
+        
+            $em = $this->getDoctrine()->getManager();
+            $repoParam = $em->getRepository('EmaRgementBundle:Param');
+            
+            $entry = $repoParam->findOneById(1);
+
+            if (!$entry) {
+                return false;
+            }
+            else
+            {
+                $entry->setValue($newSalt);
+                $em->flush();
+            }
+
+            return true;
+        }
+        
+        return false;
+    }
+    
+    /**
+    * Hash a pwd, salt
+    */ 
+    private function hashPwd($pwd)
+    {       
+        $prefix = 'jkhg4579843kipzvjty';
+        $sufix = 'v57k89ui4b65hg4ijuy';
+        $pwdSalt = $prefix.$pwd.$sufix;
+        
+        return hash('sha256', $pwdSalt);
+    }
+    
 }

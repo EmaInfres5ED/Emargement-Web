@@ -70,6 +70,10 @@ ema_rgement_tablette_first:
     path:     /tablette/first
     defaults: { _controller: EmaRgementBundle:Tablette:first }
 
+ema_rgement_tablette_login:
+    path:     /tablette/login
+    defaults: { _controller: EmaRgementBundle:Tablette:login }
+
 ema_rgement_cron_update_first:
     path:     /cron/update/first
     defaults: { _controller: EmaRgementBundle:Cron:updateFirstJson }
