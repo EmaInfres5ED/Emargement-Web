@@ -19,12 +19,12 @@ class AdminController extends Controller
         if ($this->cronController->updateAllAction()) {
             $response->setData(array(
                 'type' => Message::TYPE_SUCCESS,
-                'message' => 'Mise à jour des étudiants et des cours effectuée avec success.'
+                'message' => 'Mise à jour des étudiants et des promos effectuée avec success.'
             ));
         } else {
             $response->setData(array(
                 'type' => Message::TYPE_ERROR,
-                'message' => 'Echec de la mise à jour des étudiants et des cours.'
+                'message' => 'Echec de la mise à jour des étudiants et des promos.'
             ));
         }
 
