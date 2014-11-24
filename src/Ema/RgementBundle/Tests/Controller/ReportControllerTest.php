@@ -10,7 +10,9 @@ class ReportControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', 'report/list');
+        $crawler = $client->request('GET', 'report/');
+
+        $this->assertTrue($crawler->filter('html:contains("Rapports de cours")')->count() > 0);
     }
 
     public function testShow()
@@ -18,6 +20,8 @@ class ReportControllerTest extends WebTestCase
         $client = static::createClient();
 
         $crawler = $client->request('GET', 'report/show');
+
+        $this->assertTrue($crawler->filter('html:contains("Rapport de cours")')->count() > 0);
     }
 
 }
