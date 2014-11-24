@@ -31,7 +31,7 @@ class AdminController extends Controller
         return $response;
     }
 
-    public function ajaxSynchronizeCoursAction()
+    public function ajaxSynchronizeCoursesAction()
     {
         $response = new JsonResponse();
 
