@@ -36,12 +36,26 @@
                 <div class="panel-body">
                     <form>
                         <div class="btn-group pull-middle">
-                            <button id="refreshCourses" class="btn btn-primary" type="button"><i class="fa fa-fw fa-refresh"></i>Synchroniser cours</button>
-                            <button id="refreshStudentsPromos" class="btn btn-primary" type="button"><i class="fa fa-fw fa-refresh"></i>Synchroniser élèves/promotions</button>
+                            <button id="refreshCourses" 
+                                class="btn btn-primary" 
+                                type="button" 
+                                data-url="{{ path('ajax_synchronize_course') }}">
+                                <i class="fa fa-fw fa-refresh"></i>Synchroniser cours
+                            </button>
+                            <button id="refreshStudentsPromos" 
+                                class="btn btn-primary" 
+                                type="button" 
+                                data-url="{{ path('ajax_synchronize_students_and_promos') }}">
+                                <i class="fa fa-fw fa-refresh"></i>Synchroniser élèves/promotions
+                            </button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ asset('bundles/emargement/js/views/Admin/configuration.js') }}"></script>    
 {% endblock %}
