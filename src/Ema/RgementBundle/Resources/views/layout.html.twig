@@ -137,11 +137,20 @@
         </nav>
         <div id="page-wrapper">
             <div class="container-fluid">
-            {% for flashMessage in app.session.flashbag.get('notice') %}
                 <div class="flash-message">
-                    <em>Notice</em>: {{ flashMessage }}
+                    {% for flashMessage in app.session.flashbag.get('success') %}
+                        <div class="alert alert-success"><em>Succès</em>: {{ flashMessage }}</div>
+                    {% endfor %}
+                    {% for flashMessage in app.session.flashbag.get('info') %}
+                        <div class="alert alert-info"><em>Information</em>: {{ flashMessage }}</div>
+                    {% endfor %}
+                    {% for flashMessage in app.session.flashbag.get('notice') %}
+                        <div class="alert alert-warning"><em>Alerte</em>: {{ flashMessage }}</div>
+                    {% endfor %}
+                    {% for flashMessage in app.session.flashbag.get('error') %}
+                        <div class="alert alert-danger"> <em>Erreur</em>: {{ flashMessage }} </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
             {% block content_header %}{% endblock %}
             {% if code is defined %}
                 <h2>Code behind this page</h2>
