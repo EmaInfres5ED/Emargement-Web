@@ -70,7 +70,7 @@ class Etudiant
     /**
      * Get nom
      *
-     * @return string 
+     * @return string
      */
     public function getNom()
     {
@@ -93,7 +93,7 @@ class Etudiant
     /**
      * Get prenom
      *
-     * @return string 
+     * @return string
      */
     public function getPrenom()
     {
@@ -116,7 +116,7 @@ class Etudiant
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -126,7 +126,7 @@ class Etudiant
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -149,7 +149,7 @@ class Etudiant
     /**
      * Get idPromo
      *
-     * @return \Ema\RgementBundle\Entity\Promotion 
+     * @return \Ema\RgementBundle\Entity\Promotion
      */
     public function getIdPromo()
     {

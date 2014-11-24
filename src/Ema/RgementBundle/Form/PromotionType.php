@@ -19,7 +19,7 @@ class PromotionType extends AbstractType
             ->add('idCybema')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

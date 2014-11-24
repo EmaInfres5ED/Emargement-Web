@@ -53,7 +53,7 @@ class Promotion
     /**
      * Get libelle
      *
-     * @return string 
+     * @return string
      */
     public function getLibelle()
     {
@@ -76,7 +76,7 @@ class Promotion
     /**
      * Get idCybema
      *
-     * @return integer 
+     * @return integer
      */
     public function getIdCybema()
     {
@@ -86,7 +86,7 @@ class Promotion
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {

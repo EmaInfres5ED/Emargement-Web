@@ -48,7 +48,7 @@ class Document
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -71,7 +71,7 @@ class Document
     /**
      * Get urlDocument
      *
-     * @return string 
+     * @return string
      */
     public function getUrlDocument()
     {
