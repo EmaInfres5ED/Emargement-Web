@@ -58,6 +58,34 @@ ema_rgement_admin_panel_configuration:
     path:     /admin/configuration
     defaults: { _controller: EmaRgementBundle:Default:adminConfiguration }
 
+ema_rgement_tablette_eleves:
+    path:     /tablette/eleves
+    defaults: { _controller: EmaRgementBundle:Tablette:getEleves }
+
+ema_rgement_tablette_first_force:
+    path:     /tablette/first/force
+    defaults: { _controller: EmaRgementBundle:Tablette:firstForce }
+
+ema_rgement_tablette_first:
+    path:     /tablette/first
+    defaults: { _controller: EmaRgementBundle:Tablette:first }
+
+ema_rgement_cron_update_first:
+    path:     /cron/update/first
+    defaults: { _controller: EmaRgementBundle:Cron:updateFirstJson }
+
+ema_rgement_cron_update_all:
+    path:     /cron/update/all
+    defaults: { _controller: EmaRgementBundle:Cron:updateAll }
+
+ema_rgement_cron_update_promotions:
+    path:     /cron/update/promotions
+    defaults: { _controller: EmaRgementBundle:Cron:updatePromotions }
+
+ema_rgement_cron_update_etudiants:
+    path:     /cron/update/etudiants
+    defaults: { _controller: EmaRgementBundle:Cron:updateEtudiants }
+
 ema_rgement_export:
     path:     /export
     defaults: { _controller: EmaRgementBundle:Default:export }
