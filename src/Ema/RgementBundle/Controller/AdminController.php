@@ -5,7 +5,6 @@ namespace Ema\RgementBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Ema\RgementBundle\Entity\Message;
-use Ema\RgementBundle\Controller\CronController;
 
 class AdminController extends Controller
 {
