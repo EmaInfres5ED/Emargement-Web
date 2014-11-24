@@ -46,7 +46,7 @@ class DocumentAbsence
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -69,7 +69,7 @@ class DocumentAbsence
     /**
      * Get idDocument
      *
-     * @return \Ema\RgementBundle\Entity\Document 
+     * @return \Ema\RgementBundle\Entity\Document
      */
     public function getIdDocument()
     {
@@ -92,7 +92,7 @@ class DocumentAbsence
     /**
      * Get idAbsence
      *
-     * @return \Ema\RgementBundle\Entity\Absence 
+     * @return \Ema\RgementBundle\Entity\Absence
      */
     public function getIdAbsence()
     {

@@ -94,13 +94,17 @@ ema_rgement_export:
     path:     /export
     defaults: { _controller: EmaRgementBundle:Default:export }
 
-ema_rgement_report:
-    path:     /report
-    defaults: { _controller: EmaRgementBundle:Default:report }
-
 ema_rgement_notification:
     path:     /notification
     defaults: { _controller: EmaRgementBundle:Default:notification }
+
+ema_rgement_report_list:
+    path:     report/
+    defaults: { _controller: EmaRgementBundle:Report:list }
+
+ema_rgement_report_show:
+    path:     report/show/{id}
+    defaults: { _controller: EmaRgementBundle:Report:show, id = 0}
 
 ajax_synchronize_students_and_promos:
     path:     /admin/ajaxSynchronizeStudentsAndPromos

@@ -88,7 +88,7 @@ class Cours
     /**
      * Get libelle
      *
-     * @return string 
+     * @return string
      */
     public function getLibelle()
     {
@@ -111,7 +111,7 @@ class Cours
     /**
      * Get professeur
      *
-     * @return string 
+     * @return string
      */
     public function getProfesseur()
     {
@@ -134,7 +134,7 @@ class Cours
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -157,7 +157,7 @@ class Cours
     /**
      * Get heureDebut
      *
-     * @return string 
+     * @return string
      */
     public function getHeureDebut()
     {
@@ -180,7 +180,7 @@ class Cours
     /**
      * Get heureFin
      *
-     * @return string 
+     * @return string
      */
     public function getHeureFin()
     {
@@ -203,7 +203,7 @@ class Cours
     /**
      * Get idCybema
      *
-     * @return integer 
+     * @return integer
      */
     public function getIdCybema()
     {
@@ -226,7 +226,7 @@ class Cours
     /**
      * Get salle
      *
-     * @return string 
+     * @return string
      */
     public function getSalle()
     {
@@ -236,7 +236,7 @@ class Cours
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
