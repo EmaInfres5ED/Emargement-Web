@@ -56,7 +56,7 @@ class Retard
     /**
      * Get dureeRetard
      *
-     * @return integer 
+     * @return integer
      */
     public function getDureeRetard()
     {
@@ -66,7 +66,7 @@ class Retard
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -89,7 +89,7 @@ class Retard
     /**
      * Get idParticipation
      *
-     * @return \Ema\RgementBundle\Entity\Participation 
+     * @return \Ema\RgementBundle\Entity\Participation
      */
     public function getIdParticipation()
     {

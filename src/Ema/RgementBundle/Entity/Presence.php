@@ -56,7 +56,7 @@ class Presence
     /**
      * Get signature
      *
-     * @return string 
+     * @return string
      */
     public function getSignature()
     {
@@ -66,7 +66,7 @@ class Presence
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -89,7 +89,7 @@ class Presence
     /**
      * Get idParticipation
      *
-     * @return \Ema\RgementBundle\Entity\Participation 
+     * @return \Ema\RgementBundle\Entity\Participation
      */
     public function getIdParticipation()
     {

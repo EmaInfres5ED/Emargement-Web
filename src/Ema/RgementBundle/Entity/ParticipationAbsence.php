@@ -46,7 +46,7 @@ class ParticipationAbsence
     /**
      * Get idParticipationAbsence
      *
-     * @return integer 
+     * @return integer
      */
     public function getIdParticipationAbsence()
     {
@@ -69,7 +69,7 @@ class ParticipationAbsence
     /**
      * Get idAbsence
      *
-     * @return \Ema\RgementBundle\Entity\Absence 
+     * @return \Ema\RgementBundle\Entity\Absence
      */
     public function getIdAbsence()
     {
@@ -92,7 +92,7 @@ class ParticipationAbsence
     /**
      * Get idParticipation
      *
-     * @return \Ema\RgementBundle\Entity\Participation 
+     * @return \Ema\RgementBundle\Entity\Participation
      */
     public function getIdParticipation()
     {

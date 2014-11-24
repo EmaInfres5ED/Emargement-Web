@@ -46,7 +46,7 @@ class Participation
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -69,7 +69,7 @@ class Participation
     /**
      * Get idEtudiant
      *
-     * @return \Ema\RgementBundle\Entity\Etudiant 
+     * @return \Ema\RgementBundle\Entity\Etudiant
      */
     public function getIdEtudiant()
     {
@@ -92,7 +92,7 @@ class Participation
     /**
      * Get idCours
      *
-     * @return \Ema\RgementBundle\Entity\Cours 
+     * @return \Ema\RgementBundle\Entity\Cours
      */
     public function getIdCours()
     {

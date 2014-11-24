@@ -45,23 +45,23 @@
                             <a href="#" class="notificationHeaderLink">Marquer comme lus</a>
                         </div>
                         <li>
-                            <a href="{{ path('ema_rgement_report') }}">Rapport du cours de DEV. PERSO. du 14/08/2014 disponible</a>
+                            <a href="{{ path('ema_rgement_report_show') }}">Rapport du cours de DEV. PERSO. du 14/08/2014 disponible</a>
                         </li>
                         <li class="divider"></li>
                         <li class="newNotification">
-                            <a href="{{ path('ema_rgement_report') }}">Rapport du cours de GESTION DU STRESS du 14/08/2014 disponible</a>
+                            <a href="{{ path('ema_rgement_report_show') }}">Rapport du cours de GESTION DU STRESS du 14/08/2014 disponible</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="{{ path('ema_rgement_report') }}">Rapport du cours de DEV. PERSO. du 14/08/2014 disponible</a>
+                            <a href="{{ path('ema_rgement_report_show') }}">Rapport du cours de DEV. PERSO. du 14/08/2014 disponible</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="{{ path('ema_rgement_report') }}">Rapport du cours de DEV. PERSO. du 14/08/2014 disponible</a>
+                            <a href="{{ path('ema_rgement_report_show') }}">Rapport du cours de DEV. PERSO. du 14/08/2014 disponible</a>
                         </li>
                         <li class="dividerFinal"></li>
                         <li>
-                            <a href="{{ path('ema_rgement_notification') }}">View All</a>
+                            <a href="{{ path('ema_rgement_report_list') }}">View All</a>
                         </li>
                     </ul>
                 </li>
@@ -119,6 +119,9 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="{{ path('ema_rgement_report_list') }}"><i class="fa fa-fw fa-file-text-o"></i>Rapports</a>
+                    </li>
+                    <li>
                         <a href="{{ path('ema_rgement_export') }}"><i class="fa fa-fw fa-upload"></i> Export </a>
                     </li>
                     <li>
@@ -137,11 +140,20 @@
         </nav>
         <div id="page-wrapper">
             <div class="container-fluid">
-            {% for flashMessage in app.session.flashbag.get('notice') %}
                 <div class="flash-message">
-                    <em>Notice</em>: {{ flashMessage }}
+                    {% for flashMessage in app.session.flashbag.get('success') %}
+                        <div class="alert alert-success"><em>Succès</em>: {{ flashMessage }}</div>
+                    {% endfor %}
+                    {% for flashMessage in app.session.flashbag.get('info') %}
+                        <div class="alert alert-info"><em>Information</em>: {{ flashMessage }}</div>
+                    {% endfor %}
+                    {% for flashMessage in app.session.flashbag.get('notice') %}
+                        <div class="alert alert-warning"><em>Alerte</em>: {{ flashMessage }}</div>
+                    {% endfor %}
+                    {% for flashMessage in app.session.flashbag.get('error') %}
+                        <div class="alert alert-danger"> <em>Erreur</em>: {{ flashMessage }} </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
             {% block content_header %}{% endblock %}
             {% if code is defined %}
                 <h2>Code behind this page</h2>

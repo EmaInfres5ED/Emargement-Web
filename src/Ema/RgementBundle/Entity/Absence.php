@@ -71,7 +71,7 @@ class Absence
     /**
      * Get motif
      *
-     * @return string 
+     * @return string
      */
     public function getMotif()
     {
@@ -94,7 +94,7 @@ class Absence
     /**
      * Get dateDebut
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateDebut()
     {
@@ -117,7 +117,7 @@ class Absence
     /**
      * Get dateFin
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateFin()
     {
@@ -127,7 +127,7 @@ class Absence
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -150,7 +150,7 @@ class Absence
     /**
      * Get idEleve
      *
-     * @return \Ema\RgementBundle\Entity\Etudiant 
+     * @return \Ema\RgementBundle\Entity\Etudiant
      */
     public function getIdEleve()
     {
