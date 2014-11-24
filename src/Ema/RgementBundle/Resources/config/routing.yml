@@ -101,3 +101,11 @@ ema_rgement_report:
 ema_rgement_notification:
     path:     /notification
     defaults: { _controller: EmaRgementBundle:Default:notification }
+
+ajax_synchronize_students_and_promos:
+    path:     /admin/ajaxSynchronizeStudentsAndPromos
+    defaults: { _controller: EmaRgementBundle:Admin:ajaxSynchronizeStudentsAndPromos }
+
+ajax_synchronize_cours :
+    path:     /admin/ajaxSynchronizeCourses
+    defaults: { _controller: EmaRgementBundle:Admin:ajaxSynchronizeCourses }
