@@ -3,7 +3,9 @@
 namespace Ema\RgementBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Ema\RgementBundle\Entity\Promotion;
 use Ema\RgementBundle\Controller\CronController;
@@ -24,7 +26,10 @@ class TabletteController extends Controller
         $json = fgets($file);
         fclose($file);
 
-        return new Response($json);
+        $response = new Response($json);
+        $response->headers->set('Content-Type', 'application/json');
+        
+        return $response;
     }
 
     /**
@@ -46,7 +51,10 @@ class TabletteController extends Controller
         $json = fgets($file);
         fclose($file);
 
-        return new Response($json);
+        $response = new Response($json);
+        $response->headers->set('Content-Type', 'application/json');
+        
+        return $response;
     }
 
     /**
@@ -56,11 +64,17 @@ class TabletteController extends Controller
     * URL: http://localhost/Emargement-Web/web/app_dev.php/tablette/eleves
     * URL: http://loris-jacquy.ovh/tablette/eleves
     */
-    public function getElevesAction()
+    public function getElevesAction(Request $request)
     {
-        $idGroupe = "402"; //Provient de GET ou POST
+        if ($request->getMethod() == 'POST') 
+        {
+            $idGroupe = $request->request->get('idGroupe');
+            
+            if(isset($idGroupe) && !empty($idGroupe))
+                return new JsonResponse($this->getElevesByCours($idGroupe));  
+        }
 
-        return new Response($this->getElevesByCours($idGroupe));
+         return new JsonResponse(array());     
     }
 
     /**
@@ -103,7 +117,7 @@ class TabletteController extends Controller
     {     
         $arr['hash'] = $this->getPwd();
         
-        return new Response(json_encode($arr));
+        return new JsonResponse($arr);
     }
     
     /**
