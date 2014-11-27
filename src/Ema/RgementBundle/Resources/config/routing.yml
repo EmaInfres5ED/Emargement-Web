@@ -110,6 +110,6 @@ ajax_synchronize_students_and_promos:
     path:     /admin/ajaxSynchronizeStudentsAndPromos
     defaults: { _controller: EmaRgementBundle:Admin:ajaxSynchronizeStudentsAndPromos }
 
-ajax_synchronize_cours :
+ajax_synchronize_course :
     path:     /admin/ajaxSynchronizeCourses
     defaults: { _controller: EmaRgementBundle:Admin:ajaxSynchronizeCourses }

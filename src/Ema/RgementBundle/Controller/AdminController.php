@@ -18,7 +18,7 @@ class AdminController extends Controller
         if ($this->cronController->updateAllAction()) {
             $response->setData(array(
                 'type' => Message::TYPE_SUCCESS,
-                'message' => 'Mise à jour des étudiants et des promos effectuée avec success.'
+                'message' => 'Mise à jour des étudiants et des promos effectuée avec succès.'
             ));
         } else {
             $response->setData(array(
@@ -38,7 +38,7 @@ class AdminController extends Controller
         if ($this->cronController->updateFirstJsonAction()) {
             $response->setData(array(
                 'type' => Message::TYPE_SUCCESS,
-                'message' => 'Mise à jour des cours effectuée avec success.'
+                'message' => 'Mise à jour des cours effectuée avec succès.'
             ));
         } else {
             $response->setData(array(
