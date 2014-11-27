@@ -5,7 +5,6 @@ namespace Ema\RgementBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Ema\RgementBundle\Entity\Message;
-use Ema\RgementBundle\Controller\CronController;
 
 class AdminController extends Controller
 {
@@ -16,7 +15,8 @@ class AdminController extends Controller
         $response = new JsonResponse();
 
         $this->cronController = $this->get('cron_controller_service');
-        if ($this->cronController->updateAllAction()) {
+        if ($this->cronController->updateAllAction())
+        {
             $response->setData(array(
                 'type' => Message::TYPE_SUCCESS,
                 'message' => 'Mise à jour des étudiants et des promos effectuée avec success.'

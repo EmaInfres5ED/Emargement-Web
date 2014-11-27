@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class RetardRepository extends EntityRepository
 {
+
+    public function getByCourse($courseId)
+    {
+        $result = array();
+        $retard = new Retard();
+        $retard->setDureeRetard(15);
+        $result[] = $retard;
+        $retard = new Retard();
+        $retard->setDureeRetard(20);
+        $result[] = $retard;
+        return $result;
+    }
+
 }

@@ -12,4 +12,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class AbsenceRepository extends EntityRepository
 {
+
+    public function getByCourse($courseId)
+    {
+        $result = array();
+//        $absence = new Absence();
+//        $absence->setDateDebut(new \DateTime("now"));
+//        $absence->setDateFin(new \DateTime("now"));
+//        $absence->setMotif("MyMotif");
+//        $result[] = $absence;
+//        $absence = new Absence();
+//        $absence->setDateDebut(new \DateTime("now"));
+//        $absence->setDateFin(new \DateTime("now"));
+//        $absence->setMotif("MyMotif2");
+//        $result[] = $absence;
+        return $result;
+    }
+
 }

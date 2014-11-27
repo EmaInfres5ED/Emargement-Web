@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ReportController extends Controller
 {
+
     public function listAction()
     {
         return $this->render('EmaRgementBundle:Report:list.html.twig', array(
@@ -18,8 +19,9 @@ class ReportController extends Controller
         {
             return $this->listAction();
         }
+        $reportService = $this->get('report_service');
         return $this->render('EmaRgementBundle:Report:show.html.twig', array(
-                // ...
-            ));    }
+            'report' => $reportService->getOne(1)
+        ));    }
 
 }
