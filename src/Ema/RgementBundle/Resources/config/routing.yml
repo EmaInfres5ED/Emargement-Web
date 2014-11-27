@@ -82,14 +82,6 @@ ema_rgement_cron_update_all:
     path:     /cron/update/all
     defaults: { _controller: EmaRgementBundle:Cron:updateAll }
 
-ema_rgement_cron_update_promotions:
-    path:     /cron/update/promotions
-    defaults: { _controller: EmaRgementBundle:Cron:updatePromotions }
-
-ema_rgement_cron_update_etudiants:
-    path:     /cron/update/etudiants
-    defaults: { _controller: EmaRgementBundle:Cron:updateEtudiants }
-
 ema_rgement_export:
     path:     /export
     defaults: { _controller: EmaRgementBundle:Default:export }

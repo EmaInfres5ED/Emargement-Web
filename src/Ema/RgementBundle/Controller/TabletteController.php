@@ -14,6 +14,7 @@ class TabletteController extends Controller
     * Web Service Action
     * Return JSON file with cours by promo
     * URL: http://localhost/Emargement-Web/web/app_dev.php/tablette/first
+    * URL: http://loris-jacquy.ovh/tablette/first
     */
     public function firstAction()
     {
@@ -31,6 +32,7 @@ class TabletteController extends Controller
     * Update JSON file
     * Return JSON file with cours by promo
     * URL: http://localhost/Emargement-Web/web/app_dev.php/tablette/first/force
+    * URL: http://loris-jacquy.ovh/tablette/first/force
     */
     public function firstForceAction()
     {
@@ -52,6 +54,7 @@ class TabletteController extends Controller
     * Get eleves by cour
     * Return JSON file with eleves by cour
     * URL: http://localhost/Emargement-Web/web/app_dev.php/tablette/eleves
+    * URL: http://loris-jacquy.ovh/tablette/eleves
     */
     public function getElevesAction()
     {
@@ -67,7 +70,8 @@ class TabletteController extends Controller
     {
         $http = "http://cybema.ema.fr/cybema/cgi-bin/cgihtml.exe?TYPE=listegroupe_html&GRCLEUNIK=".$idGroupe."&MODE=10";
         $csv = file_get_contents($http);
-        $elevesArray = explode("\n", $csv);
+        $csvUtf8 = mb_convert_encoding($csv, 'UTF-8');
+        $elevesArray = explode("\n", $csvUtf8);
 
         $eleves = array();
 
@@ -77,15 +81,14 @@ class TabletteController extends Controller
                 unset($e);
 
             $eleArray = explode("\t", $elevesArray[$i]);
-
-            $e['id'] = utf8_encode($eleArray[0]);
-            $e['lastname'] = utf8_encode($eleArray[1]);
-            $e['firstname'] = utf8_encode(rtrim($eleArray[2]));
+            $e['id'] = $eleArray[0];
+            $e['lastname'] = $eleArray[1];
+            $e['firstname'] = rtrim($eleArray[2]);
 
             if(isset($e))
                 array_push($eleves, $e);
         }
-
+        
         return json_encode($eleves);
     }
     
@@ -94,6 +97,7 @@ class TabletteController extends Controller
     * Get hash
     * Return hash
     * URL: http://localhost/Emargement-Web/web/app_dev.php/tablette/login
+    * URL: http://loris-jacquy.ovh/tablette/login
     */
     public function loginAction()
     {     
