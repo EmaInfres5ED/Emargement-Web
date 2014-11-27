@@ -40,15 +40,15 @@ ema_rgement_warn_delay:
 
 ema_rgement_justify_list:
     path:     /justify/list
-    defaults: { _controller: EmaRgementBundle:Default:justifyList }
+    defaults: { _controller: EmaRgementBundle:Justify:justifyList }
 
 ema_rgement_justify_absence:
     path:     /justify/absence
-    defaults: { _controller: EmaRgementBundle:Default:justifyAbsence }
+    defaults: { _controller: EmaRgementBundle:Justify:justifyAbsence }
 
 ema_rgement_justify_delay:
     path:     /justify/delay
-    defaults: { _controller: EmaRgementBundle:Default:justifyDelay }
+    defaults: { _controller: EmaRgementBundle:Justify:justifyDelay }
 
 ema_rgement_admin_panel_user_list:
     path:     /admin/user/list
