@@ -32,11 +32,11 @@ ema_rgement_stats:
 
 ema_rgement_warn_absence:
     path:     /warn/absence
-    defaults: { _controller: EmaRgementBundle:Default:warnAbsence }
+    defaults: { _controller: EmaRgementBundle:Warn:warnAbsence }
 
 ema_rgement_warn_delay:
     path:     /warn/delay
-    defaults: { _controller: EmaRgementBundle:Default:warnDelay }
+    defaults: { _controller: EmaRgementBundle:Warn:warnDelay }
 
 ema_rgement_justify_list:
     path:     /justify/list
