@@ -29,7 +29,7 @@ class EtudiantPromotion
      *   @ORM\JoinColumn(name="id_promotion", referencedColumnName="id")
      * })
      */
-    private $idPromotion;
+    private $promotion;
 
     /**
      * @var \Etudiant
@@ -39,7 +39,7 @@ class EtudiantPromotion
      *   @ORM\JoinColumn(name="id_etudiant", referencedColumnName="id")
      * })
      */
-    private $idEtudiant;
+    private $etudiant;
 
 
 
@@ -54,48 +54,48 @@ class EtudiantPromotion
     }
 
     /**
-     * Set idPromotion
+     * Set promotion
      *
-     * @param \Ema\RgementBundle\Entity\Promotion $idPromotion
+     * @param \Ema\RgementBundle\Entity\Promotion $promotion
      * @return EtudiantPromotion
      */
-    public function setIdPromotion(\Ema\RgementBundle\Entity\Promotion $idPromotion = null)
+    public function setPromotion(\Ema\RgementBundle\Entity\Promotion $promotion = null)
     {
-        $this->idPromotion = $idPromotion;
+        $this->promotion = $promotion;
 
         return $this;
     }
 
     /**
-     * Get idPromotion
+     * Get promotion
      *
      * @return \Ema\RgementBundle\Entity\Promotion
      */
-    public function getIdPromotion()
+    public function getPromotion()
     {
-        return $this->idPromotion;
+        return $this->promotion;
     }
 
     /**
-     * Set idEtudiant
+     * Set etudiant
      *
-     * @param \Ema\RgementBundle\Entity\Etudiant $idEtudiant
+     * @param \Ema\RgementBundle\Entity\Etudiant $etudiant
      * @return EtudiantPromotion
      */
-    public function setIdEtudiant(\Ema\RgementBundle\Entity\Etudiant $idEtudiant = null)
+    public function setEtudiant(\Ema\RgementBundle\Entity\Etudiant $etudiant = null)
     {
-        $this->idEtudiant = $idEtudiant;
+        $this->etudiant = $etudiant;
 
         return $this;
     }
 
     /**
-     * Get idEtudiant
+     * Get etudiant
      *
      * @return \Ema\RgementBundle\Entity\Etudiant
      */
-    public function getIdEtudiant()
+    public function getEtudiant()
     {
-        return $this->idEtudiant;
+        return $this->etudiant;
     }
 }

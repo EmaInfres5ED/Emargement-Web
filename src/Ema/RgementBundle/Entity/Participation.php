@@ -29,7 +29,7 @@ class Participation
      *   @ORM\JoinColumn(name="id_cours", referencedColumnName="id")
      * })
      */
-    private $idCours;
+    private $cours;
 
     /**
      * @var \Etudiant
@@ -39,7 +39,7 @@ class Participation
      *   @ORM\JoinColumn(name="id_etudiant", referencedColumnName="id")
      * })
      */
-    private $idEtudiant;
+    private $etudiant;
 
 
 
@@ -54,48 +54,48 @@ class Participation
     }
 
     /**
-     * Set idCours
+     * Set Cours
      *
-     * @param \Ema\RgementBundle\Entity\Cours $idCours
+     * @param \Ema\RgementBundle\Entity\Cours $cours
      * @return Participation
      */
-    public function setIdCours(\Ema\RgementBundle\Entity\Cours $idCours = null)
+    public function setCours(\Ema\RgementBundle\Entity\Cours $cours = null)
     {
-        $this->idCours = $idCours;
+        $this->cours = $cours;
 
         return $this;
     }
 
     /**
-     * Get idCours
+     * Get Cours
      *
      * @return \Ema\RgementBundle\Entity\Cours
      */
-    public function getIdCours()
+    public function getCours()
     {
-        return $this->idCours;
+        return $this->cours;
     }
 
     /**
-     * Set idEtudiant
+     * Set Etudiant
      *
-     * @param \Ema\RgementBundle\Entity\Etudiant $idEtudiant
+     * @param \Ema\RgementBundle\Entity\Etudiant $etudiant
      * @return Participation
      */
-    public function setIdEtudiant(\Ema\RgementBundle\Entity\Etudiant $idEtudiant = null)
+    public function setEtudiant(\Ema\RgementBundle\Entity\Etudiant $etudiant = null)
     {
-        $this->idEtudiant = $idEtudiant;
+        $this->etudiant = $etudiant;
 
         return $this;
     }
 
     /**
-     * Get idEtudiant
+     * Get etudiant
      *
      * @return \Ema\RgementBundle\Entity\Etudiant
      */
-    public function getIdEtudiant()
+    public function getEtudiant()
     {
-        return $this->idEtudiant;
+        return $this->etudiant;
     }
 }

@@ -50,7 +50,7 @@ class Absence
      *   @ORM\JoinColumn(name="id_eleve", referencedColumnName="id")
      * })
      */
-    private $idEleve;
+    private $eleve;
 
 
 
@@ -134,25 +134,25 @@ class Absence
     }
 
     /**
-     * Set idEleve
+     * Set Eleve
      *
-     * @param \Ema\RgementBundle\Entity\Etudiant $idEleve
+     * @param \Ema\RgementBundle\Entity\Etudiant $eleve
      * @return Absence
      */
-    public function setIdEleve(\Ema\RgementBundle\Entity\Etudiant $idEleve = null)
+    public function setEleve(\Ema\RgementBundle\Entity\Etudiant $eleve = null)
     {
-        $this->idEleve = $idEleve;
+        $this->eleve = $eleve;
 
         return $this;
     }
 
     /**
-     * Get idEleve
+     * Get Eleve
      *
      * @return \Ema\RgementBundle\Entity\Etudiant
      */
-    public function getIdEleve()
+    public function getEleve()
     {
-        return $this->idEleve;
+        return $this->eleve;
     }
 }
