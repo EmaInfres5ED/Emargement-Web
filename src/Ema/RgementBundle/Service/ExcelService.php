@@ -11,7 +11,8 @@ class ExcelService extends Controller
 
     public function createFromTemplate($templateName)
     {
-        $this->phpExcelObject = $this->get('phpexcel')->createPHPExcelObject(__DIR__ . "/../Template/$templateName.xls");
+        $templateUri = __DIR__ . "/../Template/$templateName.xls";
+        $this->phpExcelObject = $this->get('phpexcel')->createPHPExcelObject($templateUri);
 
         $this->phpExcelObject->setActiveSheetIndex(0);
 
