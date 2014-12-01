@@ -8,10 +8,19 @@ use Doctrine\ORM\Mapping as ORM;
  * Presence
  *
  * @ORM\Table(name="presence", indexes={@ORM\Index(name="fk_presence_participation_idx", columns={"id_participation"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Ema\RgementBundle\Repository\PresenceRepository")
  */
 class Presence
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
     /**
      * @var string
      *
@@ -20,18 +29,16 @@ class Presence
     private $signature;
 
     /**
-     * @var integer
+     * @var \DateTime
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(name="horodatage", type="datetime", nullable=false)
      */
-    private $id;
+    private $horodatage;
 
     /**
-     * @var \Ema\RgementBundle\Entity\Participation
+     * @var \Participation
      *
-     * @ORM\ManyToOne(targetEntity="Ema\RgementBundle\Entity\Participation")
+     * @ORM\ManyToOne(targetEntity="Participation")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_participation", referencedColumnName="id")
      * })
@@ -39,6 +46,16 @@ class Presence
     private $idParticipation;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set signature
@@ -64,13 +81,26 @@ class Presence
     }
 
     /**
-     * Get id
+     * Set horodatage
      *
-     * @return integer
+     * @param \DateTime $horodatage
+     * @return Presence
      */
-    public function getId()
+    public function setHorodatage($horodatage)
     {
-        return $this->id;
+        $this->horodatage = $horodatage;
+
+        return $this;
+    }
+
+    /**
+     * Get horodatage
+     *
+     * @return \DateTime
+     */
+    public function getHorodatage()
+    {
+        return $this->horodatage;
     }
 
     /**

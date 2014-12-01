@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Param
  *
  * @ORM\Table(name="param")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Ema\RgementBundle\Repository\ParamRepository")
  */
 class Param
 {
@@ -40,7 +40,7 @@ class Param
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -56,14 +56,14 @@ class Param
     public function setNom($nom)
     {
         $this->nom = $nom;
-    
+
         return $this;
     }
 
     /**
      * Get nom
      *
-     * @return string 
+     * @return string
      */
     public function getNom()
     {
@@ -79,14 +79,14 @@ class Param
     public function setValue($value)
     {
         $this->value = $value;
-    
+
         return $this;
     }
 
     /**
      * Get value
      *
-     * @return string 
+     * @return string
      */
     public function getValue()
     {

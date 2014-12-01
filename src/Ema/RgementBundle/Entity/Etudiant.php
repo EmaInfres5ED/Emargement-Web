@@ -7,11 +7,20 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Etudiant
  *
- * @ORM\Table(name="etudiant", indexes={@ORM\Index(name="fk_etudiant_promo_idx", columns={"id_promo"})})
- * @ORM\Entity
+ * @ORM\Table(name="etudiant")
+ * @ORM\Entity(repositoryClass="Ema\RgementBundle\Repository\EtudiantRepository")
  */
 class Etudiant
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
     /**
      * @var string
      *
@@ -33,26 +42,17 @@ class Etudiant
      */
     private $email;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
+
 
     /**
-     * @var \Ema\RgementBundle\Entity\Promotion
+     * Get id
      *
-     * @ORM\ManyToOne(targetEntity="Ema\RgementBundle\Entity\Promotion")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_promo", referencedColumnName="id")
-     * })
+     * @return integer
      */
-    private $idPromo;
-
-
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set nom
@@ -121,38 +121,5 @@ class Etudiant
     public function getEmail()
     {
         return $this->email;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set idPromo
-     *
-     * @param \Ema\RgementBundle\Entity\Promotion $idPromo
-     * @return Etudiant
-     */
-    public function setIdPromo(\Ema\RgementBundle\Entity\Promotion $idPromo = null)
-    {
-        $this->idPromo = $idPromo;
-
-        return $this;
-    }
-
-    /**
-     * Get idPromo
-     *
-     * @return \Ema\RgementBundle\Entity\Promotion
-     */
-    public function getIdPromo()
-    {
-        return $this->idPromo;
     }
 }
