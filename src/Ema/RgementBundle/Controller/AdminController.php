@@ -3,13 +3,24 @@
 namespace Ema\RgementBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Ema\RgementBundle\Entity\Message;
-use Ema\RgementBundle\Controller\CronController;
 
 class AdminController extends Controller
 {
     private $cronController;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        parent::setContainer($container);
+        $this->initialize();
+    }
+
+    private function initialize()
+    {
+        $this->cronController = $this->get('cron_controller_service');
+    }
 
     public function ajaxSynchronizeStudentsAndPromosAction()
     {

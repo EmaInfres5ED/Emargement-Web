@@ -186,14 +186,14 @@ class CronController extends Controller
 
                 if($promo != null){
                     //Update
-                    $promo->setIdCybema($val[1]);
+                    $promo->setIdCybema(trim($val[1]));
 
                 } else
                 {
                     //Create
                     $newPromo = new Promotion();
                     $newPromo->setLibelle(trim($val[3]));
-                    $newPromo->setIdCybema($val[1]);
+                    $newPromo->setIdCybema(trim($val[1]));
                     $em->persist($newPromo);
                 }
             }
@@ -224,7 +224,7 @@ class CronController extends Controller
                 //Get local id promo
                 $promo = null;
                 if(isset($val[11]) && !empty($val[11]))
-                    $promo = $repoPromo->findOneByIdCybema($val[11]);
+                    $promo = $repoPromo->findOneByIdCybema(trim($val[11]));
 
                 if($etu != null){
                     if($promo) {
@@ -234,9 +234,9 @@ class CronController extends Controller
                 } else
                 {
                     $newEtu = new Etudiant();
-                    $newEtu->setNom($val[5]);
-                    $newEtu->setPrenom($val[7]);
-                    $newEtu->setEmail($val[9]);
+                    $newEtu->setNom(trim($val[5]));
+                    $newEtu->setPrenom(trim($val[7]));
+                    $newEtu->setEmail(trim($val[9]));
                     if($promo)
                         $newEtu->setIdPromo($promo);
 
