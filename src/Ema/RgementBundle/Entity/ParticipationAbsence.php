@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
  * ParticipationAbsence
  *
  * @ORM\Table(name="participation_absence", indexes={@ORM\Index(name="fk_participation_abs_idx", columns={"id_participation"}), @ORM\Index(name="fk_abs_participation_idx", columns={"id_absence"})})
- * @ORM\Entity
  * @ORM\Entity(repositoryClass="Ema\RgementBundle\Repository\ParticipationAbsenceRepository")
  */
 class ParticipationAbsence

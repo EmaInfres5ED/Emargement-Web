@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
  * Retard
  *
  * @ORM\Table(name="retard", indexes={@ORM\Index(name="fk_retard_participation_idx", columns={"id_participation"}), @ORM\Index(name="fk_retard_etudiant", columns={"id_etudiant"})})
- * @ORM\Entity
  * @ORM\Entity(repositoryClass="Ema\RgementBundle\Repository\RetardRepository")
  */
 class Retard

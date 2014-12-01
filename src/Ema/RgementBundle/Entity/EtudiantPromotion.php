@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
  * EtudiantPromotion
  *
  * @ORM\Table(name="etudiant_promotion", indexes={@ORM\Index(name="fk_etudiant_idx", columns={"id_etudiant"}), @ORM\Index(name="fk_etus_prom_p_idx", columns={"id_promotion"})})
- * @ORM\Entity
  * @ORM\Entity(repositoryClass="Ema\RgementBundle\Repository\EtudiantPromotionRepository")
  */
 class EtudiantPromotion
