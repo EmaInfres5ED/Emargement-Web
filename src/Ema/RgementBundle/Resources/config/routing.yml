@@ -94,6 +94,10 @@ ema_rgement_export_list:
     path:     /export/list
     defaults: { _controller: EmaRgementBundle:Export:list }
 
+ema_rgement_export:
+    path:     /export/studentId/{studentId}/from/{dateFrom}/to/{dateTo}
+    defaults: { _controller: EmaRgementBundle:Export:export, studentId = 0, dateFrom = null, dateTo = null }
+
 ema_rgement_notification:
     path:     /notification
     defaults: { _controller: EmaRgementBundle:Default:notification }
