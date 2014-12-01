@@ -26,7 +26,8 @@ class AdminController extends Controller
     {
         $response = new JsonResponse();
 
-        if ($this->cronController->updateAllAction()) {
+        $this->cronController = $this->get('cron_controller_service');
+        if ($this->cronController->updateAll()) {
             $response->setData(array(
                 'type' => Message::TYPE_SUCCESS,
                 'message' => 'Mise à jour des étudiants et des promos effectuée avec succès.'
@@ -45,7 +46,8 @@ class AdminController extends Controller
     {
         $response = new JsonResponse();
 
-        if ($this->cronController->updateFirstJsonAction()) {
+        $this->cronController = $this->get('cron_controller_service');
+        if ($this->cronController->updateFirstJson()) {
             $response->setData(array(
                 'type' => Message::TYPE_SUCCESS,
                 'message' => 'Mise à jour des cours effectuée avec succès.'

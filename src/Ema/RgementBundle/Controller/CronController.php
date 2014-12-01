@@ -15,9 +15,20 @@ class CronController extends Controller
     * Update promo and  etudiant in BDD
     * [LAUNCH] every week
     * URL: http://localhost/Emargement-Web/web/app_dev.php/cron/update/all
+    * URL: http://loris-jacquy.ovh/cron/update/all
     */
     public function updateAllAction()
     {
+        if($this->updateAll())
+            return new Response("true");
+
+        return new Response("false");
+    }
+    /**
+    * Update promo and  etudiant in BDD
+    */
+    public function updateAll()
+    {
         try {
             $this->updatePromotions();
             $this->updateEtudiants();
@@ -25,55 +36,21 @@ class CronController extends Controller
         } catch (Exception $e) {
             return false;
         }
-
     }
-
-    /**
-    * Web Service Action
-    * Update promo in BDD
-    * URL: http://localhost/Emargement-Web/web/app_dev.php/cron/update/promotions
-    */
-    public function updatePromotionsAction()
-    {
-        try {
-            $this->updatePromotions();
-            return true;
-        } catch (Exception $e) {
-            return false;
-        }
-    }
-
-    /**
-    * Web Service Action
-    * Update etudiant in BDD
-    * URL: http://localhost/Emargement-Web/web/app_dev.php/cron/update/etudiants
-    */
-    public function updateEtudiantsAction()
-    {
-        try {
-            $this->updateEtudiants();
-            return true;
-        } catch (Exception $e) {
-            return false;
-        }
-    }
-
-    //URL: http://localhost/Emargement-Web/web/app_dev.php/cron/update/first
-
+    
     /**
     * Web Service Action
     * Update first json file
     * [LAUNCH] every day
     * URL: http://localhost/Emargement-Web/web/app_dev.php/cron/update/first
+    * URL: http://loris-jacquy.ovh/cron/update/first
     */
     public function updateFirstJsonAction()
     {
-        try {
-            $this->updateFirstJson();
-            return true;
-        } catch (Exception $e) {
-            return false;
-        }
+        if($this->updateFirstJson())
+            return new Response("true");
+
+        return new Response("false");
     }
 
     /**
@@ -81,10 +58,17 @@ class CronController extends Controller
     */
     public function updateFirstJson()
     {
-        $filename = "first.json";
-        $file = fopen($filename, 'w+');
-        fputs($file, $this->getJsonCoursAndPromos());
-        fclose($file);
+
+        try {
+            $filename = "first.json";
+            $file = fopen($filename, 'w+');
+            fputs($file, $this->getJsonCoursAndPromos());
+            fclose($file);
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+        
     }
 
     /**
@@ -158,7 +142,7 @@ class CronController extends Controller
         $today = $this->getToday();
         $http = "http://cybema.ema.fr/cybema/cgi-bin/cgiempt.exe?TYPE=planning_txt&DATEDEBUT=".$today."&DATEFIN=".$today."&TYPECLE=p0cleunik&VALCLE=".$idPromoCybema;
         $csv = file_get_contents($http);
-        return $this->csvToJson($csv);
+        return $this->csvToArray($csv);
     }
 
     /**
@@ -193,23 +177,23 @@ class CronController extends Controller
 
         //Promotions Cybema
         $csv = file_get_contents("http://cybema.ema.fr/cybema/cgi-bin/cgiempt.exe?TYPE=promos_txt");
-        $json = $this->csvToJson($csv);
+        $json = $this->csvToArray($csv);
 
         foreach ($json as $val) {
+        
             if(isset($val[3]) && !empty($val[3]) && isset($val[1]) && !empty($val[1])) {
-                $promo = $repo->findOneByLibelle($val[3]);
+                $promo = $repo->findOneByLibelle(trim($val[3]));
 
                 if($promo != null){
                     //Update
-                    $promo->setIdCybema($val[1]);
+                    $promo->setIdCybema(trim($val[1]));
 
                 } else
                 {
                     //Create
                     $newPromo = new Promotion();
-                    $newPromo->setLibelle($val[3]);
-                    $newPromo->setIdCybema($val[1]);
-
+                    $newPromo->setLibelle(trim($val[3]));
+                    $newPromo->setIdCybema(trim($val[1]));
                     $em->persist($newPromo);
                 }
             }
@@ -231,7 +215,7 @@ class CronController extends Controller
 
         //Promotions Cybema
         $csv = file_get_contents("http://cybema.ema.fr/cybema/cgi-bin/cgiempt.exe?TYPE=eleves_txt");
-        $json = $this->csvToJson($csv);
+        $json = $this->csvToArray($csv);
 
         foreach ($json as $val) {
             if(isset($val[9]) && !empty($val[9])) {
@@ -240,7 +224,7 @@ class CronController extends Controller
                 //Get local id promo
                 $promo = null;
                 if(isset($val[11]) && !empty($val[11]))
-                    $promo = $repoPromo->findOneByIdCybema($val[11]);
+                    $promo = $repoPromo->findOneByIdCybema(trim($val[11]));
 
                 if($etu != null){
                     if($promo) {
@@ -250,9 +234,9 @@ class CronController extends Controller
                 } else
                 {
                     $newEtu = new Etudiant();
-                    $newEtu->setNom($val[5]);
-                    $newEtu->setPrenom($val[7]);
-                    $newEtu->setEmail($val[9]);
+                    $newEtu->setNom(trim($val[5]));
+                    $newEtu->setPrenom(trim($val[7]));
+                    $newEtu->setEmail(trim($val[9]));
                     if($promo)
                         $newEtu->setIdPromo($promo);
 
@@ -265,11 +249,43 @@ class CronController extends Controller
     }
 
     /**
-    * Convert CSV string in JSON array
+    * Get cours by date in Cybema
+    * params :
+    * $dateBegin = date de début-> timestamp unix
+    * $dateEnd = date de fin-> timestamp unix
     */
-    private function csvToJson($csv)
+    private function getCoursByDate($dateBegin, $dateEnd)
     {
-        $array = array_map("str_getcsv", explode("\n", $csv));
+        $dateEnd = $this->formatDate($dateEnd);
+        $dateBegin = $this->formatDate($dateBegin);
+        $http = "http://cybema.ema.fr/cybema/cgi-bin/cgiempt.exe?TYPE=planning_txt&DATEDEBUT=".$dateBegin."&DATEFIN=".$dateEnd."&TYPECLE=p0cleunik";
+        $csv = file_get_contents($http);
+        return $this->csvToArray($csv);
+    }
+
+    /**
+    * Get cours by date in Cybema
+    * params :
+    * $dateBegin = date de début-> timestamp unix
+    * $dateEnd = date de fin-> timestamp unix
+    * $idPromoC
+    */
+    private function getCoursByDateAndPromo($dateBegin, $dateEnd, $idPromoCybema)
+    {
+        $dateEnd = $this->formatDate($dateEnd);
+        $dateBegin = $this->formatDate($dateBegin);
+        $http = "http://cybema.ema.fr/cybema/cgi-bin/cgiempt.exe?TYPE=planning_txt&DATEDEBUT=".$dateBegin."&DATEFIN=".$dateEnd."&TYPECLE=p0cleunik&VALCLE=".$idPromoCybema;
+        $csv = file_get_contents($http);
+        return $this->csvToArray($csv);
+    }
+    
+    /**
+    * Convert CSV string in Array
+    */
+    private function csvToArray($csv)
+    {
+        $csvUtf8 = mb_convert_encoding($csv, 'UTF-8');
+        $array = array_map("str_getcsv", explode("\n", $csvUtf8));
         $json = array();
 
         foreach ($array as $line) {
