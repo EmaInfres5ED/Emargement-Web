@@ -43,7 +43,7 @@ class Presence
      *   @ORM\JoinColumn(name="id_participation", referencedColumnName="id")
      * })
      */
-    private $idParticipation;
+    private $participation;
 
 
 
@@ -104,25 +104,25 @@ class Presence
     }
 
     /**
-     * Set idParticipation
+     * Set Participation
      *
-     * @param \Ema\RgementBundle\Entity\Participation $idParticipation
+     * @param \Ema\RgementBundle\Entity\Participation $participation
      * @return Presence
      */
-    public function setIdParticipation(\Ema\RgementBundle\Entity\Participation $idParticipation = null)
+    public function setParticipation(\Ema\RgementBundle\Entity\Participation $participation = null)
     {
-        $this->idParticipation = $idParticipation;
+        $this->participation = $participation;
 
         return $this;
     }
 
     /**
-     * Get idParticipation
+     * Get participation
      *
      * @return \Ema\RgementBundle\Entity\Participation
      */
-    public function getIdParticipation()
+    public function getParticipation()
     {
-        return $this->idParticipation;
+        return $this->participation;
     }
 }

@@ -50,7 +50,7 @@ class Retard
      *   @ORM\JoinColumn(name="id_etudiant", referencedColumnName="id")
      * })
      */
-    private $idEtudiant;
+    private $etudiant;
 
     /**
      * @var \Participation
@@ -60,7 +60,7 @@ class Retard
      *   @ORM\JoinColumn(name="id_participation", referencedColumnName="id")
      * })
      */
-    private $idParticipation;
+    private $participation;
 
 
 
@@ -146,46 +146,46 @@ class Retard
     /**
      * Set idEtudiant
      *
-     * @param \Ema\RgementBundle\Entity\Etudiant $idEtudiant
+     * @param \Ema\RgementBundle\Entity\Etudiant $etudiant
      * @return Retard
      */
-    public function setIdEtudiant(\Ema\RgementBundle\Entity\Etudiant $idEtudiant = null)
+    public function setEtudiant(\Ema\RgementBundle\Entity\Etudiant $etudiant = null)
     {
-        $this->idEtudiant = $idEtudiant;
+        $this->etudiant = $etudiant;
 
         return $this;
     }
 
     /**
-     * Get idEtudiant
+     * Get etudiant
      *
      * @return \Ema\RgementBundle\Entity\Etudiant
      */
-    public function getIdEtudiant()
+    public function getEtudiant()
     {
-        return $this->idEtudiant;
+        return $this->etudiant;
     }
 
     /**
-     * Set idParticipation
+     * Set participation
      *
-     * @param \Ema\RgementBundle\Entity\Participation $idParticipation
+     * @param \Ema\RgementBundle\Entity\Participation $participation
      * @return Retard
      */
-    public function setIdParticipation(\Ema\RgementBundle\Entity\Participation $idParticipation = null)
+    public function setParticipation(\Ema\RgementBundle\Entity\Participation $participation = null)
     {
-        $this->idParticipation = $idParticipation;
+        $this->participation = $participation;
 
         return $this;
     }
 
     /**
-     * Get idParticipation
+     * Get participation
      *
      * @return \Ema\RgementBundle\Entity\Participation
      */
-    public function getIdParticipation()
+    public function getParticipation()
     {
-        return $this->idParticipation;
+        return $this->participation;
     }
 }

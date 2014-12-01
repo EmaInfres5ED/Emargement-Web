@@ -29,7 +29,7 @@ class ParticipationAbsence
      *   @ORM\JoinColumn(name="id_absence", referencedColumnName="id")
      * })
      */
-    private $idAbsence;
+    private $absence;
 
     /**
      * @var \Participation
@@ -39,7 +39,7 @@ class ParticipationAbsence
      *   @ORM\JoinColumn(name="id_participation", referencedColumnName="id")
      * })
      */
-    private $idParticipation;
+    private $participation;
 
 
 
@@ -54,48 +54,48 @@ class ParticipationAbsence
     }
 
     /**
-     * Set idAbsence
+     * Set Absence
      *
-     * @param \Ema\RgementBundle\Entity\Absence $idAbsence
+     * @param \Ema\RgementBundle\Entity\Absence $absence
      * @return ParticipationAbsence
      */
-    public function setIdAbsence(\Ema\RgementBundle\Entity\Absence $idAbsence = null)
+    public function setAbsence(\Ema\RgementBundle\Entity\Absence $absence = null)
     {
-        $this->idAbsence = $idAbsence;
+        $this->absence = $absence;
 
         return $this;
     }
 
     /**
-     * Get idAbsence
+     * Get Absence
      *
      * @return \Ema\RgementBundle\Entity\Absence
      */
-    public function getIdAbsence()
+    public function getAbsence()
     {
-        return $this->idAbsence;
+        return $this->absence;
     }
 
     /**
-     * Set idParticipation
+     * Set Participation
      *
-     * @param \Ema\RgementBundle\Entity\Participation $idParticipation
+     * @param \Ema\RgementBundle\Entity\Participation $participation
      * @return ParticipationAbsence
      */
-    public function setIdParticipation(\Ema\RgementBundle\Entity\Participation $idParticipation = null)
+    public function setParticipation(\Ema\RgementBundle\Entity\Participation $participation = null)
     {
-        $this->idParticipation = $idParticipation;
+        $this->participation = $participation;
 
         return $this;
     }
 
     /**
-     * Get idParticipation
+     * Get Participation
      *
      * @return \Ema\RgementBundle\Entity\Participation
      */
-    public function getIdParticipation()
+    public function getParticipation()
     {
-        return $this->idParticipation;
+        return $this->participation;
     }
 }
