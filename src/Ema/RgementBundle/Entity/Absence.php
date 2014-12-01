@@ -8,11 +8,19 @@ use Doctrine\ORM\Mapping as ORM;
  * Absence
  *
  * @ORM\Table(name="absence", indexes={@ORM\Index(name="fk_absence_etudiant_idx", columns={"id_eleve"})})
- * @ORM\Entity(repositoryClass="Acme\StoreBundle\Entity\ProductRepository")
+ * @ORM\Entity(repositoryClass="Ema\RgementBundle\Repository\AbsenceRepository")
  */
-
 class Absence
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
     /**
      * @var string
      *
@@ -35,18 +43,9 @@ class Absence
     private $dateFin;
 
     /**
-     * @var integer
+     * @var \Etudiant
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
-    /**
-     * @var \Ema\RgementBundle\Entity\Etudiant
-     *
-     * @ORM\ManyToOne(targetEntity="Ema\RgementBundle\Entity\Etudiant")
+     * @ORM\ManyToOne(targetEntity="Etudiant")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_eleve", referencedColumnName="id")
      * })
@@ -54,6 +53,16 @@ class Absence
     private $idEleve;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set motif
@@ -122,16 +131,6 @@ class Absence
     public function getDateFin()
     {
         return $this->dateFin;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**

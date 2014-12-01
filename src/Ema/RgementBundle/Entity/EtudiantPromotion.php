@@ -5,12 +5,12 @@ namespace Ema\RgementBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Participation
+ * EtudiantPromotion
  *
- * @ORM\Table(name="participation", indexes={@ORM\Index(name="fk_participation_cours_idx", columns={"id_cours"}), @ORM\Index(name="fk_participation_etudiant_idx", columns={"id_etudiant"})})
- * @ORM\Entity(repositoryClass="Ema\RgementBundle\Repository\ParticipationRepository")
+ * @ORM\Table(name="etudiant_promotion", indexes={@ORM\Index(name="fk_etudiant_idx", columns={"id_etudiant"}), @ORM\Index(name="fk_etus_prom_p_idx", columns={"id_promotion"})})
+ * @ORM\Entity(repositoryClass="Ema\RgementBundle\Repository\EtudiantPromotionRepository")
  */
-class Participation
+class EtudiantPromotion
 {
     /**
      * @var integer
@@ -22,14 +22,14 @@ class Participation
     private $id;
 
     /**
-     * @var \Cours
+     * @var \Promotion
      *
-     * @ORM\ManyToOne(targetEntity="Cours")
+     * @ORM\ManyToOne(targetEntity="Promotion")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_cours", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="id_promotion", referencedColumnName="id")
      * })
      */
-    private $idCours;
+    private $idPromotion;
 
     /**
      * @var \Etudiant
@@ -54,33 +54,33 @@ class Participation
     }
 
     /**
-     * Set idCours
+     * Set idPromotion
      *
-     * @param \Ema\RgementBundle\Entity\Cours $idCours
-     * @return Participation
+     * @param \Ema\RgementBundle\Entity\Promotion $idPromotion
+     * @return EtudiantPromotion
      */
-    public function setIdCours(\Ema\RgementBundle\Entity\Cours $idCours = null)
+    public function setIdPromotion(\Ema\RgementBundle\Entity\Promotion $idPromotion = null)
     {
-        $this->idCours = $idCours;
+        $this->idPromotion = $idPromotion;
 
         return $this;
     }
 
     /**
-     * Get idCours
+     * Get idPromotion
      *
-     * @return \Ema\RgementBundle\Entity\Cours
+     * @return \Ema\RgementBundle\Entity\Promotion
      */
-    public function getIdCours()
+    public function getIdPromotion()
     {
-        return $this->idCours;
+        return $this->idPromotion;
     }
 
     /**
      * Set idEtudiant
      *
      * @param \Ema\RgementBundle\Entity\Etudiant $idEtudiant
-     * @return Participation
+     * @return EtudiantPromotion
      */
     public function setIdEtudiant(\Ema\RgementBundle\Entity\Etudiant $idEtudiant = null)
     {

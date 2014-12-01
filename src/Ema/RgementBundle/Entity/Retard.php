@@ -7,11 +7,20 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Retard
  *
- * @ORM\Table(name="retard", indexes={@ORM\Index(name="fk_retard_participation_idx", columns={"id_participation"})})
- * @ORM\Entity
+ * @ORM\Table(name="retard", indexes={@ORM\Index(name="fk_retard_participation_idx", columns={"id_participation"}), @ORM\Index(name="fk_retard_etudiant", columns={"id_etudiant"})})
+ * @ORM\Entity(repositoryClass="Ema\RgementBundle\Repository\RetardRepository")
  */
 class Retard
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
     /**
      * @var integer
      *
@@ -20,18 +29,33 @@ class Retard
     private $dureeRetard;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(name="motif", type="string", length=255, nullable=true)
      */
-    private $id;
+    private $motif;
 
     /**
-     * @var \Ema\RgementBundle\Entity\Participation
+     * @var \DateTime
      *
-     * @ORM\ManyToOne(targetEntity="Ema\RgementBundle\Entity\Participation")
+     * @ORM\Column(name="dateprevu", type="datetime", nullable=true)
+     */
+    private $dateprevu;
+
+    /**
+     * @var \Etudiant
+     *
+     * @ORM\ManyToOne(targetEntity="Etudiant")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_etudiant", referencedColumnName="id")
+     * })
+     */
+    private $idEtudiant;
+
+    /**
+     * @var \Participation
+     *
+     * @ORM\ManyToOne(targetEntity="Participation")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_participation", referencedColumnName="id")
      * })
@@ -39,6 +63,16 @@ class Retard
     private $idParticipation;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set dureeRetard
@@ -64,13 +98,72 @@ class Retard
     }
 
     /**
-     * Get id
+     * Set motif
      *
-     * @return integer
+     * @param string $motif
+     * @return Retard
      */
-    public function getId()
+    public function setMotif($motif)
     {
-        return $this->id;
+        $this->motif = $motif;
+
+        return $this;
+    }
+
+    /**
+     * Get motif
+     *
+     * @return string
+     */
+    public function getMotif()
+    {
+        return $this->motif;
+    }
+
+    /**
+     * Set dateprevu
+     *
+     * @param \DateTime $dateprevu
+     * @return Retard
+     */
+    public function setDateprevu($dateprevu)
+    {
+        $this->dateprevu = $dateprevu;
+
+        return $this;
+    }
+
+    /**
+     * Get dateprevu
+     *
+     * @return \DateTime
+     */
+    public function getDateprevu()
+    {
+        return $this->dateprevu;
+    }
+
+    /**
+     * Set idEtudiant
+     *
+     * @param \Ema\RgementBundle\Entity\Etudiant $idEtudiant
+     * @return Retard
+     */
+    public function setIdEtudiant(\Ema\RgementBundle\Entity\Etudiant $idEtudiant = null)
+    {
+        $this->idEtudiant = $idEtudiant;
+
+        return $this;
+    }
+
+    /**
+     * Get idEtudiant
+     *
+     * @return \Ema\RgementBundle\Entity\Etudiant
+     */
+    public function getIdEtudiant()
+    {
+        return $this->idEtudiant;
     }
 
     /**
