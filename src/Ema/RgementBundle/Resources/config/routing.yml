@@ -90,9 +90,9 @@ ema_rgement_cron_update_etudiants:
     path:     /cron/update/etudiants
     defaults: { _controller: EmaRgementBundle:Cron:updateEtudiants }
 
-ema_rgement_export:
-    path:     /export
-    defaults: { _controller: EmaRgementBundle:Default:export }
+ema_rgement_export_list:
+    path:     /export/list
+    defaults: { _controller: EmaRgementBundle:Export:list }
 
 ema_rgement_notification:
     path:     /notification

@@ -81,11 +81,6 @@ class DefaultController extends Controller
         return $this->render('EmaRgementBundle:Admin:configuration.html.twig');
     }
 
-    public function exportAction()
-    {
-        return $this->render('EmaRgementBundle:Default:export.html.twig');
-    }
-
     public function reportAction()
     {
         return $this->render('EmaRgementBundle:Report:report.html.twig');
