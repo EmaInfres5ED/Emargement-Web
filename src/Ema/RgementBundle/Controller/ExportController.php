@@ -25,7 +25,7 @@ class ExportController extends Controller
 
     public function listAction()
     {
-        return $this->render('EmaRgementBundle:Default:export.html.twig');
+        return $this->render('EmaRgementBundle:Export:list.html.twig');
     }
 
     public function exportAction($studentId, $promoId, $dateFrom, $dateTo)
