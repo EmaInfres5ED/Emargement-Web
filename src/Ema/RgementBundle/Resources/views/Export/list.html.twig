@@ -43,118 +43,28 @@
                 </div>-->
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <div id="example_wrapper" class="dataTables_wrapper">
-                        <div class="dataTables_length" id="example_length">
-                            <label>Show
-                                <select name="example_length" aria-controls="example" class="">
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                </select> entries
-                            </label>
-                        </div>
-                        <div id="example_filter" class="dataTables_filter">
-                            <label>Search:
-                                <input type="search" class="" placeholder="" aria-controls="example">
-                            </label>
-                        </div>
-                        <table width="100%" cellspacing="0" class="display nowrap dataTable dtr-inline" id="example" role="grid" aria-describedby="example_info" style="width: 100%;">
-                            <thead>
-                                <tr role="row">
-                                    <th>Nom</th>
-                                    <th>Prénom</th>
-                                    <th>Absences</th>
-                                    <th>Retard</th>
-                                    <th style="width: 150px;">Action</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Prénom</th>
-                                    <th>Absences</th>
-                                    <th>Retard</th>
-                                    <th>Action</th>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                <tr role="row" class="odd">
-                                    <td class="sorting_1">Airi</td>
-                                    <td>Satou</td>
-                                    <td>5</td>
-                                    <td>20</td>
-                                    <td class="dt-body-right"><input type="button" class ='form-control' value='Générer un Export'/></td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="sorting_1">Angelica</td>
-                                    <td>Ramos</td>
-                                    <td>3</td>
-                                    <td>7</td>
-                                    <td class="dt-body-right"><input type="button" class ='form-control' value='Générer un Export'/></td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="sorting_1">Ashton</td>
-                                    <td>Cox</td>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td class="dt-body-right"><input type="button" class ='form-control' value='Générer un Export'/></td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="sorting_1">Bradley</td>
-                                    <td>Greer</td>
-                                    <td>40</td>
-                                    <td>85</td>
-                                    <td class="dt-body-right"><input type="button" class ='form-control' value='Générer un Export'/></td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="sorting_1">Brenden</td>
-                                    <td>Wagner</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td class="dt-body-right"><input type="button" class ='form-control' value='Générer un Export'/></td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="sorting_1">Brielle</td>
-                                    <td>Williamson</td>
-                                    <td>0</td>
-                                    <td>10</td>
-                                    <td class="dt-body-right"><input type="button" class ='form-control' value='Générer un Export'/></td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="sorting_1">Bruno</td>
-                                    <td>Nash</td>
-                                    <td>50</td>
-                                    <td>0</td>
-                                    <td class="dt-body-right"><input type="button" class ='form-control' value='Générer un Export'/></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="dataTables_info" id="example_info" role="status" aria-live="polite">
-                            Showing 1 to 10 of 57 entries
-                        </div>
-                        <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
-                            <a class="paginate_button previous disabled" aria-controls="example" data-dt-idx="0" tabindex="0" id="example_previous">
-                                Previous
-                            </a>
-                            <span>
-                                <a class="paginate_button current" aria-controls="example" data-dt-idx="1" tabindex="0">1</a>
-                                <a class="paginate_button " aria-controls="example" data-dt-idx="2" tabindex="0">2</a>
-                                <a class="paginate_button " aria-controls="example" data-dt-idx="3" tabindex="0">3</a>
-                                <a class="paginate_button " aria-controls="example" data-dt-idx="4" tabindex="0">4</a>
-                                <a class="paginate_button " aria-controls="example" data-dt-idx="5" tabindex="0">5</a>
-                                <a class="paginate_button " aria-controls="example" data-dt-idx="6" tabindex="0">6</a>
-                            </span>
-                            <a class="paginate_button next" aria-controls="example" data-dt-idx="7" tabindex="0" id="example_next">
-                                Next
-                            </a>
-                        </div>
-                    </div>
-                    <div class="btn-group pull-right">
-                        <form>
-                            <button class="btn btn-primary" type="button"><i class="fa fa-fw fa-upload"></i>Exporter</button>
-                        </form>
-                    </div>
+                    <table class="reports display" width="100%"
+                           cellspacing="0"
+                           data-url="{{path('ema_rgement_ajax_list_exports')}}">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Absences</th>
+                                <th>Retard</th>
+                                <th style="width: 150px;">Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Absences</th>
+                                <th>Retard</th>
+                                <th style="width: 150px;">Action</th>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>

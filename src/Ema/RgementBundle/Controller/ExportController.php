@@ -4,6 +4,7 @@ namespace Ema\RgementBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ExportController extends Controller
 {
@@ -35,6 +36,17 @@ class ExportController extends Controller
                 'to' => $to->format('d/m/Y'),
                 'promos' => $this->promotionRepository->findAll()
         ));
+    }
+
+    public function ajaxListExportsAction()
+    {
+        $response = new JsonResponse();
+        $output = array(
+            'aaData' => array()
+        );
+        $response->setData($output);
+
+        return $response;
     }
 
     public function exportAction($studentId, $promoId, $dateFrom, $dateTo)
