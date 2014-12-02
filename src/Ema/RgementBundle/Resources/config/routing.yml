@@ -32,11 +32,11 @@ ema_rgement_stats:
 
 ema_rgement_warn_absence:
     path:     /warn/absence
-    defaults: { _controller: EmaRgementBundle:Default:warnAbsence }
+    defaults: { _controller: EmaRgementBundle:Warn:warnAbsence }
 
 ema_rgement_warn_delay:
     path:     /warn/delay
-    defaults: { _controller: EmaRgementBundle:Default:warnDelay }
+    defaults: { _controller: EmaRgementBundle:Warn:warnDelay }
 
 ema_rgement_justify_list:
     path:     /justify/list
@@ -81,14 +81,6 @@ ema_rgement_cron_update_first:
 ema_rgement_cron_update_all:
     path:     /cron/update/all
     defaults: { _controller: EmaRgementBundle:Cron:updateAll }
-
-ema_rgement_cron_update_promotions:
-    path:     /cron/update/promotions
-    defaults: { _controller: EmaRgementBundle:Cron:updatePromotions }
-
-ema_rgement_cron_update_etudiants:
-    path:     /cron/update/etudiants
-    defaults: { _controller: EmaRgementBundle:Cron:updateEtudiants }
 
 ema_rgement_export:
     path:     /export

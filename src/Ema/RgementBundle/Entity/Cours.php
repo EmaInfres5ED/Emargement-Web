@@ -8,10 +8,19 @@ use Doctrine\ORM\Mapping as ORM;
  * Cours
  *
  * @ORM\Table(name="cours")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Ema\RgementBundle\Repository\CoursRepository")
  */
 class Cours
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
     /**
      * @var string
      *
@@ -29,28 +38,14 @@ class Cours
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="datetime", nullable=false)
+     * @ORM\Column(name="date_debut", type="datetime", nullable=false)
      */
-    private $date;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="heure_debut", type="string", length=10, nullable=true)
-     */
-    private $heureDebut;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="heure_fin", type="string", length=10, nullable=true)
-     */
-    private $heureFin;
+    private $dateDebut;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="id_cybema", type="integer", nullable=true)
+     * @ORM\Column(name="id_cybema", type="integer", nullable=false)
      */
     private $idCybema;
 
@@ -62,15 +57,23 @@ class Cours
     private $salle;
 
     /**
-     * @var integer
+     * @var \DateTime
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(name="date_fin", type="datetime", nullable=false)
      */
-    private $id;
+    private $dateFin;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set libelle
@@ -119,72 +122,26 @@ class Cours
     }
 
     /**
-     * Set date
+     * Set dateDebut
      *
-     * @param \DateTime $date
+     * @param \DateTime $dateDebut
      * @return Cours
      */
-    public function setDate($date)
+    public function setDateDebut($dateDebut)
     {
-        $this->date = $date;
+        $this->dateDebut = $dateDebut;
 
         return $this;
     }
 
     /**
-     * Get date
+     * Get dateDebut
      *
      * @return \DateTime
      */
-    public function getDate()
+    public function getDateDebut()
     {
-        return $this->date;
-    }
-
-    /**
-     * Set heureDebut
-     *
-     * @param string $heureDebut
-     * @return Cours
-     */
-    public function setHeureDebut($heureDebut)
-    {
-        $this->heureDebut = $heureDebut;
-
-        return $this;
-    }
-
-    /**
-     * Get heureDebut
-     *
-     * @return string
-     */
-    public function getHeureDebut()
-    {
-        return $this->heureDebut;
-    }
-
-    /**
-     * Set heureFin
-     *
-     * @param string $heureFin
-     * @return Cours
-     */
-    public function setHeureFin($heureFin)
-    {
-        $this->heureFin = $heureFin;
-
-        return $this;
-    }
-
-    /**
-     * Get heureFin
-     *
-     * @return string
-     */
-    public function getHeureFin()
-    {
-        return $this->heureFin;
+        return $this->dateDebut;
     }
 
     /**
@@ -234,12 +191,25 @@ class Cours
     }
 
     /**
-     * Get id
+     * Set dateFin
      *
-     * @return integer
+     * @param \DateTime $dateFin
+     * @return Cours
      */
-    public function getId()
+    public function setDateFin($dateFin)
     {
-        return $this->id;
+        $this->dateFin = $dateFin;
+
+        return $this;
+    }
+
+    /**
+     * Get dateFin
+     *
+     * @return \DateTime
+     */
+    public function getDateFin()
+    {
+        return $this->dateFin;
     }
 }

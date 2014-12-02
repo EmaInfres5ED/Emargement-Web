@@ -8,10 +8,19 @@ use Doctrine\ORM\Mapping as ORM;
  * Presence
  *
  * @ORM\Table(name="presence", indexes={@ORM\Index(name="fk_presence_participation_idx", columns={"id_participation"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Ema\RgementBundle\Repository\PresenceRepository")
  */
 class Presence
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
     /**
      * @var string
      *
@@ -20,25 +29,33 @@ class Presence
     private $signature;
 
     /**
-     * @var integer
+     * @var \DateTime
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(name="horodatage", type="datetime", nullable=false)
      */
-    private $id;
+    private $horodatage;
 
     /**
-     * @var \Ema\RgementBundle\Entity\Participation
+     * @var \Participation
      *
-     * @ORM\ManyToOne(targetEntity="Ema\RgementBundle\Entity\Participation")
+     * @ORM\ManyToOne(targetEntity="Participation")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_participation", referencedColumnName="id")
      * })
      */
-    private $idParticipation;
+    private $participation;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set signature
@@ -64,35 +81,48 @@ class Presence
     }
 
     /**
-     * Get id
+     * Set horodatage
      *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set idParticipation
-     *
-     * @param \Ema\RgementBundle\Entity\Participation $idParticipation
+     * @param \DateTime $horodatage
      * @return Presence
      */
-    public function setIdParticipation(\Ema\RgementBundle\Entity\Participation $idParticipation = null)
+    public function setHorodatage($horodatage)
     {
-        $this->idParticipation = $idParticipation;
+        $this->horodatage = $horodatage;
 
         return $this;
     }
 
     /**
-     * Get idParticipation
+     * Get horodatage
+     *
+     * @return \DateTime
+     */
+    public function getHorodatage()
+    {
+        return $this->horodatage;
+    }
+
+    /**
+     * Set Participation
+     *
+     * @param \Ema\RgementBundle\Entity\Participation $participation
+     * @return Presence
+     */
+    public function setParticipation(\Ema\RgementBundle\Entity\Participation $participation = null)
+    {
+        $this->participation = $participation;
+
+        return $this;
+    }
+
+    /**
+     * Get participation
      *
      * @return \Ema\RgementBundle\Entity\Participation
      */
-    public function getIdParticipation()
+    public function getParticipation()
     {
-        return $this->idParticipation;
+        return $this->participation;
     }
 }

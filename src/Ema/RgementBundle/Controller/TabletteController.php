@@ -3,7 +3,9 @@
 namespace Ema\RgementBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Ema\RgementBundle\Entity\Promotion;
 use Ema\RgementBundle\Controller\CronController;
@@ -14,6 +16,7 @@ class TabletteController extends Controller
     * Web Service Action
     * Return JSON file with cours by promo
     * URL: http://localhost/Emargement-Web/web/app_dev.php/tablette/first
+    * URL: http://loris-jacquy.ovh/tablette/first
     */
     public function firstAction()
     {
@@ -23,7 +26,10 @@ class TabletteController extends Controller
         $json = fgets($file);
         fclose($file);
 
-        return new Response($json);
+        $response = new Response($json);
+        $response->headers->set('Content-Type', 'application/json');
+        
+        return $response;
     }
 
     /**
@@ -31,6 +37,7 @@ class TabletteController extends Controller
     * Update JSON file
     * Return JSON file with cours by promo
     * URL: http://localhost/Emargement-Web/web/app_dev.php/tablette/first/force
+    * URL: http://loris-jacquy.ovh/tablette/first/force
     */
     public function firstForceAction()
     {
@@ -44,7 +51,10 @@ class TabletteController extends Controller
         $json = fgets($file);
         fclose($file);
 
-        return new Response($json);
+        $response = new Response($json);
+        $response->headers->set('Content-Type', 'application/json');
+        
+        return $response;
     }
 
     /**
@@ -52,12 +62,19 @@ class TabletteController extends Controller
     * Get eleves by cour
     * Return JSON file with eleves by cour
     * URL: http://localhost/Emargement-Web/web/app_dev.php/tablette/eleves
+    * URL: http://loris-jacquy.ovh/tablette/eleves
     */
-    public function getElevesAction()
+    public function getElevesAction(Request $request)
     {
-        $idGroupe = "402"; //Provient de GET ou POST
+        if ($request->getMethod() == 'POST') 
+        {
+            $idGroupe = $request->request->get('idGroupe');
+            
+            if(isset($idGroupe) && !empty($idGroupe))
+                return new JsonResponse($this->getElevesByCours($idGroupe));  
+        }
 
-        return new Response($this->getElevesByCours($idGroupe));
+         return new JsonResponse(array());     
     }
 
     /**
@@ -67,7 +84,8 @@ class TabletteController extends Controller
     {
         $http = "http://cybema.ema.fr/cybema/cgi-bin/cgihtml.exe?TYPE=listegroupe_html&GRCLEUNIK=".$idGroupe."&MODE=10";
         $csv = file_get_contents($http);
-        $elevesArray = explode("\n", $csv);
+        $csvUtf8 = mb_convert_encoding($csv, 'UTF-8');
+        $elevesArray = explode("\n", $csvUtf8);
 
         $eleves = array();
 
@@ -77,15 +95,14 @@ class TabletteController extends Controller
                 unset($e);
 
             $eleArray = explode("\t", $elevesArray[$i]);
-
-            $e['id'] = utf8_encode($eleArray[0]);
-            $e['lastname'] = utf8_encode($eleArray[1]);
-            $e['firstname'] = utf8_encode(rtrim($eleArray[2]));
+            $e['id'] = $eleArray[0];
+            $e['lastname'] = $eleArray[1];
+            $e['firstname'] = rtrim($eleArray[2]);
 
             if(isset($e))
                 array_push($eleves, $e);
         }
-
+        
         return json_encode($eleves);
     }
     
@@ -94,12 +111,13 @@ class TabletteController extends Controller
     * Get hash
     * Return hash
     * URL: http://localhost/Emargement-Web/web/app_dev.php/tablette/login
+    * URL: http://loris-jacquy.ovh/tablette/login
     */
     public function loginAction()
     {     
         $arr['hash'] = $this->getPwd();
         
-        return new Response(json_encode($arr));
+        return new JsonResponse($arr);
     }
     
     /**

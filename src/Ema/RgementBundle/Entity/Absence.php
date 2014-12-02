@@ -8,11 +8,19 @@ use Doctrine\ORM\Mapping as ORM;
  * Absence
  *
  * @ORM\Table(name="absence", indexes={@ORM\Index(name="fk_absence_etudiant_idx", columns={"id_eleve"})})
- * @ORM\Entity(repositoryClass="Ema\RgementBundle\Entity\AbsenceRepository")
+ * @ORM\Entity(repositoryClass="Ema\RgementBundle\Repository\AbsenceRepository")
  */
-
 class Absence
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
     /**
      * @var string
      *
@@ -35,25 +43,26 @@ class Absence
     private $dateFin;
 
     /**
-     * @var integer
+     * @var \Etudiant
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
-    /**
-     * @var \Ema\RgementBundle\Entity\Etudiant
-     *
-     * @ORM\ManyToOne(targetEntity="Ema\RgementBundle\Entity\Etudiant")
+     * @ORM\ManyToOne(targetEntity="Etudiant")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_eleve", referencedColumnName="id")
      * })
      */
-    private $idEleve;
+    private $eleve;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set motif
@@ -125,35 +134,25 @@ class Absence
     }
 
     /**
-     * Get id
+     * Set Eleve
      *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set idEleve
-     *
-     * @param \Ema\RgementBundle\Entity\Etudiant $idEleve
+     * @param \Ema\RgementBundle\Entity\Etudiant $eleve
      * @return Absence
      */
-    public function setIdEleve(\Ema\RgementBundle\Entity\Etudiant $idEleve = null)
+    public function setEleve(\Ema\RgementBundle\Entity\Etudiant $eleve = null)
     {
-        $this->idEleve = $idEleve;
+        $this->eleve = $eleve;
 
         return $this;
     }
 
     /**
-     * Get idEleve
+     * Get Eleve
      *
      * @return \Ema\RgementBundle\Entity\Etudiant
      */
-    public function getIdEleve()
+    public function getEleve()
     {
-        return $this->idEleve;
+        return $this->eleve;
     }
 }

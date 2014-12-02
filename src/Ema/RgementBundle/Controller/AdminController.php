@@ -3,20 +3,31 @@
 namespace Ema\RgementBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Ema\RgementBundle\Entity\Message;
-use Ema\RgementBundle\Controller\CronController;
 
 class AdminController extends Controller
 {
     private $cronController;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        parent::setContainer($container);
+        $this->initialize();
+    }
+
+    private function initialize()
+    {
+        $this->cronController = $this->get('cron_controller_service');
+    }
 
     public function ajaxSynchronizeStudentsAndPromosAction()
     {
         $response = new JsonResponse();
 
         $this->cronController = $this->get('cron_controller_service');
-        if ($this->cronController->updateAllAction()) {
+        if ($this->cronController->updateAll()) {
             $response->setData(array(
                 'type' => Message::TYPE_SUCCESS,
                 'message' => 'Mise à jour des étudiants et des promos effectuée avec succès.'
@@ -36,7 +47,7 @@ class AdminController extends Controller
         $response = new JsonResponse();
 
         $this->cronController = $this->get('cron_controller_service');
-        if ($this->cronController->updateFirstJsonAction()) {
+        if ($this->cronController->updateFirstJson()) {
             $response->setData(array(
                 'type' => Message::TYPE_SUCCESS,
                 'message' => 'Mise à jour des cours effectuée avec succès.'
