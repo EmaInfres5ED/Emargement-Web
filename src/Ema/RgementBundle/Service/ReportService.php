@@ -3,11 +3,7 @@
 
 namespace Ema\RgementBundle\Service;
 
-use Ema\RgementBundle\Entity\Etudiant;
-use Ema\RgementBundle\Entity\Absence;
 use Ema\RgementBundle\Entity\Report;
-use Ema\RgementBundle\Entity\Retard;
-use Ema\RgementBundle\Entity\Promotion;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ReportService extends Controller
