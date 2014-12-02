@@ -1,4 +1,8 @@
 services:
+    participation_service:
+        class: Ema\RgementBundle\Service\ParticipationService
+        calls:
+            - [setContainer, ["@service_container"]]
     cron_controller_service:
         class: Ema\RgementBundle\Controller\CronController
         calls:
