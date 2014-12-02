@@ -19,7 +19,8 @@
     <link href="{{ asset('bundles/emargement/css/jquery.dataTables_themeroller.css') }}" rel="stylesheet" type="text/css">
     <!-- Bootstrap Datatable CSS -->
     <link href="{{ asset('bundles/emargement/bootstrap/css/plugins/dataTables.bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ asset('bundles/emargement/css/datepicker3.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/emargement/css/datepicker.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/emargement/css/datepicker_custom.css') }}" rel="stylesheet">
     {% block css %}{% endblock %}
 </head>
 <body>
@@ -178,6 +179,7 @@
     <script src="{{ asset('bundles/emargement/bootstrap/js/plugins/morris/raphael.min.js') }}"></script>
     <script src="{{ asset('bundles/emargement/bootstrap/js/plugins/morris/morris.js') }}"></script>
     <script src="{{ asset('bundles/emargement/js/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('bundles/emargement/js/locales/bootstrap-datepicker.fr.js') }}" charset="UTF-8"></script>
     {% block scripts %}
     {% endblock %}
 </body>
