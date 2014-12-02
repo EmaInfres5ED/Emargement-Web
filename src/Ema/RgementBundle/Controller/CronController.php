@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Ema\RgementBundle\Entity\Promotion;
 use Ema\RgementBundle\Entity\Etudiant;
+use Ema\RgementBundle\Entity\EtudiantPromotion;
 
 class CronController extends Controller
 {
@@ -211,7 +212,8 @@ class CronController extends Controller
         //Promotion Repository
         $em = $this->getDoctrine()->getManager();
         $repoEtudiant = $em->getRepository('EmaRgementBundle:Etudiant');
-        $repoPromo = $em->getRepository('EmaRgementBundle:Promotion');
+        $repoPromotion = $em->getRepository('EmaRgementBundle:Promotion');
+        $repoEtudiantPromotion = $em->getRepository('EmaRgementBundle:EtudiantPromotion');
 
         //Promotions Cybema
         $csv = file_get_contents("http://cybema.ema.fr/cybema/cgi-bin/cgiempt.exe?TYPE=eleves_txt");
@@ -219,33 +221,49 @@ class CronController extends Controller
 
         foreach ($json as $val) {
             if(isset($val[9]) && !empty($val[9])) {
-                $etu = $repoEtudiant->findOneByEmail($val[9]);
+                $etudiant = $repoEtudiant->findOneByEmail(trim($val[9]));
 
                 //Get local id promo
-                $promo = null;
+                $promotion = null;
                 if(isset($val[11]) && !empty($val[11]))
-                    $promo = $repoPromo->findOneByIdCybema(trim($val[11]));
-
-                if($etu != null){
-                    if($promo) {
-                        $etu->setIdPromo($promo);
+                    $promotion = $repoPromotion->findOneByIdCybema(trim($val[11]));
+                    
+                if($etudiant != null){
+                    if($promotion) {
+                        $etudiantPromotion = null;
+                        $etudiantPromotion = $repoEtudiantPromotion->findOneBy(
+                            array(
+                                "etudiant" => $etudiant,
+                                "promotion" => $promotion)
+                        );
+                        
+                        if(!$etudiantPromotion)
+                        {
+                            $newEtudiantPromotion = new EtudiantPromotion();
+                            $newEtudiantPromotion->setPromotion($promotion);
+                            $newEtudiantPromotion->setEtudiant($etudiant);
+                            $em->persist($newEtudiantPromotion);
+                        }
                     }
 
-                } else
-                {
+                } else {
                     $newEtu = new Etudiant();
                     $newEtu->setNom(trim($val[5]));
                     $newEtu->setPrenom(trim($val[7]));
                     $newEtu->setEmail(trim($val[9]));
-                    if($promo)
-                        $newEtu->setIdPromo($promo);
-
                     $em->persist($newEtu);
+                    
+                    if($promotion) {
+                        $etudiantPromotion = new EtudiantPromotion();
+                        $etudiantPromotion->setPromotion($promotion);
+                        $etudiantPromotion->setEtudiant($newEtu);
+                        $em->persist($etudiantPromotion);
+                    }
                 }
             }
+            
+            $em->flush();
         }
-
-        $em->flush();
     }
 
     /**
