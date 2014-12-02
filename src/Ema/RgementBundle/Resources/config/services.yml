@@ -17,4 +17,4 @@ services:
             - [setContainer, ["@service_container"]]
     mail_service:
         class: Ema\RgementBundle\Service\MailService
-
+        calls:
