@@ -39,7 +39,7 @@ $(document).ready(function(){
             aoData.push(
                 {"name": "from", "value": $(".start-date").val()},
                 {"name": "to", "value": $(".end-date").val()},
-                {"name": "promoId", "value": $(".promo").val()}
+                {"name": "promoId", "value": $('select.promo.combobox').val()}
             );
         },
         "fnCreatedRow": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
