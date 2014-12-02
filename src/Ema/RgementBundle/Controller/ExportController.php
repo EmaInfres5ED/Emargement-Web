@@ -28,7 +28,7 @@ class ExportController extends Controller
         return $this->render('EmaRgementBundle:Default:export.html.twig');
     }
 
-    public function exportAction($studentId, $dateFrom, $dateTo)
+    public function exportAction($studentId, $promoId, $dateFrom, $dateTo)
     {
         $phpExcelObject = $this->excelService->createFromTemplate('export_template');
         /* @var $phpExcelObject \PHPExcel */
@@ -44,7 +44,7 @@ class ExportController extends Controller
 
         //TODO retrieve data from BDD
 
-        $report = $this->reportService->getAbsencesForStudentIdBetweenDates(intval($studentId), $from, $to);
+        $report = $this->reportService->getAbsencesForStudentIdBetweenDates(intval($studentId), $promoId, $from, $to);
         /* @var $report \Ema\RgementBundle\Entity\Report */
 
         $promotion = $report->getPromotion();
@@ -64,46 +64,60 @@ class ExportController extends Controller
         $phpExcelObject->getActiveSheet()
             ->setCellValue('B9', count($absences));
 
-
-        $phpExcelObject->getActiveSheet()->insertNewRowBefore(13, count($absences));
-        foreach ($absences as $absence)
+        if (count($absences) != 0)
         {
-            /* @var $absence \Ema\RgementBundle\Entity\Absence */
-            $rowNumber = 12 + $newAbsencesRows;
-            $newAbsencesRows++;
-            $phpExcelObject->getActiveSheet()->mergeCells("B$rowNumber:C$rowNumber");
-            $phpExcelObject->getActiveSheet()->mergeCells("D$rowNumber:E$rowNumber");
-            $phpExcelObject->getActiveSheet()->mergeCells("F$rowNumber:I$rowNumber");
+            $phpExcelObject->getActiveSheet()->insertNewRowBefore(13, count($absences));
+            foreach ($absences as $absence)
+            {
+                /* @var $absence \Ema\RgementBundle\Entity\Absence */
+                $rowNumber = 12 + $newAbsencesRows;
+                $newAbsencesRows++;
+                $phpExcelObject->getActiveSheet()->mergeCells("B$rowNumber:C$rowNumber");
+                $phpExcelObject->getActiveSheet()->mergeCells("D$rowNumber:E$rowNumber");
+                $phpExcelObject->getActiveSheet()->mergeCells("F$rowNumber:I$rowNumber");
 
-            $phpExcelObject->getActiveSheet()
-                ->setCellValue("A$rowNumber", $newAbsencesRows)
-                ->setCellValue("B$rowNumber", $absence->getDateDebut()->format("d/m/Y"))
-                ->setCellValue("D$rowNumber", $absence->getDateFin()->format("d/m/Y"))
-                ->setCellValue("F$rowNumber", $absence->getMotif());
+                $phpExcelObject->getActiveSheet()
+                    ->setCellValue("A$rowNumber", $newAbsencesRows)
+                    ->setCellValue("B$rowNumber", $absence->getDateDebut()->format("d/m/Y"))
+                    ->setCellValue("D$rowNumber", $absence->getDateFin()->format("d/m/Y"))
+                    ->setCellValue("F$rowNumber", $absence->getMotif());
+            }
+            $phpExcelObject->getActiveSheet()->removeRow($rowNumber + 1, 1);
         }
-        $phpExcelObject->getActiveSheet()->removeRow($rowNumber + 1, 1);
+        else
+        {
+            $rowNumber = 13;
+        }
 
         $retards = $report->getRetards();
 
-        $phpExcelObject->getActiveSheet()
-            ->setCellValue('B' . (15 + count($absences) - 1), count($retards));
-
-        $phpExcelObject->getActiveSheet()->insertNewRowBefore(18 + count($absences), count($retards));
-        foreach ($retards as $retard)
+        $absencesLines = count($absences) - 1;
+        if (count($absences) == 0)
         {
-            /* @var $retard \Ema\RgementBundle\Entity\Retard */
-            $rowNumber = 18 + count($absences) - 1 + $newRetardsRows;
-            $newRetardsRows++;
-            $phpExcelObject->getActiveSheet()->mergeCells("B$rowNumber:D$rowNumber");
-            $phpExcelObject->getActiveSheet()->mergeCells("F$rowNumber:I$rowNumber");
-
-            $phpExcelObject->getActiveSheet()
-                ->setCellValue("A$rowNumber", $newRetardsRows)
-                ->setCellValue("B$rowNumber", $retard->getDateprevu()->format("d/m/Y H:i:s"))
-                ->setCellValue("E$rowNumber", $retard->getDureeRetard() . ' min')
-                ->setCellValue("F$rowNumber", $retard->getMotif());
+            $absencesLines = 0;
         }
-        $phpExcelObject->getActiveSheet()->removeRow($rowNumber + 1, 1);
+        $phpExcelObject->getActiveSheet()
+            ->setCellValue('B' . (15 + $absencesLines), count($retards));
+
+        if (count($retards) != 0)
+        {
+            $phpExcelObject->getActiveSheet()->insertNewRowBefore(18 + $absencesLines + 1, count($retards));
+            foreach ($retards as $retard)
+            {
+                /* @var $retard \Ema\RgementBundle\Entity\Retard */
+                $rowNumber = 18 + $absencesLines + $newRetardsRows;
+                $newRetardsRows++;
+                $phpExcelObject->getActiveSheet()->mergeCells("B$rowNumber:D$rowNumber");
+                $phpExcelObject->getActiveSheet()->mergeCells("F$rowNumber:I$rowNumber");
+
+                $phpExcelObject->getActiveSheet()
+                    ->setCellValue("A$rowNumber", $newRetardsRows)
+                    ->setCellValue("B$rowNumber", $retard->getDateprevu()->format("d/m/Y H:i:s"))
+                    ->setCellValue("E$rowNumber", $retard->getDureeRetard() . ' min')
+                    ->setCellValue("F$rowNumber", $retard->getMotif());
+            }
+            $phpExcelObject->getActiveSheet()->removeRow($rowNumber + 1, 1);
+        }
 
         $this->excelService->setProperties('EMA', 'EMA', 'Export_test');
 
