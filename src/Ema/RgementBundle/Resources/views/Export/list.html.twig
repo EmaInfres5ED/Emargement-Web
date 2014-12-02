@@ -15,21 +15,20 @@
                     <form>
                         <div class="form-group col-lg-4">
                             <label for="start_date">Date de début</label>
-                            <input id="start_date" type="date" class="form-control" value="01/01/2014">
+                            <input type="text" class="start_date form-control" value="{{from}}">
                         </div>
                         <div class="form-group col-lg-4">
                             <label for="end_date">Date de fin</label>
-                            <input id="end_date" type="date" class="form-control" value="25/03/2014">
+                            <input type="date" class="end_date form-control" value="{{to}}">
                         </div>
                         <div class="form-group col-lg-4">
                             <label for="promo">Promotion</label>
-                            <input id="promo" class="form-control" list="promos" value="INFRES 5">
-                            <datalist id="promos">
-                                <option value="Aucune" />
-                                <option value="INFRES 5" />
-                                <option value="INFRES 6" />
-                                <option value="INFRES 7" />
-                            </datalist>
+                            <select name="promo" class="promo combobox form-control">
+                                <option></option>
+                                {% for promo in promos %}
+                                    <option value="{{promo.id}}">{{promo.libelle}}</option>
+                                {% endfor %}
+                            </select>
                         </div>
                     </form>
                 </div>
@@ -160,4 +159,8 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ asset('bundles/emargement/js/views/Export/list.js') }}"></script>
 {% endblock %}

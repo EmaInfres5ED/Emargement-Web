@@ -10,6 +10,7 @@ class ExportController extends Controller
 
     private $excelService;
     private $reportService;
+    private $promotionRepository;
 
     public function setContainer(ContainerInterface $container = null)
     {
@@ -21,11 +22,19 @@ class ExportController extends Controller
     {
         $this->excelService = $this->get('excel_service');
         $this->reportService = $this->get('report_service');
+        $this->promotionRepository = $this->getDoctrine()->getRepository("EmaRgementBundle:Promotion");
     }
 
     public function listAction()
     {
-        return $this->render('EmaRgementBundle:Export:list.html.twig');
+        $from = new \DateTime('first day of last month');
+        $to = new \DateTime('last day of last month');
+        return $this->render('EmaRgementBundle:Export:list.html.twig',
+                array(
+                'from' => $from->format('d/m/Y'),
+                'to' => $to->format('d/m/Y'),
+                'promos' => $this->promotionRepository->findAll()
+        ));
     }
 
     public function exportAction($studentId, $promoId, $dateFrom, $dateTo)
