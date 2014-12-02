@@ -1,4 +1,12 @@
 services:
+    participation_service:
+        class: Ema\RgementBundle\Service\ParticipationService
+        calls:
+            - [setContainer, ["@service_container"]]
+    cron_controller_service:
+        class: Ema\RgementBundle\Controller\CronController
+        calls:
+            - [setContainer, ["@service_container"]]
     excel_service:
         class: Ema\RgementBundle\Service\ExcelService
         calls:
@@ -9,9 +17,4 @@ services:
             - [setContainer, ["@service_container"]]
     mail_service:
         class: Ema\RgementBundle\Service\MailService
-        calls:
-            - [setContainer, ["@service_container"]]
-    cron_controller_service:
-        class: Ema\RgementBundle\Controller\CronController
-        calls:
-            - [setContainer, ["@service_container"]]
+
