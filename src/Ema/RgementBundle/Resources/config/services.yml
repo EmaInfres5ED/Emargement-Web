@@ -3,6 +3,10 @@ services:
         class: Ema\RgementBundle\Service\JustifyService
         calls:
             - [setContainer, ["@service_container"]]
+    participation_service:
+        class: Ema\RgementBundle\Service\ParticipationService
+        calls:
+            - [setContainer, ["@service_container"]]
     excel_service:
         class: Ema\RgementBundle\Service\ExcelService
         calls:
