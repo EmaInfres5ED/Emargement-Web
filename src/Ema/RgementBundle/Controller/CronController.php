@@ -280,7 +280,7 @@ class CronController extends Controller
     * $dateBegin = date de début-> timestamp unix
     * $dateEnd = date de fin-> timestamp unix
     */
-    private function getCoursByDate($dateBegin, $dateEnd)
+    public function getCoursByDate($dateBegin, $dateEnd)
     {
         $dateEnd = $this->formatDate($dateEnd);
         $dateBegin = $this->formatDate($dateBegin);
@@ -296,7 +296,7 @@ class CronController extends Controller
     * $dateEnd = date de fin-> timestamp unix
     * $idPromoC
     */
-    private function getCoursByDateAndPromo($dateBegin, $dateEnd, $idPromoCybema)
+    public function getCoursByDateAndPromo($dateBegin, $dateEnd, $idPromoCybema)
     {
         $dateEnd = $this->formatDate($dateEnd);
         $dateBegin = $this->formatDate($dateBegin);
@@ -308,7 +308,7 @@ class CronController extends Controller
     /**
     * Get eleves
     */
-    private function getEtudiants()
+    public function getEtudiants()
     {
         //Promotion Repository
         $em = $this->getDoctrine()->getManager();
