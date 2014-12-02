@@ -31,6 +31,7 @@ class CronController extends Controller
     public function updateAll()
     {
         try {
+            set_time_limit(1000);
             $this->updatePromotions();
             $this->updateEtudiants();
             return true;
