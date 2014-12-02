@@ -229,6 +229,13 @@ class CronController extends Controller
                     $promotion = $repoPromotion->findOneByIdCybema(trim($val[11]));
                     
                 if($etudiant != null){
+                
+                    $etudiant->setNom(trim($val[5]));
+                    $etudiant->setPrenom(trim($val[7]));
+                    $etudiant->setEmail(trim($val[9]));
+                    $etudiant->setIdCybema(trim($val[1]));
+                    $em->persist($etudiant);
+                
                     if($promotion) {
                         $etudiantPromotion = null;
                         $etudiantPromotion = $repoEtudiantPromotion->findOneBy(
@@ -251,6 +258,7 @@ class CronController extends Controller
                     $newEtu->setNom(trim($val[5]));
                     $newEtu->setPrenom(trim($val[7]));
                     $newEtu->setEmail(trim($val[9]));
+                    $newEtu->setIdCybema(trim($val[1]));
                     $em->persist($newEtu);
                     
                     if($promotion) {
@@ -295,6 +303,18 @@ class CronController extends Controller
         $http = "http://cybema.ema.fr/cybema/cgi-bin/cgiempt.exe?TYPE=planning_txt&DATEDEBUT=".$dateBegin."&DATEFIN=".$dateEnd."&TYPECLE=p0cleunik&VALCLE=".$idPromoCybema;
         $csv = file_get_contents($http);
         return $this->csvToArray($csv);
+    }
+
+    /**
+    * Get eleves
+    */
+    private function getEtudiants()
+    {
+        //Promotion Repository
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('EmaRgementBundle:Etudiant');
+        
+        return $repo->findAll();
     }
     
     /**
