@@ -40,10 +40,26 @@ class ExportController extends Controller
 
     public function ajaxListExportsAction()
     {
+        $from = $this->get('request')->request->get('from');
+        $to = $this->get('request')->request->get('to');
+        $promoId = intval($this->get('request')->request->get('promoId'));
+        $error = false;
+
+        if (empty($from) || empty($to) || empty($promoId) || $promoId === 0)
+        {
+            $error = true;
+        }
+
         $response = new JsonResponse();
         $output = array(
             'aaData' => array()
         );
+        if (!$error)
+        {
+
+        }
+
+
         $response->setData($output);
 
         return $response;

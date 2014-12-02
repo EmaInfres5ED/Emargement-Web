@@ -15,11 +15,11 @@
                     <form>
                         <div class="form-group col-lg-4">
                             <label for="start_date">Date de début</label>
-                            <input type="text" class="start_date form-control" value="{{from}}">
+                            <input type="text" class="start-date form-control" value="{{from}}">
                         </div>
                         <div class="form-group col-lg-4">
                             <label for="end_date">Date de fin</label>
-                            <input type="date" class="end_date form-control" value="{{to}}">
+                            <input type="date" class="end-date form-control" value="{{to}}">
                         </div>
                         <div class="form-group col-lg-4">
                             <label for="promo">Promotion</label>
@@ -72,5 +72,5 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{{ asset('bundles/emargement/js/views/Export/list.js') }}"></script>
+    <script src="{{ asset('bundles/emargement/js/views/Export/list.js') }}" type="text/javascript"></script>
 {% endblock %}
