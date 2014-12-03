@@ -4,6 +4,7 @@ namespace Ema\RgementBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Ema\RgementBundle\Entity\Etudiant;
 
 class JustifyController extends Controller
 {
@@ -16,7 +17,13 @@ class JustifyController extends Controller
 
     public function justifyAbsenceAction()
     {
-        return $this->render('EmaRgementBundle:Justify:absence.html.twig');
+        $students = $this->getDoctrine()
+            ->getRepository('EmaRgementBundle:Etudiant')
+            ->findAll();
+
+        return $this->render('EmaRgementBundle:Justify:absence.html.twig', array(
+            'students' =>  $students
+        ));
     }
 
     public function justifyDelayAction()
@@ -50,6 +57,29 @@ class JustifyController extends Controller
         }
 
         $response->setData($output);
+
+        return $response;
+    }
+
+    public function ajaxListAbsencesToJustifyForAStudentAction() {
+        $studendId = intval($this->get('request')->get('studentId'));
+
+        $absencesForAStudent = $students = $this->getDoctrine()
+            ->getRepository('EmaRgementBundle:Absence')
+            ->findAllForAStudent($studendId);
+
+        $response = new JsonResponse();
+        $result = array();
+
+        foreach ($absencesForAStudent as $absence) {
+            $result[] = array(
+                'startDate' => $absence->getDateDebut()->format('d/m/Y H:i'),
+                'endDate' => $absence->getDateFin()->format('d/m/Y H:i'),
+                'id' => $absence->getId()
+            );
+        }
+
+        $response->setData($result);
 
         return $response;
     }

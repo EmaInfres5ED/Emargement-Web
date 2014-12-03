@@ -1,7 +1,7 @@
 $(document).ready(function(){
-    var reportsTable = null;
+    var justifyTable = null;
 
-    reportsTable = $('table.justify').dataTable({
+    justifyTable = $('table.justify').dataTable({
         "aoColumns": [
             {"mData": "firstName"},
             {"mData": "lastName"},

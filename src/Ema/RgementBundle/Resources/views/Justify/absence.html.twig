@@ -7,60 +7,22 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <!--<div class="panel-heading">
-
-                </div>-->
-                <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <form>
+                    <form class="form">
                         <div class="form-group">
                             <label for="student">Etudiant</label>
-                            <input id="student" class="form-control" list="students">
-                            <datalist id="students">
-                                <option value="GODINEZ Pablo" />
-                                <option value="HALLER Florian" />
-                                <option value="SANCHEZ Yohan" />
-                                <option value="SEITZ Valentin" />
-                                <option value="SIMON Matthieu" />
-                            </datalist> 
+                            <select name="student" class="student combobox form-control">
+                                <option></option>
+                                {% for student in students %}
+                                    <option value="{{student.id}}">{{student.nom}} {{student.prenom}}</option>
+                                {% endfor %}
+                            </select>
                             <p class="help-block">Selectionner l'étudiant qui était absent</p>
                         </div>
                         <div class="form-group">
-                            <label for="" >Absences non justifiées</label>
-                            <div class="checkbox">
-                                <label>
-                                    <input value="" type="checkbox">Cours de {matière} le 12/10/2014 de 09h00 à 12h00
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input value="" type="checkbox">Cours de {matière} le 12/10/2014 de 13h30 à 17h45
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row" >
-                            <div class="form-group col-lg-6">
-                                <label for="start_date">Date de début</label>
-                                <input id="start_date" class="form-control" type="date">
-                                <p class="help-block">Date de début de l'absence</p>
-                            </div>
-                            <div class="form-group col-lg-6">
-                                <label for="start_time">Heure de début</label>
-                                <input id="start_time" class="form-control" type="time">
-                                <p class="help-block">Heure de début de l'absence</p>
-                            </div>
-                        </div>
-                        <div class="row" >
-                            <div class="form-group col-lg-6" >
-                                <label for="end_date">Date de fin</label>
-                                <input id="end_date" class="form-control" type="date">
-                                <p class="help-block">Date de fin de l'absence</p>
-                            </div>
-                            <div class="form-group col-lg-6" >
-                                <label for="end_time">Heure de fin</label>
-                                <input id="end_time" class="form-control" type="time">
-                                <p class="help-block">Heure de fin de l'absence</p>
-                            </div>
+                            <label class="control-label" >Absences non justifiées</label>
+                            <div class="justify-checkboxes"
+                                data-url="{{path('ema_rgement_ajax_list_absence_to_justify_for_a_student')}}"></div>
                         </div>
                         <div class="form-group">
                             <label for="ground" >Motif</label>
@@ -80,4 +42,8 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ asset('bundles/emargement/js/views/Justify/absence.js') }}" type="text/javascript"></script>
 {% endblock %}
