@@ -1,6 +1,6 @@
 <?php
 
-namespace Ema\RgementBundle\Entity;
+namespace Ema\RgementBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
