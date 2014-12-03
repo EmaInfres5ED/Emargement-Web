@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Notification
  *
  * @ORM\Table(name="notification")
- * @ORM\Entity(repositoryClass="Ema\RgementBundle\Entity\NotificationRepository")
+ * @ORM\Entity(repositoryClass="Ema\RgementBundle\Repository\NotificationRepository")
  */
 class Notification
 {
@@ -34,6 +34,16 @@ class Notification
      * @ORM\Column(name="saw", type="boolean")
      */
     private $saw;
+
+    /**
+     * @var \Cours
+     *
+     * @ORM\ManyToOne(targetEntity="Cours")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_cours", referencedColumnName="id")
+     * })
+     */
+    private $cours;
 
 
     /**
@@ -90,5 +100,28 @@ class Notification
     public function getSaw()
     {
         return $this->saw;
+    }
+
+    /**
+     * Set Cours
+     *
+     * @param \Ema\RgementBundle\Entity\Cours $cours
+     * @return Participation
+     */
+    public function setCours(\Ema\RgementBundle\Entity\Cours $cours = null)
+    {
+        $this->cours = $cours;
+
+        return $this;
+    }
+
+    /**
+     * Get Cours
+     *
+     * @return \Ema\RgementBundle\Entity\Cours
+     */
+    public function getCours()
+    {
+        return $this->cours;
     }
 }
