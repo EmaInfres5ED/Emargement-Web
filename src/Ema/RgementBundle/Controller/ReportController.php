@@ -4,6 +4,8 @@ namespace Ema\RgementBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ema\RgementBundle\Entity\Cours;
+use Ema\RgementBundle\Entity\Participation;
+use Ema\RgementBundle\Entity\ParticipationAbsence;
 use Ema\RgementBundle\Entity\CoursGroup;
 
 class ReportController extends Controller
@@ -42,8 +44,30 @@ class ReportController extends Controller
         {
             return $this->listAction();
         }
+        $i = 0;
+        $cours = $this->getDoctrine()->getRepository('EmaRgementBundle:Cours')->find($id);
+
+        $participations = $this->getDoctrine()->getRepository('EmaRgementBundle:Participation')->findBy(array('cours' => $id));
+        $absents = array();
+        $retards = array();
+        foreach ($participations as $p) {
+            $participationAbsences = $this->getDoctrine()->getRepository('EmaRgementBundle:ParticipationAbsence')->findBy(array('participation' =>$p->getId()));
+            if(sizeof($participationAbsences) <> 0) {
+                $absents[$i] = $p->getEtudiant();
+                $i++;
+            }
+        }
+        foreach ($participations as $p) {
+            $participationRetards = $this->getDoctrine()->getRepository('EmaRgementBundle:Retard')->findBy(array('participation' =>$p->getId()));
+            if(sizeof($participationRetards) <> 0) {
+                $retards[$i] = $p->getEtudiant();
+                $i++;
+            }
+        }
         return $this->render('EmaRgementBundle:Report:show.html.twig', array(
-                // ...
+                'cours' => $cours,
+                'listAbsent' => $absents,
+                'listRetard' => $retards,
             ));    }
 
 }

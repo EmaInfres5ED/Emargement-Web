@@ -3,5 +3,19 @@
 {% block title %}Rapport{% endblock %}
 
 {% block body %}
-    <h1>Rapport de cours</h1>
+    <h1>Rapport du cours : {{ cours.libelle }} </h1>
+    <p> Donné le {{ cours.dateDebut | date('d-m-Y') }} de {{ cours.dateDebut | date('h:i') }} à {{ cours.dateFin | date('h:i') }} par <b> {{ cours.professeur }} </b></p>
+
+    <p> Absents : </p>
+    <ul>
+        {% for absent in listAbsent %}
+            <li> {{ absent.prenom }} {{ absent.nom }}</li>
+        {% endfor %}
+    </ul>
+    <p> Retards : </p>
+    <ul>
+        {% for EleveRetard in listRetard %}
+            <li> {{ EleveRetard.nom }} {{ EleveRetard.prenom }} </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
