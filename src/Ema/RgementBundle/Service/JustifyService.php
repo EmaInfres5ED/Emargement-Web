@@ -4,18 +4,13 @@ namespace Ema\RgementBundle\Service;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Ema\RgementBundle\Entity\JustifyAbsence;
+use Ema\RgementBundle\Entity\Report;
 /**
  * JustifyService
  */
 class JustifyService extends Controller
 {
     private $absenceRepository;
-    private $retardRepository;
-    private $coursRepository;
-    private $participationRepository;
-    private $etudiantRepository;
-    private $presenceRepository;
 
     public function setContainer(ContainerInterface $container = null) {
         parent::setContainer($container);
@@ -24,24 +19,29 @@ class JustifyService extends Controller
 
     private function initialize() {
         $this->absenceRepository = $this->getDoctrine()->getRepository('EmaRgementBundle:Absence');
-        $this->retardRepository = $this->getDoctrine()->getRepository('EmaRgementBundle:Retard');
-        $this->coursRepository = $this->getDoctrine()->getRepository('EmaRgementBundle:Cours');
-        $this->participationRepository = $this->getDoctrine()->getRepository('EmaRgementBundle:Participation');
-        $this->etudiantRepository = $this->getDoctrine()->getRepository('EmaRgementBundle:Etudiant');
-        $this->presenceRepository = $this->getDoctrine()->getRepository('EmaRgementBundle:Presence');
     }
 
-    public function getAbsences() {
-        $absences = new JustifyAbsence();
-        $this->absenceRepository->
+    public function getAbsencesToJustify() {
+        $reports = array();
+        $studentsAbsences = array();
+        $students = array();
 
-        $absences->setNom('GODINEZ');
-        $absences->setPrenom('Pablo');
-        $absences->setCours('Management des équipes');
-        $absences->setDate(new \DateTime('now'));
-        $absences->setHeureDebut('9h00');
-        $absences->setHeureFin('12h00');
+        $absences = $this->absenceRepository->findByMotif(null);
 
-        return $absences;
+        foreach ($absences as $absence)
+        {
+            $students[$absence->getEleve()->getId()] = $absence->getEleve();
+            $studentsAbsences[$absence->getEleve()->getId()][] = $absence;
+        }
+
+        foreach ($studentsAbsences as $studentId => $absences)
+        {
+            $report = new Report();
+            $report->setAbsences($absences);
+            $report->setStudent($students[$studentId]);
+            $reports[] = $report;
+        }
+
+        return $reports;
     }
 }

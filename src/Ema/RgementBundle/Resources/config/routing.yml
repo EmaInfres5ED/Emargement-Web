@@ -42,6 +42,10 @@ ema_rgement_justify_list:
     path:     /justify/list
     defaults: { _controller: EmaRgementBundle:Justify:justifyList }
 
+ema_rgement_ajax_list_absence_to_justify:
+    path:     /justify/ajaxListAbsencesToJustify
+    defaults: { _controller: EmaRgementBundle:Justify:ajaxListAbsencesToJustify }
+
 ema_rgement_justify_absence:
     path:     /justify/absence
     defaults: { _controller: EmaRgementBundle:Justify:justifyAbsence }
@@ -85,7 +89,7 @@ ema_rgement_cron_update_all:
 ema_rgement_export_list:
     path:     /export/list
     defaults: { _controller: EmaRgementBundle:Export:list }
-    
+
 ema_rgement_ajax_list_exports:
     path:     /export/ajaxListExports
     defaults: { _controller: EmaRgementBundle:Export:ajaxListExports }
