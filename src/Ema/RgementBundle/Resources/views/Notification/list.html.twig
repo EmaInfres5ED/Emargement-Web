@@ -25,9 +25,15 @@
                             class="uiSeenButton saw-notification-button" role="button"></a>
                     {% endif %}
                     <li class="paddingV newNotification ">
+                        {% if notification.cours == null %}
+                        <a href="#">
+                            {{ notification.content }}
+                        </a>
+                        {%else%}
                         <a href="{{ path('ema_rgement_report_show') }}/{{notification.cours.id}}">
                             Rapport du cours de <b> {{ notification.cours.libelle }} </b>  de {{ notification.cours.dateDebut | date('h:i') }} à {{ notification.cours.dateFin | date('h:i') }}
                         </a>
+                        {%endif%}
                     </li>
                 {% endfor %}
                 </ul>

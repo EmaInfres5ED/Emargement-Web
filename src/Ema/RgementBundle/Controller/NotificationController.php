@@ -49,9 +49,25 @@ class NotificationController extends Controller
         foreach ($this->notificationRepository->findBySaw(false) as $notification)
         {
             /* @var $notification Ema\RgementBundle\Entity\Notification */
+            $courseId = 0;
+            $courseName = '';
+            $startDate = '';
+            $endDate = '';
+            if ($notification->getCours() != null)
+            {
+                $courseId = $notification->getCours()->getId();
+                $courseName = $notification->getCours()->getLibelle();
+                $startDate = $notification->getCours()->getDateDebut()->format("h:i");
+                $endDate = $notification->getCours()->getDateFin()->format("h:i");
+            }
+
             $result[] = array(
                 'id' => $notification->getId(),
-                'content' => $notification->getContent()
+                'content' => $notification->getContent(),
+                'courseId' => $courseId,
+                'courseName' => $courseName,
+                'startDate' => $startDate,
+                'endDate' => $endDate
             );
         }
 
