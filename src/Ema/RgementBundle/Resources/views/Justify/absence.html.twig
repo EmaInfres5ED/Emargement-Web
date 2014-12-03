@@ -14,7 +14,10 @@
                             <select name="student" class="student combobox form-control">
                                 <option></option>
                                 {% for student in students %}
-                                    <option value="{{student.id}}">{{student.nom}} {{student.prenom}}</option>
+                                    <option value="{{student.id}}"
+                                    {% if studentId is same as(student.id) %}
+                                        selected="selected"
+                                    {% endif %}>{{student.nom}} {{student.prenom}}</option>
                                 {% endfor %}
                             </select>
                             <p class="help-block">Selectionner l'étudiant qui était absent</p>
@@ -22,7 +25,11 @@
                         <div class="form-group">
                             <label class="control-label" >Absences non justifiées</label>
                             <div class="justify-checkboxes"
-                                data-url="{{path('ema_rgement_ajax_list_absence_to_justify_for_a_student')}}"></div>
+                                data-url="{{path('ema_rgement_ajax_list_absence_to_justify_for_a_student')}}">
+                            {% if absenceId is not null %}
+                                <input class="hidden-absence" type="hidden" value="{{ absenceId }}"/>
+                            {% endif %}
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="motif" >Motif</label>

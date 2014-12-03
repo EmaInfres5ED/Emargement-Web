@@ -41,7 +41,9 @@ class JustifyController extends Controller
         }
 
         return $this->render('EmaRgementBundle:Justify:absence.html.twig', array(
-            'students' =>  $students
+            'students' =>  $students,
+            'studentId' => intval($studentId),
+            'absenceId' => intval($absenceId)
         ));
     }
 
@@ -71,8 +73,10 @@ class JustifyController extends Controller
                     'lastName' => $report->getStudent()->getNom(),
                     'startDate' => $absence->getDateDebut()->format('d/m/Y H:i'),
                     'endDate' => $absence->getDateFin()->format('d/m/Y H:i'),
-                    'actionUrl' => $this->generateUrl('ema_rgement_justify_absence')
-                );
+                    'actionUrl' => $this->generateUrl('ema_rgement_justify_absence', array(
+                        'studentId' => $report->getStudent()->getId(),
+                        'absenceId' => $absence->getId(),
+                )));
             }
         }
 

@@ -16,12 +16,13 @@ $(document).ready(function(){
         "aaSorting": [[0, 'asc']],
         "fnCreatedRow": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
             $('td:eq(4)', nRow).empty().html($('<input>', {
-                class: 'btn btn-primary form-control export-btn',
+                class: 'btn btn-primary form-control',
                 type: 'button',
                 value : 'Justifier'
             }).click(function() {
                 window.location = aData.actionUrl;
             }));
+
             return nRow;
         }
     });

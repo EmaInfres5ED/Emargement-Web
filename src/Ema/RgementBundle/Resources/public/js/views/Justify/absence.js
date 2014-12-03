@@ -3,8 +3,6 @@ $(document).ready(function(){
         if ($(this).val() !== "") {
             var id = $(this).val();
 
-            console.log('test');
-
             $.ajax({
                 type: 'POST',
                 dataType: "json",
@@ -13,6 +11,10 @@ $(document).ready(function(){
                     'studentId': id,
                 },
                 success: function(result) {
+                    var hidden = null;
+                    if ($('.hidden-absence').val() != null ) {
+                        hidden = $('.hidden-absence').val();
+                    }
                     $('.justify-checkboxes').empty();
                     for (var i=0; i<result.length; i++) {
                         var checkbox =
@@ -25,8 +27,12 @@ $(document).ready(function(){
 
                         $('.justify-checkboxes').append(checkbox);
                     }
+                    if (hidden !=  null) {
+                        $('.justify-checkboxes input[value="' + hidden + '"]').prop('checked', true);
+                    }
                 }
             });
         }
     });
+    $('.combobox').trigger('change');
 });
