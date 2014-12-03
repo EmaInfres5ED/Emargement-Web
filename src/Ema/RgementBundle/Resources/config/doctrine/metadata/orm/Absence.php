@@ -50,7 +50,6 @@ class Absence
      *   @ORM\JoinColumn(name="id_eleve", referencedColumnName="id")
      * })
      */
-    private $idEleve;
-
+    private $eleve;
 
 }
