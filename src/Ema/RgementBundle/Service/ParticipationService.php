@@ -14,8 +14,8 @@ class ParticipationService extends Controller
         $participation->setEtudiant($student);
 
         $em = $this->getDoctrine()->getManager();
-		$em->persist($participation);
-		$em->flush();
+        $em->persist($participation);
+        $em->flush();
         
         return $participation;
     }

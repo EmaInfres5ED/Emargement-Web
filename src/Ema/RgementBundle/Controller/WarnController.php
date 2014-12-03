@@ -47,15 +47,15 @@ class WarnController extends Controller
                 $absence->setDateFin($form["absenceDateFin"]->getData());
                 $absence->setMotif($form["motif"]->getData());
 
-			    $em = $this->getDoctrine()->getManager();
-			    $em->persist($absence);
-			    $em->flush();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($absence);
+                $em->flush();
                 
                 return $this->render('EmaRgementBundle:Default:success.html.twig');
             } catch (Exception $e) {
                 return $this->render('EmaRgementBundle:Default:fail.html.twig');
             }
-		}
+        }
         return $this->render('EmaRgementBundle:Warn:absence.html.twig', array('form' => $form->createView(),));
     }
 
@@ -65,7 +65,7 @@ class WarnController extends Controller
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
-		if ($form->isValid()) {
+        if ($form->isValid()) {
             try {
                 $cours = $this->getDoctrine()->getManager()->getRepository('EmaRgementBundle:Cours')->find(1);
                 $student = $this->getDoctrine()->getRepository('EmaRgementBundle:Etudiant')->find(1065);
@@ -80,15 +80,15 @@ class WarnController extends Controller
                 $delay->setDureeRetard($retardMinute);
                 $delay->setMotif($form["motif"]->getData());
 
-			    $em = $this->getDoctrine()->getManager();
-			    $em->persist($delay);
-			    $em->flush();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($delay);
+                $em->flush();
                 
                 return $this->render('EmaRgementBundle:Default:success.html.twig');
             } catch (Exception $e) {
                 return $this->render('EmaRgementBundle:Default:fail.html.twig');
             }
-		}
+        }
         return $this->render('EmaRgementBundle:Warn:delay.html.twig', array('form' => $form->createView(),));
     }
 
