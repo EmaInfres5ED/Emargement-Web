@@ -60,7 +60,8 @@ class ReportController extends Controller
         foreach ($participations as $p) {
             $participationRetards = $this->getDoctrine()->getRepository('EmaRgementBundle:Retard')->findBy(array('participation' =>$p->getId()));
             if(sizeof($participationRetards) <> 0) {
-                $retards[$i] = $p->getEtudiant();
+                $retards[$i]["etudiant"] = $p->getEtudiant();
+                $retards[$i]["retard"]= $participationRetards[0];
                 $i++;
             }
         }

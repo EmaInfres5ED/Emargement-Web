@@ -15,7 +15,7 @@
     <p> Retards : </p>
     <ul>
         {% for EleveRetard in listRetard %}
-            <li> {{ EleveRetard.nom }} {{ EleveRetard.prenom }} </li>
+            <li> {{ EleveRetard.etudiant.nom }} {{ EleveRetard.etudiant.prenom }} de <b> {{ EleveRetard.retard.dureeRetard }} </b> minutes </li>
         {% endfor %}
     </ul>
 {% endblock %}
