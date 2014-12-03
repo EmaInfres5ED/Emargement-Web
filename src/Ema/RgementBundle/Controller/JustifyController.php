@@ -8,7 +8,9 @@ class JustifyController extends Controller
 {
     public function justifyListAction()
     {
-        $absences = $this->get('justify_service')->getAbsences();
+        $absences = $this->getDoctrine()
+            ->getRepository('EmaRgementBundle:Absence')
+            ->findByMotif(null);
 
         return $this->render('EmaRgementBundle:Justify:list.html.twig', array(
             'absences' => $absences

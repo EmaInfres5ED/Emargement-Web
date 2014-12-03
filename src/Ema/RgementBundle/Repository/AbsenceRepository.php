@@ -17,5 +17,4 @@ class AbsenceRepository extends EntityRepository
 
         return $query->getResult();
     }
-
 }

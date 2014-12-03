@@ -33,6 +33,7 @@ class JustifyService extends Controller
 
     public function getAbsences() {
         $absences = new JustifyAbsence();
+        $this->absenceRepository->
 
         $absences->setNom('GODINEZ');
         $absences->setPrenom('Pablo');
