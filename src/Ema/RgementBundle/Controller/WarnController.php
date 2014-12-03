@@ -37,7 +37,7 @@ class WarnController extends Controller
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
-		if ($form->isValid()) {
+        if ($form->isValid()) {
             try {
                 $student = $this->getDoctrine()->getRepository('EmaRgementBundle:Etudiant')->find($form["nomEleve"]->getData());
 
@@ -67,8 +67,6 @@ class WarnController extends Controller
 
 		if ($form->isValid()) {
             try {
-                //$data = $form->getData();
-                $data = $form->all();
                 $cours = $this->getDoctrine()->getManager()->getRepository('EmaRgementBundle:Cours')->find(1);
                 $student = $this->getDoctrine()->getRepository('EmaRgementBundle:Etudiant')->find(1065);
                 $participation = $this->get('participation_service')->create($cours, $student);

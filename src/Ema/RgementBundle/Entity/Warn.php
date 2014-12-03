@@ -2,8 +2,6 @@
 
 namespace Ema\RgementBundle\Entity;
 
-//use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Warn
  */
@@ -51,7 +49,7 @@ class Warn
      */
     private $type;
 
-    public function __construct() 
+    public function __construct()
     {
         $this->absenceDateDebut = new \DateTime();
         $this->absenceDateFin = new \DateTime();

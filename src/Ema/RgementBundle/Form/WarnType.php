@@ -15,12 +15,12 @@ class WarnType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-			//->add('nomEleve', 'choice', array('choices' => array('test', 'test2' => 'ah', 'ah2' => 'jaja'),))
-			/*->add('retardDate', 'datetime')
-			->add('retardHour', 'time')*/
-			->add('motif', 'textarea')
-			->add('absenceDateDebut', 'datetime')
-			->add('absenceDateFin', 'datetime')
+            //->add('nomEleve', 'choice', array('choices' => array('test', 'test2' => 'ah', 'ah2' => 'jaja'),))
+            /*->add('retardDate', 'datetime')
+            ->add('retardHour', 'time')*/
+            ->add('motif', 'textarea')
+            ->add('absenceDateDebut', 'datetime')
+            ->add('absenceDateFin', 'datetime')
         ;
     }
     
