@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
+use Ema\RgementBundle\Service\MailService;
+
 use Ema\RgementBundle\Entity\Etudiant;
 use Ema\RgementBundle\Entity\Promotion;
 use Ema\RgementBundle\Entity\Cours;
@@ -65,7 +67,13 @@ class TabletteController extends Controller
         return $response;
     }
 
-
+    /**
+    * Web Service Action
+    * Set eleves by cours
+    * Return JSON file with status (OK or NOK)
+    * URL: http://localhost/Emargement-Web/web/app_dev.php/tablette/set/data
+    * URL: http://loris-jacquy.ovh/tablette/set/data
+    */
     public function setDataCoursAction(Request $request)
     {
         if ($request->getMethod() == 'POST') {
@@ -79,7 +87,10 @@ class TabletteController extends Controller
        }
     }
         
-        
+    /**
+    * Get data from the tablet and fill the database (Absence, retard, cours, participation_absence, presence),
+	* check is an absence is already in the DB
+    */
     public function setDataCours($data)
     {
         try{
@@ -89,7 +100,7 @@ class TabletteController extends Controller
                 $repoCours = $em->getRepository('EmaRgementBundle:Cours');
              
                 $json = json_decode($data,true);
-              
+                
                 $professeur = $json["profcours"];
                 $salle = $json["sallecours"];
                 $libelle = $json["libellecours"];
@@ -97,7 +108,10 @@ class TabletteController extends Controller
                 $dateFin = new DateTime($json["datefincours"]);
                 $idCybema = $json["idcybemacours"];;
                 $eleves = $json['eleves'];
-              
+				
+				//Contenu du mail d'abscence
+                $content = "Bonjour, \n Vous avez été absent le " .$dateDebut->format('Y-m-d'). " \n Merci de régulariser cette situation. \n Cordialement, \n L'équipe des mines";
+				
                 $cours = new Cours();
                 $cours->setProfesseur($professeur);
                 $cours->setLibelle($libelle);
@@ -155,7 +169,8 @@ class TabletteController extends Controller
                             $absence->setEleve($etudiant);
                             $em = $this->getDoctrine()->getManager();
                             $em->persist($absence);
-                             
+                            $mailService = $this->get('mail_service');
+                            $mailService->send('emargement@mines-ales.org', $etudiant->getEmail(), 'Notification absence EMA',$content);
                             $participationAbsence = new ParticipationAbsence();
                             $participationAbsence->setAbsence($absence);
                             $participationAbsence->setParticipation($participation);
@@ -180,7 +195,8 @@ class TabletteController extends Controller
                             $absence->setEleve($etudiant);
                             $em = $this->getDoctrine()->getManager();
                             $em->persist($absence);
-                             
+                            $mailService = $this->get('mail_service');
+                            $mailService->send('emargement@mines-ales.org', $etudiant->getEmail(), 'Notification absence EMA',$content);
                             $participationAbsence = new ParticipationAbsence();
                             $participationAbsence->setAbsence($absence);
                             $participationAbsence->setParticipation($participation);
