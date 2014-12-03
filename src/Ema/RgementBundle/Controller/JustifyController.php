@@ -42,9 +42,9 @@ class JustifyController extends Controller
                 $output['aaData'][] = array(
                     'firstName' => $report->getStudent()->getPrenom(),
                     'lastName' => $report->getStudent()->getNom(),
-                    'startDate' => $absence->getDateDebut(),
-                    'endDate' => $absence->getDateFin(),
-                    'actionUrl' => null
+                    'startDate' => $absence->getDateDebut()->format('d/m/Y H:i'),
+                    'endDate' => $absence->getDateFin()->format('d/m/Y H:i'),
+                    'actionUrl' => $this->generateUrl('ema_rgement_justify_absence')
                 );
             }
         }
