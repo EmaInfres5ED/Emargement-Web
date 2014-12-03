@@ -1,9 +1,12 @@
 {% extends 'EmaRgementBundle::layout.html.twig' %}
 
 {% block content %}
+<div class="input-group date">
+    <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+</div>
 <div id="example_wrapper" class="dataTables_wrapper">
     <div class="dataTables_length" id="example_length">
-        <label>Show 
+        <label>Show
             <select name="example_length" aria-controls="example" class="">
                 <option value="10">10</option>
                 <option value="25">25</option>
@@ -117,4 +120,8 @@
         </a>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ asset('bundles/emargement/js/views/Default/example.js') }}"></script>
 {% endblock %}

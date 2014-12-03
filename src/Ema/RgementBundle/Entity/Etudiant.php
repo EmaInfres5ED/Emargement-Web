@@ -42,6 +42,13 @@ class Etudiant
      */
     private $email;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_cybema", type="integer", nullable=true)
+     */
+    private $idCybema;
+
 
 
     /**
@@ -52,6 +59,11 @@ class Etudiant
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -121,5 +133,28 @@ class Etudiant
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set idCybema
+     *
+     * @param integer $idCybema
+     * @return Promotion
+     */
+    public function setIdCybema($idCybema)
+    {
+        $this->idCybema = $idCybema;
+
+        return $this;
+    }
+
+    /**
+     * Get idCybema
+     *
+     * @return integer
+     */
+    public function getIdCybema()
+    {
+        return $this->idCybema;
     }
 }

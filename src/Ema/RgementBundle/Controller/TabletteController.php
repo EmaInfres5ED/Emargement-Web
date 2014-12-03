@@ -292,3 +292,4 @@ class TabletteController extends Controller
     }
     
 }
+?>
