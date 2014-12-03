@@ -46,7 +46,7 @@ class NotificationController extends Controller
 
         $result = array();
 
-        foreach ($this->notificationRepository->findBy(array('saw' => false), array('date' => 'asc')) as $notification)
+        foreach ($this->notificationRepository->findBy(array('saw' => false), array('date' => 'DESC')) as $notification)
         {
             /* @var $notification Ema\RgementBundle\Entity\Notification */
             $courseId = 0;
