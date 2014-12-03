@@ -45,7 +45,7 @@ class Etudiant
     /**
      * @var integer
      *
-     * @ORM\Column(name="id_cybema", type="integer", nullable=true)
+     * @ORM\Column(name="id_cybema", type="integer", nullable=false)
      */
     private $idCybema;
 
