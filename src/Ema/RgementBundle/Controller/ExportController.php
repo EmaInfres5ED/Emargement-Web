@@ -4,12 +4,14 @@ namespace Ema\RgementBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ExportController extends Controller
 {
 
     private $excelService;
     private $reportService;
+    private $promotionRepository;
 
     public function setContainer(ContainerInterface $container = null)
     {
@@ -21,11 +23,57 @@ class ExportController extends Controller
     {
         $this->excelService = $this->get('excel_service');
         $this->reportService = $this->get('report_service');
+        $this->promotionRepository = $this->getDoctrine()->getRepository("EmaRgementBundle:Promotion");
     }
 
     public function listAction()
     {
-        return $this->render('EmaRgementBundle:Default:export.html.twig');
+        $from = new \DateTime('first day of last month');
+        $to = new \DateTime('last day of last month');
+        return $this->render('EmaRgementBundle:Export:list.html.twig',
+                array(
+                'from' => $from->format('d/m/Y'),
+                'to' => $to->format('d/m/Y'),
+                'promos' => $this->promotionRepository->findAll()
+        ));
+    }
+
+    public function ajaxListExportsAction()
+    {
+        $from = $this->get('request')->get('from');
+        $to = $this->get('request')->get('to');
+        $promoId = intval($this->get('request')->get('promoId'));
+        $error = false;
+
+        if (empty($from) || empty($to) || empty($promoId) || $promoId === 0)
+        {
+            $error = true;
+        }
+
+        $response = new JsonResponse();
+        $output = array(
+            'aaData' => array()
+        );
+        if (!$error)
+        {
+            $reports = $this->reportService->getAllReports(new \DateTime(str_replace('/', '-', $from)),
+                new \DateTime(str_replace('/', '-', $to)), $promoId);
+            foreach ($reports as $report)
+            {
+                $output['aaData'][] = array(
+                    'firstName' => $report['student']->getPrenom(),
+                    'lastName' => $report['student']->getNom(),
+                    'absencesCount' => $report['absencesCount'],
+                    'retardsCount' => $report['retardsCount'],
+                    'actionUrl' => null
+                );
+            }
+        }
+
+
+        $response->setData($output);
+
+        return $response;
     }
 
     public function exportAction($studentId, $promoId, $dateFrom, $dateTo)

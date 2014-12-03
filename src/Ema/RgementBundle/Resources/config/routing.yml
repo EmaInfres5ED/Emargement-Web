@@ -85,6 +85,10 @@ ema_rgement_cron_update_all:
 ema_rgement_export_list:
     path:     /export/list
     defaults: { _controller: EmaRgementBundle:Export:list }
+    
+ema_rgement_ajax_list_exports:
+    path:     /export/ajaxListExports
+    defaults: { _controller: EmaRgementBundle:Export:ajaxListExports }
 
 ema_rgement_export:
     path:     /export/studentId/{studentId}/promoId/{promoId}/from/{dateFrom}/to/{dateTo}
