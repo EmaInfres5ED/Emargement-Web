@@ -47,21 +47,18 @@
                              <span style="float:left;"> Notifications </span>
                             <a href="#" class="notificationHeaderLink">Marquer comme lus</a>
                         </div>
+                        {% if app.session.flashbag.get('notification') == false %}
                         <li>
-                            <a href="{{ path('ema_rgement_report_show') }}">Rapport du cours de DEV. PERSO. du 14/08/2014 disponible</a>
+                            <a href="#">Aucune notification</a>
                         </li>
                         <li class="divider"></li>
-                        <li class="newNotification">
-                            <a href="{{ path('ema_rgement_report_show') }}">Rapport du cours de GESTION DU STRESS du 14/08/2014 disponible</a>
+                        {% endif %}
+                        {% for notification in app.session.flashbag.get('notification') %}
+                        <li>
+                            <a href="{{ path('ema_rgement_report_show') }}">{{notification}}</a>
                         </li>
                         <li class="divider"></li>
-                        <li>
-                            <a href="{{ path('ema_rgement_report_show') }}">Rapport du cours de DEV. PERSO. du 14/08/2014 disponible</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="{{ path('ema_rgement_report_show') }}">Rapport du cours de DEV. PERSO. du 14/08/2014 disponible</a>
-                        </li>
+                        {% endfor %}
                         <li class="dividerFinal"></li>
                         <li>
                             <a href="{{ path('ema_rgement_report_list') }}">View All</a>
