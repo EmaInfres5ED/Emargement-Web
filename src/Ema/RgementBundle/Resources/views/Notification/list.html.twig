@@ -1,0 +1,36 @@
+{% extends 'EmaRgementBundle::layout.html.twig' %}
+
+{% block css %}
+    <link href="{{ asset('bundles/emargement/css/views/Default/notificationPage.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header"> Vos notifications </h1>
+        </div>
+    </div>
+    <div class="row">
+        <ul>
+            {% for key in notifications|keys %}
+            <li>
+                <div class="paddingH paddingV uiBox bottomBorder" >
+                    <span class="fwb">{{key}}</span>
+                </div>
+                <ul>
+                {% for notification in notifications[key] %}
+                    {% if notification.saw == false %}
+                    <a href="#" class="uiSeenButton" role="button"></a>
+                    {% endif %}
+                    <li class="paddingV newNotification ">
+                        <a href="{{ path('ema_rgement_report_show') }}/{{notification.id}}">
+                            {{notification.content}}
+                        </a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

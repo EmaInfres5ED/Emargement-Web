@@ -35,6 +35,12 @@ class Notification
      */
     private $saw;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=false)
+     */
+    private $date;
 
     /**
      * Get id
@@ -91,4 +97,28 @@ class Notification
     {
         return $this->saw;
     }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set gate
+     *
+     * @param \DateTime $date
+     * @return Notification
+     */
+    public function setDate(\DateTime $date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
 }

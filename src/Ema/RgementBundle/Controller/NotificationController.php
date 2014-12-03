@@ -26,6 +26,20 @@ class NotificationController extends Controller
         $this->entityManager = $this->getDoctrine()->getManager();
     }
 
+    public function listAction()
+    {
+        $notificationByDays = array();
+        foreach ($this->notificationRepository->findAll() as $notification)
+        {
+            /* @var $notification Ema\RgementBundle\Entity\Notification */
+            $notificationByDays[$notification->getDate()->format('d/m/Y')][] = $notification;
+        }
+        return $this->render('EmaRgementBundle:Notification:list.html.twig',
+                array(
+                'notifications' => $notificationByDays
+        ));
+    }
+
     public function ajaxGetNotificationsAction()
     {
         $response = new JsonResponse();
