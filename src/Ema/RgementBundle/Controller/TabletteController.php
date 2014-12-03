@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
+use Ema\RgementBundle\Entity\Etudiant;
 use Ema\RgementBundle\Entity\Promotion;
 use Ema\RgementBundle\Entity\Cours;
 use Ema\RgementBundle\Entity\Presence;
@@ -199,6 +200,9 @@ class TabletteController extends Controller
     */
     private function getElevesByCours($idGroupe)
     {
+        //Promotion Repository
+        $em = $this->getDoctrine()->getManager();
+        $repoEtudiant = $em->getRepository('EmaRgementBundle:Etudiant');
         $http = "http://cybema.ema.fr/cybema/cgi-bin/cgihtml.exe?TYPE=listegroupe_html&GRCLEUNIK=".$idGroupe."&MODE=10";
         $csv = file_get_contents($http);
         $csvUtf8 = mb_convert_encoding($csv, 'UTF-8');
@@ -212,6 +216,9 @@ class TabletteController extends Controller
                 unset($e);
 
             $eleArray = explode("\t", $elevesArray[$i]);
+            $etudiant = $repoEtudiant->findOneByIdCybema($eleArray[0]);   
+           
+            $e['id'] = $etudiant->getId();
             $e['id'] = $eleArray[0];
             $e['lastname'] = $eleArray[1];
             $e['firstname'] = rtrim($eleArray[2]);
