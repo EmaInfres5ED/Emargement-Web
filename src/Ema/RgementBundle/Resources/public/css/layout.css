@@ -50,7 +50,7 @@ html, body {
 
 #page-wrapper {
     min-height:100%;
-    padding-top: 50px;
+    margin-top: 50px;
 }
 
 @media(max-width:768px) {
