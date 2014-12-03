@@ -3,25 +3,36 @@
 namespace Ema\RgementBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Ema\RgementBundle\Entity\Cours;
-use Ema\RgementBundle\Entity\Participation;
-use Ema\RgementBundle\Entity\ParticipationAbsence;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Ema\RgementBundle\Entity\CoursGroup;
 
 class ReportController extends Controller
 {
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        parent::setContainer($container);
+        $this->initialize();
+    }
+
+    private function initialize()
+    {
+        $this->notificationRepository = $this->getDoctrine()->getRepository("EmaRgementBundle:Notification");
+        $this->entityManager = $this->getDoctrine()->getManager();
+    }
+
     public function listAction()
     {
         $em = $this->getDoctrine()->getManager();
         $repoCours = $em->getRepository('EmaRgementBundle:Cours');
         $arrayCoursGroup = array();
         $i = 0;
-        
+
         $coursGroup = new CoursGroup();
         foreach ($repoCours->findAllOrderByDate() as $c) {
             $dateGroup = $coursGroup->getDateCours();
             $dateCours = $c->getDateDebut();
-            if ($dateGroup <> NULL && date_format($dateGroup, 'Y-m-d') == date_format($dateCours,'Y-m-d')) 
+            if ($dateGroup <> NULL && date_format($dateGroup, 'Y-m-d') == date_format($dateCours,'Y-m-d'))
             {
                 $coursGroup->addCours($c);
             } else {
@@ -30,12 +41,12 @@ class ReportController extends Controller
                 $coursGroup->addCours($c);
                 $i++;
             }
-            
+
             $arrayCoursGroup[$i] = $coursGroup ;
         }
         return $this->render('EmaRgementBundle:Report:list.html.twig', array(
             'listCoursGroup' => $arrayCoursGroup,
-            ));    
+            ));
     }
 
     public function showAction($id)
@@ -43,6 +54,13 @@ class ReportController extends Controller
         if ($id <= 0)
         {
             return $this->listAction();
+        }
+        $notification = $this->notificationRepository->findOneByCours($id);
+
+        if (!empty($notification))
+        {
+            $notification->setSaw(true);
+            $this->entityManager->flush();
         }
         $i = 0;
         $cours = $this->getDoctrine()->getRepository('EmaRgementBundle:Cours')->find($id);

@@ -36,7 +36,13 @@ class Notification
     private $saw;
 
     /**
-     * @var \Cours
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=false)
+     */
+    private $date;
+
+     /** @var \Cours
      *
      * @ORM\ManyToOne(targetEntity="Cours")
      * @ORM\JoinColumns({
@@ -44,7 +50,6 @@ class Notification
      * })
      */
     private $cours;
-
 
     /**
      * Get id
@@ -103,7 +108,29 @@ class Notification
     }
 
     /**
-     * Set Cours
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set gate
+     *
+     * @param \DateTime $date
+     * @return Notification
+     */
+    public function setDate(\DateTime $date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+     /** Set Cours
      *
      * @param \Ema\RgementBundle\Entity\Cours $cours
      * @return Participation

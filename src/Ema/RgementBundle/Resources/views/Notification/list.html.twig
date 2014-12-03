@@ -1,0 +1,48 @@
+{% extends 'EmaRgementBundle::layout.html.twig' %}
+
+{% block css %}
+    <link href="{{ asset('bundles/emargement/css/views/Default/notificationPage.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header"> Vos notifications </h1>
+        </div>
+    </div>
+    <div class="row">
+        <ul>
+            {% for key in notifications|keys %}
+            <li>
+                <div class="paddingH paddingV uiBox bottomBorder" >
+                    <span class="fwb">{{key}}</span>
+                </div>
+                <ul>
+                {% for notification in notifications[key] %}
+                    {% if notification.saw == false %}
+                    <a href="{{ path('ema_rgement_ajax_mark_a_notification_saw') }}?notificationId={{notification.id}}"
+                            data-url="{{ path('ema_rgement_ajax_mark_a_notification_saw') }}?notificationId={{notification.id}}"
+                            class="uiSeenButton saw-notification-button" role="button"></a>
+                    {% endif %}
+                    <li class="paddingV newNotification ">
+                        {% if notification.cours == null %}
+                        <a href="#">
+                            {{ notification.content }}
+                        </a>
+                        {%else%}
+                        <a href="{{ path('ema_rgement_report_show') }}/{{notification.cours.id}}">
+                            Rapport du cours de <b> {{ notification.cours.libelle }} </b>  de {{ notification.cours.dateDebut | date('h:i') }} à {{ notification.cours.dateFin | date('h:i') }}
+                        </a>
+                        {%endif%}
+                    </li>
+                {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ asset('bundles/emargement/js/views/Notification/list.js') }}" type="text/javascript"></script>
+{% endblock %}
