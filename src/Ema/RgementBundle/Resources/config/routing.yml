@@ -51,8 +51,8 @@ ema_rgement_ajax_list_absence_to_justify_for_a_student:
     defaults: { _controller: EmaRgementBundle:Justify:ajaxListAbsencesToJustifyForAStudent }
 
 ema_rgement_justify_absence:
-    path:     /justify/absence
-    defaults: { _controller: EmaRgementBundle:Justify:justifyAbsence, students = null}
+    path:     /justify/absence/{studentId}/{absenceId}
+    defaults: { _controller: EmaRgementBundle:Justify:justifyAbsence, studentId = null, absenceId = null}
 
 ema_rgement_justify_delay:
     path:     /justify/delay

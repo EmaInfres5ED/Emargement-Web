@@ -21,7 +21,7 @@ class AbsenceRepository extends EntityRepository
     public function findAllForAStudent($studentId)
     {
         $query = $this->createQueryBuilder('a')
-            ->where('a.eleve = :studentId')
+            ->where('a.eleve = :studentId and a.motif is NULL')
             ->setParameter('studentId', $studentId)
             ->getQuery();
 

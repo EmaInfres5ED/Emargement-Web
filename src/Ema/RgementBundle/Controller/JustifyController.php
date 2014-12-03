@@ -15,11 +15,30 @@ class JustifyController extends Controller
         return $this->render('EmaRgementBundle:Justify:list.html.twig');
     }
 
-    public function justifyAbsenceAction()
+    public function justifyAbsenceAction($studentId = null, $absenceId = null)
     {
         $students = $this->getDoctrine()
             ->getRepository('EmaRgementBundle:Etudiant')
             ->findAll();
+
+        if($this->get('request')->getMethod() === 'POST') {
+            $studentId = $this->get('request')->get('student');
+            $absencesId = $this->get('request')->get('absenceId');
+            $motif = $this->get('request')->get('motif');
+
+            $em = $this->getDoctrine()->getEntityManager();
+            $absences = $em
+                ->getRepository('EmaRgementBundle:Absence')
+                ->findById($absencesId);
+
+            foreach ($absences as $absence) {
+                $absence->setMotif($motif);
+            }
+
+            $em->flush();
+            $this->get('request')->getSession()->getFlashBag()->add('notice', 'Justification(s) enregistrée(s).');
+            return $this->redirect($this->generateUrl('ema_rgement_justify_absence'));
+        }
 
         return $this->render('EmaRgementBundle:Justify:absence.html.twig', array(
             'students' =>  $students
@@ -30,6 +49,7 @@ class JustifyController extends Controller
     {
         return $this->render('EmaRgementBundle:Justify:delay.html.twig');
     }
+
 
     public function ajaxListAbsencesToJustifyAction()
     {

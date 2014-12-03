@@ -3,6 +3,8 @@ $(document).ready(function(){
         if ($(this).val() !== "") {
             var id = $(this).val();
 
+            console.log('test');
+
             $.ajax({
                 type: 'POST',
                 dataType: "json",
@@ -16,7 +18,7 @@ $(document).ready(function(){
                         var checkbox =
                             '<div class="checkbox">' +
                                 '<label>' +
-                                    '<input value="' + result[i].id + '" type="checkbox">' +
+                                    '<input name="absenceId[]" value="' + result[i].id + '" type="checkbox"/>' +
                                     'Absence du ' + result[i].startDate + ' au ' + result[i].endDate +
                                 '</label>' +
                             '</div>';
