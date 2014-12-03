@@ -1,6 +1,6 @@
 ema_rgement_homepage:
     path:     /
-    defaults: { _controller: EmaRgementBundle:Default:index }
+    defaults: { _controller: EmaRgementBundle:Report:list }
 
 ema_rgement_dashboard:
     path:       /dashboard
@@ -78,6 +78,10 @@ ema_rgement_tablette_first:
     path:     /tablette/first
     defaults: { _controller: EmaRgementBundle:Tablette:first }
 
+ema_rgement_tablette_set_data:
+    path:     /tablette/set/data
+    defaults: { _controller: EmaRgementBundle:Tablette:setDataCours }
+
 ema_rgement_tablette_login:
     path:     /tablette/login
     defaults: { _controller: EmaRgementBundle:Tablette:login }
@@ -106,6 +110,14 @@ ema_rgement_notification:
     path:     /notification
     defaults: { _controller: EmaRgementBundle:Default:notification }
 
+ema_rgement_ajax_get_notification:
+    path:     /notification/ajaxGetNotifications
+    defaults: { _controller: EmaRgementBundle:Notification:ajaxGetNotifications }
+    
+ema_rgement_ajax_mark_all_the_notification_saw:
+    path:     /notification/ajaxMarkAllTheNotificationsSaw
+    defaults: { _controller: EmaRgementBundle:Notification:ajaxMarkAllTheNotificationsSaw }
+    
 ema_rgement_report_list:
     path:     report/
     defaults: { _controller: EmaRgementBundle:Report:list }

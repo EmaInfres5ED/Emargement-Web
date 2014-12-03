@@ -62,7 +62,7 @@ class ExportController extends Controller
             {
                 $output['aaData'][] = array(
                     'firstName' => $report['student']->getPrenom(),
-                    'lastName' => $report['student']->getNom(),
+                    'lastName' => ucfirst(strtolower($report['student']->getNom())),
                     'absencesCount' => $report['absencesCount'],
                     'retardsCount' => $report['retardsCount'],
                     'actionUrl' => $this->generateUrl('ema_rgement_export',
@@ -109,7 +109,7 @@ class ExportController extends Controller
         /* @var $student \Ema\RgementBundle\Entity\Etudiant */
         $phpExcelObject->getActiveSheet()
             ->setCellValue('B1', $student->getId())
-            ->setCellValue('B2', $student->getNom())
+            ->setCellValue('B2', ucfirst(strtolower($student->getNom())))
             ->setCellValue('B3', $student->getPrenom())
             ->setCellValue('B4', $promotion->getLibelle())
             ->setCellValue('B5', $student->getEmail());
@@ -174,9 +174,15 @@ class ExportController extends Controller
             $phpExcelObject->getActiveSheet()->removeRow($rowNumber + 1, 1);
         }
 
-        $this->excelService->setProperties('EMA', 'EMA', 'Export_test');
+        $title = 'Absences_' .
+            ucfirst(strtolower($student->getNom())) . '_' .
+            $student->getPrenom() . '_' .
+            $from->format("d-m-Y") . '_' .
+            $to->format("d-m-Y");
 
-        return $this->excelService->export('Export_test');
+        $this->excelService->setProperties('EMA', 'EMA', $title);
+
+        return $this->excelService->export($title);
     }
 
 }

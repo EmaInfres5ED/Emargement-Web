@@ -2,8 +2,6 @@
 
 namespace Ema\RgementBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Warn
  */
@@ -13,10 +11,6 @@ class Warn
     const TYPE_RETARD = "retard";
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -48,23 +42,18 @@ class Warn
     /**
      * @var \DateTime
      */
-    private $absenceHourDebut;
-
-    /**
-     * @var \DateTime
-     */
     private $absenceDateFin;
-
-    /**
-     * @var \DateTime
-     */
-    private $absenceHourFin;
 
     /**
      * @var \string
      */
     private $type;
 
+    public function __construct()
+    {
+        $this->absenceDateDebut = new \DateTime();
+        $this->absenceDateFin = new \DateTime();
+    }
 
     /**
      * Get id
