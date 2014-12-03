@@ -13,12 +13,12 @@
             {% for coursGroup in listCoursGroup %}
                 <li>
                     <div class="paddingH paddingV uiBox bottomBorder" >  
-                        <span class="fwb"> {{ coursGroup.dateCours | date('d-m-Y h:i') }} </span>
+                        <span class="fwb"> {{ coursGroup.dateCours | date('d-m-Y') }} </span>
                     </div>
                     <ul>
                         {% for cours in coursGroup.getCours %}
-                            <a href="{{ path('ema_rgement_notification') }}">
-                                <li class="paddingV"> Rapport du cours de <b> {{ cours.libelle }} </b> disponible </li>
+                            <a href="{{ path('ema_rgement_report_show', {'id': cours.id }) }}">
+                                <li class="paddingV"> Rapport du cours de <b> {{ cours.libelle }} </b>  de {{ cours.dateDebut | date('h:i') }} à {{ cours.dateFin | date('h:i') }} </li>
                             </a>
                         {% endfor %}
                     </ul>

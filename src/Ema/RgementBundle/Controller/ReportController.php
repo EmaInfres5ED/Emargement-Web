@@ -19,7 +19,7 @@ class ReportController extends Controller
         foreach ($repoCours->findAllOrderByDate() as $c) {
             $dateGroup = $coursGroup->getDateCours();
             $dateCours = $c->getDateDebut();
-            if ($dateGroup == $dateCours) 
+            if ($dateGroup <> NULL && date_format($dateGroup, 'Y-m-d') == date_format($dateCours,'Y-m-d')) 
             {
                 $coursGroup->addCours($c);
             } else {
@@ -33,7 +33,8 @@ class ReportController extends Controller
         }
         return $this->render('EmaRgementBundle:Report:list.html.twig', array(
             'listCoursGroup' => $arrayCoursGroup,
-            ));    }
+            ));    
+    }
 
     public function showAction($id)
     {
