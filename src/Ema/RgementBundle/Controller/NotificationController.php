@@ -60,6 +60,33 @@ class NotificationController extends Controller
         return $response;
     }
 
+    public function ajaxMarkANotificationSawAction()
+    {
+        $response = new JsonResponse();
+
+        $notificationId = $this->get('request')->get('notificationId');
+        $notification = $this->notificationRepository->findOneById($notificationId);
+
+        if (!empty($notification))
+        {
+            $notification->setSaw(true);
+            $this->entityManager->flush();
+            $response->setData(array(
+                'type' => Message::TYPE_SUCCESS,
+                'message' => 'Mise à jour de la notification avec succès.'
+            ));
+        }
+        else
+        {
+            $response->setData(array(
+                'type' => Message::TYPE_ERROR,
+                'message' => 'Erreur lors de la mise à jour de la notification.'
+            ));
+        }
+
+        return $response;
+    }
+
     public function ajaxMarkAllTheNotificationsSawAction()
     {
         $response = new JsonResponse();

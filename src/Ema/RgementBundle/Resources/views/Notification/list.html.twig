@@ -20,7 +20,9 @@
                 <ul>
                 {% for notification in notifications[key] %}
                     {% if notification.saw == false %}
-                    <a href="#" class="uiSeenButton" role="button"></a>
+                    <a href="{{ path('ema_rgement_ajax_mark_a_notification_saw') }}?notificationId={{notification.id}}"
+                            data-url="{{ path('ema_rgement_ajax_mark_a_notification_saw') }}?notificationId={{notification.id}}"
+                            class="uiSeenButton saw-notification-button" role="button"></a>
                     {% endif %}
                     <li class="paddingV newNotification ">
                         <a href="{{ path('ema_rgement_report_show') }}/{{notification.id}}">
@@ -33,4 +35,8 @@
             {% endfor %}
         </ul>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ asset('bundles/emargement/js/views/Notification/list.js') }}" type="text/javascript"></script>
 {% endblock %}

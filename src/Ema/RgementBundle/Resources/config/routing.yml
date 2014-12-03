@@ -110,6 +110,10 @@ ema_rgement_ajax_mark_all_the_notification_saw:
     path:     /notification/ajaxMarkAllTheNotificationsSaw
     defaults: { _controller: EmaRgementBundle:Notification:ajaxMarkAllTheNotificationsSaw }
     
+ema_rgement_ajax_mark_a_notification_saw:
+    path:     /notification/ajaxMarkANotificationSaw
+    defaults: { _controller: EmaRgementBundle:Notification:ajaxMarkANotificationSaw }
+    
 ema_rgement_report_list:
     path:     report/
     defaults: { _controller: EmaRgementBundle:Report:list }
