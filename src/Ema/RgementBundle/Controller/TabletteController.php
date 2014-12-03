@@ -162,6 +162,31 @@ class TabletteController extends Controller
                             $em = $this->getDoctrine()->getManager();
                             $em->persist($participationAbsence);
                         }
+						$query = $em->createQuery(
+                                                'SELECT a FROM EmaRgementBundle:Absence a
+                                                WHERE a.dateDebut <= :dateDebut AND a.dateFin >= :dateFin AND a.eleve = :etudiant'
+                                               )->setParameters(array(
+											                      'etudiant' => $etudiant,
+																  'dateDebut' => $dateDebut,
+																  'dateFin' => $dateFin
+																  )
+																);
+                        try {
+                            $abscenceEtudiant = $query->getSingleResult();
+                        }catch (\Doctrine\Orm\NoResultException $e) {
+                            $absence = new absence();
+                            $absence->setDateDebut(	$dateDebut);
+                            $absence->setDateFin($dateFin);
+                            $absence->setEleve($etudiant);
+                            $em = $this->getDoctrine()->getManager();
+                            $em->persist($absence);
+                             
+                            $participationAbsence = new ParticipationAbsence();
+                            $participationAbsence->setAbsence($absence);
+                            $participationAbsence->setParticipation($participation);
+                            $em = $this->getDoctrine()->getManager();
+                            $em->persist($participationAbsence);
+                        }
                     }
                 }
                         
