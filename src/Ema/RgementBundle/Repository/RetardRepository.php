@@ -19,4 +19,25 @@ class RetardRepository extends EntityRepository
         return $query->getResult();
     }
 
+    public function findAllBetweenDatesForStudents($studentsId, $fromDate, $toDate)
+    {
+        $result = array();
+        $query = $this->createQueryBuilder('r')
+            ->select('IDENTITY(r.etudiant) as studentId, count(r.id) as retardCount')
+            ->where('r.dateprevu >= :fromDate and r.dateprevu <= :toDate and r.etudiant in (:studentsId)')
+            ->setParameter('studentsId', $studentsId)
+            ->setParameter('fromDate', $fromDate)
+            ->setParameter('toDate', $toDate)
+            ->groupBy('r.etudiant')
+            ->orderBy('r.etudiant')
+            ->getQuery();
+
+        foreach ($query->getScalarResult() as $query)
+        {
+            $result[$query['studentId']] = $query['retardCount'];
+        }
+
+        return $result;
+    }
+
 }

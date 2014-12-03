@@ -18,4 +18,25 @@ class AbsenceRepository extends EntityRepository
         return $query->getResult();
     }
 
+    public function findAllBetweenDatesForStudents($studentsId, $fromDate, $toDate)
+    {
+        $result = array();
+        $query = $this->createQueryBuilder('a')
+            ->select('IDENTITY(a.eleve) as studentId, count(a.id) as absenceCount')
+            ->where('a.dateDebut >= :fromDate and a.dateFin <= :toDate and a.eleve in (:studentsId)')
+            ->setParameter('studentsId', $studentsId)
+            ->setParameter('fromDate', $fromDate)
+            ->setParameter('toDate', $toDate)
+            ->groupBy('a.eleve')
+            ->orderBy('a.eleve')
+            ->getQuery();
+
+        foreach ($query->getScalarResult() as $query)
+        {
+            $result[$query['studentId']] = $query['absenceCount'];
+        }
+
+        return $result;
+    }
+
 }
