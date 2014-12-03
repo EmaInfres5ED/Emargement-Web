@@ -28,7 +28,7 @@ $(document).ready(function(){
             {"mData": "lastName"},
             {"mData": "absencesCount"},
             {"mData": "retardsCount"},
-            {"mData": null}
+            {"mData": "actionUrl"}
         ],
         "bServerSide": false,
         "sPaginationType": "full_numbers",

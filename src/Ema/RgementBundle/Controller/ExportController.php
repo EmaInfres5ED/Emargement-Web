@@ -40,9 +40,9 @@ class ExportController extends Controller
 
     public function ajaxListExportsAction()
     {
-        $from = $this->get('request')->request->get('from');
-        $to = $this->get('request')->request->get('to');
-        $promoId = intval($this->get('request')->request->get('promoId'));
+        $from = $this->get('request')->get('from');
+        $to = $this->get('request')->get('to');
+        $promoId = intval($this->get('request')->get('promoId'));
         $error = false;
 
         if (empty($from) || empty($to) || empty($promoId) || $promoId === 0)
@@ -56,7 +56,18 @@ class ExportController extends Controller
         );
         if (!$error)
         {
-
+            $reports = $this->reportService->getAllReports(new \DateTime(str_replace('/', '-', $from)),
+                new \DateTime(str_replace('/', '-', $to)), $promoId);
+            foreach ($reports as $report)
+            {
+                $output['aaData'][] = array(
+                    'firstName' => $report['student']->getPrenom(),
+                    'lastName' => $report['student']->getNom(),
+                    'absencesCount' => $report['absencesCount'],
+                    'retardsCount' => $report['retardsCount'],
+                    'actionUrl' => null
+                );
+            }
         }
 
 
