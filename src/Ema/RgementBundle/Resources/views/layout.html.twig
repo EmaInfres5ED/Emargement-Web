@@ -41,27 +41,19 @@
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge badge-info"> 1 </span><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="badge badge-info"></span><i class="fa fa-bell"></i> <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu alert-dropdown"
+                        data-url="{{ path('ema_rgement_ajax_get_notification') }}"
+                        data-url-show="{{ path('ema_rgement_report_show') }}/">
                         <div class="notificationHeader">
                              <span style="float:left;"> Notifications </span>
                             <a href="#" class="notificationHeaderLink">Marquer comme lus</a>
                         </div>
-                        {% if app.session.flashbag.get('notification') == false %}
-                        <li>
-                            <a href="#">Aucune notification</a>
-                        </li>
-                        <li class="divider"></li>
-                        {% endif %}
-                        {% for notification in app.session.flashbag.get('notification') %}
-                        <li>
-                            <a href="{{ path('ema_rgement_report_show') }}">{{notification}}</a>
-                        </li>
-                        <li class="divider"></li>
-                        {% endfor %}
                         <li class="dividerFinal"></li>
                         <li>
-                            <a href="{{ path('ema_rgement_report_list') }}">View All</a>
+                            <a href="{{ path('ema_rgement_notification') }}">View All</a>
                         </li>
                     </ul>
                 </li>
@@ -180,6 +172,7 @@
     <script src="{{ asset('bundles/emargement/js/bootstrap-datepicker.js') }}"></script>
     <script src="{{ asset('bundles/emargement/js/locales/bootstrap-datepicker.fr.js') }}" charset="UTF-8"></script>
     <script src="{{ asset('bundles/emargement/js/bootstrap-combobox.js') }}"></script>
+    <script src="{{ asset('bundles/emargement/js/layout.js') }}"></script>
     {% block scripts %}
     {% endblock %}
 </body>

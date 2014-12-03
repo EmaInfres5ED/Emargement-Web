@@ -102,6 +102,10 @@ ema_rgement_notification:
     path:     /notification
     defaults: { _controller: EmaRgementBundle:Default:notification }
 
+ema_rgement_ajax_get_notification:
+    path:     /notification/ajaxGetNotifications
+    defaults: { _controller: EmaRgementBundle:Notification:ajaxGetNotifications }
+
 ema_rgement_report_list:
     path:     report/
     defaults: { _controller: EmaRgementBundle:Report:list }
