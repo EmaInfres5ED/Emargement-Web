@@ -65,7 +65,14 @@ class ExportController extends Controller
                     'lastName' => $report['student']->getNom(),
                     'absencesCount' => $report['absencesCount'],
                     'retardsCount' => $report['retardsCount'],
-                    'actionUrl' => null
+                    'actionUrl' => $this->generateUrl('ema_rgement_export',
+                        array(
+                        'studentId' => $report['student']->getId(),
+                        'promoId' => $promoId,
+                        'dateFrom' => str_replace('/', '-', $from),
+                        'dateTo' => str_replace('/', '-', $to)
+                        )
+                    )
                 );
             }
         }

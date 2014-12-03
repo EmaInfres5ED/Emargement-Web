@@ -43,6 +43,14 @@ $(document).ready(function(){
             );
         },
         "fnCreatedRow": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+
+            $('td:eq(4)', nRow).empty().html($('<input>', {
+                class: 'btn btn-default form-control export-btn',
+                type: 'button',
+                value : 'Générer un export'
+            }).click(function() {
+                window.open(aData.actionUrl);
+            }));
             return nRow;
         }
     });
