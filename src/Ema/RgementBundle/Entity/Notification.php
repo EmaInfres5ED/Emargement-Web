@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Notification
  *
  * @ORM\Table(name="notification")
- * @ORM\Entity(repositoryClass="Ema\RgementBundle\Entity\NotificationRepository")
+ * @ORM\Entity(repositoryClass="Ema\RgementBundle\Repository\NotificationRepository")
  */
 class Notification
 {
@@ -41,6 +41,15 @@ class Notification
      * @ORM\Column(name="date", type="datetime", nullable=false)
      */
     private $date;
+
+     /** @var \Cours
+     *
+     * @ORM\ManyToOne(targetEntity="Cours")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_cours", referencedColumnName="id")
+     * })
+     */
+    private $cours;
 
     /**
      * Get id
@@ -121,4 +130,25 @@ class Notification
         return $this;
     }
 
+     /** Set Cours
+     *
+     * @param \Ema\RgementBundle\Entity\Cours $cours
+     * @return Participation
+     */
+    public function setCours(\Ema\RgementBundle\Entity\Cours $cours = null)
+    {
+        $this->cours = $cours;
+
+        return $this;
+    }
+
+    /**
+     * Get Cours
+     *
+     * @return \Ema\RgementBundle\Entity\Cours
+     */
+    public function getCours()
+    {
+        return $this->cours;
+    }
 }

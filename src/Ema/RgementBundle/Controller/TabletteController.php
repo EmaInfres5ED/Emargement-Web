@@ -17,6 +17,8 @@ use Ema\RgementBundle\Entity\Participation;
 use Ema\RgementBundle\Entity\ParticipationAbsence;
 use Ema\RgementBundle\Entity\Absence;
 use Ema\RgementBundle\Entity\Retard;
+use Ema\RgementBundle\Entity\Notification;
+
 use \DateTime;
 use Ema\RgementBundle\Controller\CronController;
 
@@ -207,6 +209,17 @@ class TabletteController extends Controller
                 }
                         
                 $em->flush();
+                
+                //Notifications
+                $contentNotification = "Rapport du cours de ".$cours->getLibelle()." du ".$cours->getDateDebut()->format('d/m/Y')." disponible";
+
+                $notification = new Notification();
+                $notification->setCours($cours);
+                $notification->setContent($contentNotification);
+                $notification->setSaw(false);
+                $em->persist($notification);
+                $em->flush();
+                
                 return true;
             }
             else
