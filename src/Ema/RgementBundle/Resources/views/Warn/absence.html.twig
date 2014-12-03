@@ -12,53 +12,36 @@
                 </div>-->
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <form>
+                    {{ form_start(form) }}
                         <div class="form-group">
                             <label for="student">Etudiant</label>
-                            <input id="student" class="form-control" list="students">
-                            <datalist id="students">
-                              <option value="GODINEZ Pablo" />
-                              <option value="HALLER Florian" />
-                              <option value="SANCHEZ Yohan" />
-                              <option value="SEITZ Valentin" />
-                              <option value="SIMON Matthieu" />
-                            </datalist> 
+                            {{ form_widget(form.nomEleve) }}
                             <p class="help-block">Selectionner l'étudiant qui est en retard</p>
                         </div>
                         <div class="row" >
                             <div class="form-group col-lg-6">
                                 <label for="start_date">Date de début</label>
-                                <input id="start_date" class="form-control" type="date">
+                                {{ form_widget(form.absenceDateDebut) }}
                                 <p class="help-block">Date de début de l'absence</p>
-                            </div>
-                            <div class="form-group col-lg-6">
-                                <label for="start_time">Heure de début</label>
-                                <input id="start_time" class="form-control" type="time">
-                                <p class="help-block">Heure de début de l'absence</p>
                             </div>
                         </div>
                         <div class="row" >
                             <div class="form-group col-lg-6">
                                 <label for="end_date">Date de fin</label>
-                                <input id="end_date" class="form-control" type="date">
+                                {{ form_widget(form.absenceDateFin) }}
                                 <p class="help-block">Date de fin de l'absence</p>
-                            </div>
-                            <div class="form-group col-lg-6">
-                                <label for="end_time">Heure de fin</label>
-                                <input id="end_time" class="form-control" type="time">
-                                <p class="help-block">Heure de fin de l'absence</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="ground" >Motif</label>
-                            <textarea id="ground" class="form-control" ></textarea>
+                            {{ form_widget(form.motif) }}
                             <p class="help-block">Raison pour laquelle l'étudiant était absent</p>
                         </div>
                         <div class="btn-group pull-right">
                             <button type="submit" class="btn btn-success"><i class="fa fa-fw fa-save"></i>Enregistrer</button>
                             <button type="reset" class="btn btn-danger"><i class="fa fa-fw fa-undo"></i>Annuler</button>
                         </div>
-                    </form>
+                    {{ form_end(form) }}
                 </div>
             </div>
         </div>
