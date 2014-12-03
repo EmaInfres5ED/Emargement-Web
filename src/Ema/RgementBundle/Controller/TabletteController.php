@@ -8,6 +8,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Ema\RgementBundle\Entity\Promotion;
+use Ema\RgementBundle\Entity\Cours;
+use Ema\RgementBundle\Entity\Presence;
+use Ema\RgementBundle\Entity\Participation;
+use Ema\RgementBundle\Entity\ParticipationAbsence;
+use Ema\RgementBundle\Entity\Absence;
+use Ema\RgementBundle\Entity\Retard;
+use \DateTime;
 use Ema\RgementBundle\Controller\CronController;
 
 class TabletteController extends Controller
@@ -75,6 +82,116 @@ class TabletteController extends Controller
         }
 
          return new JsonResponse(array());     
+    }
+
+    public function setDataCoursAction(Request $request)
+    {
+    
+    if ($request->getMethod() == 'POST') 
+        {
+          $json = $request->request->get('json');
+          if(isset($json) && !empty($json)){
+          try{
+              $this->setDataCours($json);
+              return true;
+          } catch (Exception $e) {
+              return false;
+          }
+        
+          }else{
+             return false;
+          }
+       }else{
+             return false;
+       }
+    }
+        
+        
+    public function setDataCours($data)
+    {
+                    
+          $em = $this->getDoctrine()->getManager();
+          $repoEtudiant = $em->getRepository('EmaRgementBundle:Etudiant');
+          $repoCours = $em->getRepository('EmaRgementBundle:Cours');
+         
+          $json = json_decode($data,true);
+          
+          $professeur = $json["profcours"];
+          $salle = $json["sallecours"];
+          $libelle = $json["libellecours"];
+          $dateDebut = new DateTime($json["datedebutcours"]);
+          $dateFin = new DateTime($json["datefincours"]);
+          $idCybema = $json["idcybemacours"];;
+          $eleves = $json['eleves'];
+          
+          $cours = new Cours();
+          $cours->setProfesseur($professeur);
+          $cours->setLibelle($libelle);
+          $cours->setDateDebut($dateDebut);
+          $cours->setDateFin($dateFin);
+          $cours->setIdCybema($idCybema);
+          $cours->setSalle($salle);
+          
+          $em->persist($cours);
+          
+          foreach($eleves as $eleve){
+         
+              $etudiant = $repoEtudiant->findOneById($eleve['ideleve']);
+              $participation = new participation();
+              $participation->setEtudiant($etudiant);
+              $participation->setCours($cours);
+              $em = $this->getDoctrine()->getManager();
+              $em->persist($participation);
+              
+              if($eleve['horodatage'] != "false"){
+                  $dateHorodatage = new DateTime($eleve['horodatage']);
+                  $presence = new presence();
+                  $presence->setHorodatage(new DateTime($eleve['horodatage']));
+                  $presence->setSignature($eleve['signature']);
+                  $presence->setParticipation($participation);
+                  $em = $this->getDoctrine()->getManager();
+                  $em->persist($presence);
+                  echo $dateHorodatage->getTimestamp() - $dateDebut->getTimestamp();
+                  if(($dateHorodatage->getTimestamp() - $dateDebut->getTimestamp()) > (15*60)){
+                    $retard = new retard();
+                    $retard->setParticipation($participation);
+                    $retard->setDureeRetard(($dateHorodatage->getTimestamp() - $dateDebut->getTimestamp())/60);
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($retard);
+                  }
+              }else{
+        
+              
+                  $query = $em->createQuery(
+                                            'SELECT a FROM EmaRgementBundle:Absence a
+                                            WHERE ((SELECT MAX(c.dateFin) FROM EmaRgementBundle:Cours c) = a.dateFin) AND (a.eleve = :etudiant)'
+                                           )->setParameter('etudiant',$etudiant);
+                 try {
+                   $abscenceEtudiant = $query->getSingleResult();
+                   $abscenceEtudiant->setDateFin($dateFin);
+                   $participationAbsence = new ParticipationAbsence();
+                   $participationAbsence->setAbsence($abscenceEtudiant);
+                   $participationAbsence->setParticipation($participation);
+                   $em = $this->getDoctrine()->getManager();
+                   $em->persist($participationAbsence);
+                 }catch (\Doctrine\Orm\NoResultException $e) {
+                     $absence = new absence();
+                     $absence->setDateDebut(	$dateDebut);
+                     $absence->setDateFin($dateFin);
+                     $absence->setEleve($etudiant);
+                     $em = $this->getDoctrine()->getManager();
+                     $em->persist($absence);
+                     
+                     $participationAbsence = new ParticipationAbsence();
+                     $participationAbsence->setAbsence($absence);
+                     $participationAbsence->setParticipation($participation);
+                     $em = $this->getDoctrine()->getManager();
+                     $em->persist($participationAbsence);
+                 }
+              }
+          }
+                    
+          $em->flush();
     }
 
     /**
