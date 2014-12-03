@@ -29,7 +29,7 @@ class NotificationController extends Controller
     public function listAction()
     {
         $notificationByDays = array();
-        foreach ($this->notificationRepository->findAll() as $notification)
+        foreach ($this->notificationRepository->findBy(array(), array('date' => 'ASC')) as $notification)
         {
             /* @var $notification Ema\RgementBundle\Entity\Notification */
             $notificationByDays[$notification->getDate()->format('d/m/Y')][] = $notification;
@@ -46,7 +46,7 @@ class NotificationController extends Controller
 
         $result = array();
 
-        foreach ($this->notificationRepository->findBySaw(false) as $notification)
+        foreach ($this->notificationRepository->findBy(array('saw' => false), array('date' => 'DESC')) as $notification)
         {
             /* @var $notification Ema\RgementBundle\Entity\Notification */
             $courseId = 0;
