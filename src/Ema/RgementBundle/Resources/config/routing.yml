@@ -40,15 +40,23 @@ ema_rgement_warn_delay:
 
 ema_rgement_justify_list:
     path:     /justify/list
-    defaults: { _controller: EmaRgementBundle:Default:justifyList }
+    defaults: { _controller: EmaRgementBundle:Justify:justifyList }
+
+ema_rgement_ajax_list_absence_to_justify:
+    path:     /justify/ajaxListAbsencesToJustify
+    defaults: { _controller: EmaRgementBundle:Justify:ajaxListAbsencesToJustify }
+
+ema_rgement_ajax_list_absence_to_justify_for_a_student:
+    path:     /justify/ajaxListAbsencesToJustifyForAStudent
+    defaults: { _controller: EmaRgementBundle:Justify:ajaxListAbsencesToJustifyForAStudent }
 
 ema_rgement_justify_absence:
-    path:     /justify/absence
-    defaults: { _controller: EmaRgementBundle:Default:justifyAbsence }
+    path:     /justify/absence/{studentId}/{absenceId}
+    defaults: { _controller: EmaRgementBundle:Justify:justifyAbsence, studentId null, absenceId null}
 
 ema_rgement_justify_delay:
     path:     /justify/delay
-    defaults: { _controller: EmaRgementBundle:Default:justifyDelay }
+    defaults: { _controller: EmaRgementBundle:Justify:justifyDelay }
 
 ema_rgement_admin_panel_user_list:
     path:     /admin/user/list
@@ -89,7 +97,7 @@ ema_rgement_cron_update_all:
 ema_rgement_export_list:
     path:     /export/list
     defaults: { _controller: EmaRgementBundle:Export:list }
-    
+
 ema_rgement_ajax_list_exports:
     path:     /export/ajaxListExports
     defaults: { _controller: EmaRgementBundle:Export:ajaxListExports }
@@ -105,11 +113,11 @@ ema_rgement_notification:
 ema_rgement_ajax_get_notification:
     path:     /notification/ajaxGetNotifications
     defaults: { _controller: EmaRgementBundle:Notification:ajaxGetNotifications }
-    
+
 ema_rgement_ajax_mark_all_the_notification_saw:
     path:     /notification/ajaxMarkAllTheNotificationsSaw
     defaults: { _controller: EmaRgementBundle:Notification:ajaxMarkAllTheNotificationsSaw }
-    
+
 ema_rgement_report_list:
     path:     report/
     defaults: { _controller: EmaRgementBundle:Report:list }

@@ -18,6 +18,16 @@ class AbsenceRepository extends EntityRepository
         return $query->getResult();
     }
 
+    public function findAllForAStudent($studentId)
+    {
+        $query = $this->createQueryBuilder('a')
+            ->where('a.eleve = :studentId and a.motif is NULL')
+            ->setParameter('studentId', $studentId)
+            ->getQuery();
+
+        return $query->getResult();
+    }
+
     public function findAllBetweenDatesForStudents($studentsId, $fromDate, $toDate)
     {
         $result = array();
@@ -38,5 +48,4 @@ class AbsenceRepository extends EntityRepository
 
         return $result;
     }
-
 }
