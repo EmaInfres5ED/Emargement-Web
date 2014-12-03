@@ -3,5 +3,31 @@
 {% block title %}Rapports{% endblock %}
 
 {% block body %}
-    <h1>Rapports de cours</h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header"> Rapports de cours </h1>
+        </div>
+    </div>
+    <div class="row">
+        <ul>
+            {% for coursGroup in listCoursGroup %}
+                <li>
+                    <div class="paddingH paddingV uiBox bottomBorder" >  
+                        <span class="fwb"> {{ coursGroup.dateCours | date('d-m-Y h:i') }} </span>
+                    </div>
+                    <ul>
+                        {% for cours in coursGroup.getCours %}
+                            <a href="{{ path('ema_rgement_notification') }}">
+                                <li class="paddingV"> Rapport du cours de <b> {{ cours.libelle }} </b> disponible </li>
+                            </a>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% block css %}
+    <link href="{{ asset('bundles/emargement/css/views/Default/notificationPage.css') }}" rel="stylesheet" type="text/css">  
 {% endblock %}
