@@ -48,12 +48,16 @@
                         data-url="{{ path('ema_rgement_ajax_get_notification') }}"
                         data-url-show="{{ path('ema_rgement_report_show') }}/">
                         <div class="notificationHeader">
-                             <span style="float:left;"> Notifications </span>
-                            <a href="#" class="notificationHeaderLink">Marquer comme lus</a>
+                            <span style="float:left;"> Notifications </span>
+                            <a href="{{ path('ema_rgement_ajax_mark_all_the_notification_saw') }}"
+                                    data-url="{{ path('ema_rgement_ajax_mark_all_the_notification_saw') }}"
+                                    class="notificationHeaderLink">
+                                Marquer comme lus
+                            </a>
                         </div>
                         <li class="dividerFinal"></li>
                         <li>
-                            <a href="{{ path('ema_rgement_notification') }}">View All</a>
+                            <a href="{{ path('ema_rgement_notification') }}">Voir tout</a>
                         </li>
                     </ul>
                 </li>
