@@ -23,7 +23,7 @@ class JustifyController extends Controller
 
         if($this->get('request')->getMethod() === 'POST') {
             $studentId = $this->get('request')->get('student');
-            $absencesId = $this->get('request')->get('absenceId');
+            $absencesId = $_POST['absenceId'];
             $motif = $this->get('request')->get('motif');
 
             $em = $this->getDoctrine()->getEntityManager();
@@ -31,13 +31,20 @@ class JustifyController extends Controller
                 ->getRepository('EmaRgementBundle:Absence')
                 ->findById($absencesId);
 
-            foreach ($absences as $absence) {
-                $absence->setMotif($motif);
+            if (count($absences) ===0 ) {
+                $this->get('request')->getSession()->getFlashBag()->add('error', 'Probleme');
+            } else {
+                foreach ($absences as $absence) {
+                    $absence->setMotif($motif);
+                }
+
+                $em->flush();
+                $this->get('request')->getSession()->getFlashBag()->add('notice', 'Justification(s) enregistrée(s).');
+
+
+                return $this->redirect($this->generateUrl('ema_rgement_justify_absence'));
             }
 
-            $em->flush();
-            $this->get('request')->getSession()->getFlashBag()->add('notice', 'Justification(s) enregistrée(s).');
-            return $this->redirect($this->generateUrl('ema_rgement_justify_absence'));
         }
 
         return $this->render('EmaRgementBundle:Justify:absence.html.twig', array(
