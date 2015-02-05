@@ -13,6 +13,8 @@ $(document).ready(function(){
                     $(that).remove();
                     var bagdeNumber = $('.badge.badge-info').html()*1 - 1;
                     $('.badge.badge-info').empty().append(bagdeNumber);
+                    $('.notification-item.notification-'+json.id).next('.divider').remove();
+                    $('.notification-item.notification-'+json.id).remove();
                 } else {
                     $(".flash-message")
                         .empty()
