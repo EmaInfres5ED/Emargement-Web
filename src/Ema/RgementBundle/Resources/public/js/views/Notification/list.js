@@ -11,6 +11,8 @@ $(document).ready(function(){
                         .empty()
                         .append("<div class=\"alert alert-success\"><em>Succès</em>: " + json.message + "</div>");
                     $(that).remove();
+                    var bagdeNumber = $('.badge.badge-info').html()*1 - 1;
+                    $('.badge.badge-info').empty().append(bagdeNumber);
                 } else {
                     $(".flash-message")
                         .empty()
