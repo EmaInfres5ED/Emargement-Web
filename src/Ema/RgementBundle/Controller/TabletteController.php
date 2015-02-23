@@ -230,6 +230,7 @@ class TabletteController extends Controller
                 $notification->setCours($cours);
                 $notification->setContent($contentNotification);
                 $notification->setSaw(false);
+                $notification->setDate(new DateTime());
                 $em->persist($notification);
                 $em->flush();
                 
