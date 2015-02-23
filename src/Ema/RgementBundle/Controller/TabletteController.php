@@ -111,6 +111,7 @@ class TabletteController extends Controller
                 $repoCours = $em->getRepository('EmaRgementBundle:Cours');
              
                 $json = json_decode($data,true);
+                $json = $json[0];
                 
                 $professeur = $json["profcours"];
                 $salle = $json["sallecours"];
@@ -134,7 +135,7 @@ class TabletteController extends Controller
                 $em->persist($cours);
               
                 foreach($eleves as $eleve){
-             
+                    
                     $etudiant = $repoEtudiant->findOneById($eleve['ideleve']);
                     $participation = new participation();
                     $participation->setEtudiant($etudiant);
@@ -160,59 +161,62 @@ class TabletteController extends Controller
                         }
                     }else{
             
-                  
+                        //Prévu l'absence d'ajourd'hui
                         $query = $em->createQuery(
+                            'SELECT a FROM EmaRgementBundle:Absence a
+                            WHERE a.dateDebut <= :dateDebut AND a.dateFin >= :dateFin AND a.eleve = :etudiant'
+                           )->setParameters(array(
+                                              'etudiant' => $etudiant,
+                                              'dateDebut' => $dateDebut,
+                                              'dateFin' => $dateFin
+                                              )
+                                            );
+                                            
+                        //Oui : absence prévue
+                        try {
+                            $abscenceEtudiant = $query->getSingleResult();
+                            $participationAbsence = new ParticipationAbsence();
+                            $participationAbsence->setAbsence($abscenceEtudiant);
+                            $participationAbsence->setParticipation($participation); 
+                            $em = $this->getDoctrine()->getManager();
+                            $em->persist($participationAbsence); 
+                            
+                            
+                        //Non : absence non prévue
+                        }catch (\Doctrine\Orm\NoResultException $e) {
+                        
+                            //Est absent hier ?
+                            $query = $em->createQuery(
                                                 'SELECT a FROM EmaRgementBundle:Absence a
                                                 WHERE ((SELECT MAX(c.dateFin) FROM EmaRgementBundle:Cours c) = a.dateFin) AND (a.eleve = :etudiant)'
                                                )->setParameter('etudiant',$etudiant);
-                        try {
-                            $abscenceEtudiant = $query->getSingleResult();
-                            $abscenceEtudiant->setDateFin($dateFin);
-                            $participationAbsence = new ParticipationAbsence();
-                            $participationAbsence->setAbsence($abscenceEtudiant);
-                            $participationAbsence->setParticipation($participation);
-                            $em = $this->getDoctrine()->getManager();
-                            $em->persist($participationAbsence);
-                        }catch (\Doctrine\Orm\NoResultException $e) {
-                            $absence = new absence();
-                            $absence->setDateDebut(	$dateDebut);
-                            $absence->setDateFin($dateFin);
-                            $absence->setEleve($etudiant);
-                            $em = $this->getDoctrine()->getManager();
-                            $em->persist($absence);
-                            $mailService = $this->get('mail_service');
-                            $mailService->send('emargement@mines-ales.org', $etudiant->getEmail(), 'Notification absence EMA',$content);
-                            $participationAbsence = new ParticipationAbsence();
-                            $participationAbsence->setAbsence($absence);
-                            $participationAbsence->setParticipation($participation);
-                            $em = $this->getDoctrine()->getManager();
-                            $em->persist($participationAbsence);
-                        }
-						$query = $em->createQuery(
-                                                'SELECT a FROM EmaRgementBundle:Absence a
-                                                WHERE a.dateDebut <= :dateDebut AND a.dateFin >= :dateFin AND a.eleve = :etudiant'
-                                               )->setParameters(array(
-											                      'etudiant' => $etudiant,
-																  'dateDebut' => $dateDebut,
-																  'dateFin' => $dateFin
-																  )
-																);
-                        try {
-                            $abscenceEtudiant = $query->getSingleResult();
-                        }catch (\Doctrine\Orm\NoResultException $e) {
-                            $absence = new absence();
-                            $absence->setDateDebut(	$dateDebut);
-                            $absence->setDateFin($dateFin);
-                            $absence->setEleve($etudiant);
-                            $em = $this->getDoctrine()->getManager();
-                            $em->persist($absence);
-                            $mailService = $this->get('mail_service');
-                            $mailService->send('emargement@mines-ales.org', $etudiant->getEmail(), 'Notification absence EMA',$content);
-                            $participationAbsence = new ParticipationAbsence();
-                            $participationAbsence->setAbsence($absence);
-                            $participationAbsence->setParticipation($participation);
-                            $em = $this->getDoctrine()->getManager();
-                            $em->persist($participationAbsence);
+                            //Oui : absence non prévue / absent hier
+                            try {
+                                $abscenceEtudiant = $query->getSingleResult();
+                                $abscenceEtudiant->setDateFin($dateFin);
+                                $participationAbsence = new ParticipationAbsence();
+                                $participationAbsence->setAbsence($abscenceEtudiant);
+                                $participationAbsence->setParticipation($participation);
+                                $em = $this->getDoctrine()->getManager();
+                                $em->persist($participationAbsence);
+                            //Non : absence non prévue / présent hier
+                            }catch (\Doctrine\Orm\NoResultException $e) {
+               
+                                $absence = new absence();
+                                $absence->setDateDebut($dateDebut);
+                                $absence->setDateFin($dateFin);
+                                $absence->setEleve($etudiant);
+                                $em = $this->getDoctrine()->getManager();
+                                $em->persist($absence);
+                                $mailService = $this->get('mail_service');
+                                $mailService->send('emargement@mines-ales.org', $etudiant->getEmail(), 'Notification absence EMA',$content);
+                                $participationAbsence = new ParticipationAbsence();
+                                $participationAbsence->setAbsence($absence);
+                                $participationAbsence->setParticipation($participation);
+                                $em = $this->getDoctrine()->getManager();
+                                $em->persist($participationAbsence);
+                            }
+                        
                         }
                     }
                 }
