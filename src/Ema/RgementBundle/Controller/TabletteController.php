@@ -175,11 +175,11 @@ class TabletteController extends Controller
                         //Oui : absence prévue
                         try {
                             $abscenceEtudiant = $query->getSingleResult();
-                            /*$participationAbsence = new ParticipationAbsence();
+                            $participationAbsence = new ParticipationAbsence();
                             $participationAbsence->setAbsence($abscenceEtudiant);
                             $participationAbsence->setParticipation($participation); 
                             $em = $this->getDoctrine()->getManager();
-                            $em->persist($participationAbsence); */
+                            $em->persist($participationAbsence); 
                             
                             
                         //Non : absence non prévue
