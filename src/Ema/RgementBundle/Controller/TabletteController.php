@@ -34,12 +34,21 @@ class TabletteController extends Controller
     {
         //Read Json file
         $filename = "first.json";
-        $file = fopen($filename, 'r');
-        $json = fgets($file);
-        fclose($file);
+        
+        if(file_exists($filename))
+        {
+            $file = fopen($filename, 'r');
+            $json = fgets($file);
+            fclose($file);
 
-        $response = new Response($json);
-        $response->headers->set('Content-Type', 'application/json');
+            $response = new Response($json);
+            $response->headers->set('Content-Type', 'application/json');
+        }
+        else
+        {
+            $response = $this->firstForceAction();
+        }
+        
         
         return $response;
     }
