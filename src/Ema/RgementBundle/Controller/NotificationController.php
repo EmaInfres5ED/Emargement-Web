@@ -89,7 +89,8 @@ class NotificationController extends Controller
             $this->entityManager->flush();
             $response->setData(array(
                 'type' => Message::TYPE_SUCCESS,
-                'message' => 'Mise à jour de la notification avec succès.'
+                'message' => 'Mise à jour de la notification avec succès.',
+                'id' => $notificationId
             ));
         }
         else

@@ -17,14 +17,14 @@ $(document).ready(function(){
                 for (var i = 0; i < json.length; i++) {
                     if (json[i].courseName.length === 0) {
                         $('div.notificationHeader').after(
-                            '<li class="notification-item">' +
+                            '<li class="notification-item notification-' + json[i].id + '">' +
                                 '<a href="#">' + json[i].content + '</a>' +
                             '</li>' +
                             '<li class="divider"></li>'
                         );
                     } else {
                         $('div.notificationHeader').after(
-                            '<li class="notification-item">' +
+                            '<li class="notification-item notification-' + json[i].id + '">' +
                                 '<a href="' + $('ul.alert-dropdown').data('url-show') + json[i].courseId + '">' +
                                 'Rapport du cours de <b> '+json[i].courseName+' </b>  de '+json[i].startDate+' à '+json[i].endDate +
                                 '</a>' +
